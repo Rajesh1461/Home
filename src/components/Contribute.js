@@ -178,9 +178,9 @@ function Contribute() {
   };
 
   return (
-    <div style={{ padding: '2rem', maxWidth: 1200, margin: '0 auto' }}>
-      <h1 style={{ color: '#222', fontSize: '2rem', marginBottom: '1rem' }}>📥 Contribution Section</h1>
-      <p style={{ color: '#555', marginBottom: '2rem' }}>
+    <div style={{ padding: '2rem', maxWidth: 1200, margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px' }}>
+      <h1 style={{ position: 'relative', zIndex: 10, color: '#222', fontSize: '2rem', marginBottom: '1rem', fontWeight: 'bold', textShadow: '0 2px 8px rgba(255,255,255,0.7), 0 1px 2px rgba(0,0,0,0.15)' }}>📥 Contribution Section</h1>
+      <p style={{ color: '#222', marginBottom: '2rem', position: 'relative', zIndex: 10, fontWeight: 'bold', textShadow: '0 2px 8px rgba(255,255,255,0.7), 0 1px 2px rgba(0,0,0,0.15)' }}>
         Support the preservation and growth of The Moothedath Ancestral House through volunteering, donations, and feedback.
       </p>
 
@@ -192,10 +192,11 @@ function Contribute() {
             padding: '0.75rem 1.5rem',
             border: 'none',
             borderRadius: 8,
-            background: activeTab === 'volunteer' ? '#007bff' : '#f8f9fa',
-            color: activeTab === 'volunteer' ? 'white' : '#333',
+            background: 'transparent',
+            color: activeTab === 'volunteer' ? '#007bff' : '#333',
             cursor: 'pointer',
-            fontWeight: activeTab === 'volunteer' ? 'bold' : 'normal'
+            fontWeight: activeTab === 'volunteer' ? 'bold' : 'normal',
+            position: 'relative', zIndex: 2
           }}
         >
           Volunteer
@@ -206,8 +207,8 @@ function Contribute() {
             padding: '0.75rem 1.5rem',
             border: 'none',
             borderRadius: 8,
-            background: activeTab === 'donate' ? '#007bff' : '#f8f9fa',
-            color: activeTab === 'donate' ? 'white' : '#333',
+            background: 'transparent',
+            color: activeTab === 'donate' ? '#007bff' : '#333',
             cursor: 'pointer',
             fontWeight: activeTab === 'donate' ? 'bold' : 'normal'
           }}
@@ -220,8 +221,8 @@ function Contribute() {
             padding: '0.75rem 1.5rem',
             border: 'none',
             borderRadius: 8,
-            background: activeTab === 'polls' ? '#007bff' : '#f8f9fa',
-            color: activeTab === 'polls' ? 'white' : '#333',
+            background: 'transparent',
+            color: activeTab === 'polls' ? '#007bff' : '#333',
             cursor: 'pointer',
             fontWeight: activeTab === 'polls' ? 'bold' : 'normal'
           }}
@@ -234,8 +235,8 @@ function Contribute() {
             padding: '0.75rem 1.5rem',
             border: 'none',
             borderRadius: 8,
-            background: activeTab === 'feedback' ? '#007bff' : '#f8f9fa',
-            color: activeTab === 'feedback' ? 'white' : '#333',
+            background: 'transparent',
+            color: activeTab === 'feedback' ? '#007bff' : '#333',
             cursor: 'pointer',
             fontWeight: activeTab === 'feedback' ? 'bold' : 'normal'
           }}
@@ -246,13 +247,13 @@ function Contribute() {
 
       {/* Volunteer Section */}
       {activeTab === 'volunteer' && (
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', borderRadius: '40px 8px 40px 8px', background: 'transparent' }}>
           <div>
             <h2 style={{ color: '#333', fontSize: '1.5rem', marginBottom: '1rem' }}>🤝 Volunteer Opportunities</h2>
             <div style={{ display: 'grid', gap: '1rem' }}>
               {volunteerOpportunities.map(opportunity => (
                 <div key={opportunity.id} style={{ 
-                  background: '#fff', 
+                  background: 'transparent', 
                   padding: '1.5rem', 
                   borderRadius: 12,
                   boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
@@ -297,7 +298,7 @@ function Contribute() {
           <div>
             <h2 style={{ color: '#333', fontSize: '1.5rem', marginBottom: '1rem' }}>📝 Volunteer Signup</h2>
             <form onSubmit={handleVolunteerSubmit} style={{ 
-              background: '#fff', 
+              background: 'transparent', 
               padding: '2rem', 
               borderRadius: 12,
               boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
@@ -382,13 +383,13 @@ function Contribute() {
 
       {/* Donation Section */}
       {activeTab === 'donate' && (
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', borderRadius: '40px 8px 40px 8px', background: 'transparent' }}>
           <div>
             <h2 style={{ color: '#333', fontSize: '1.5rem', marginBottom: '1rem' }}>💝 Donation Projects</h2>
             <div style={{ display: 'grid', gap: '1.5rem' }}>
               {donationProjects.map(project => (
                 <div key={project.id} style={{ 
-                  background: '#fff', 
+                  background: 'transparent', 
                   borderRadius: 12,
                   overflow: 'hidden',
                   boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
@@ -442,7 +443,7 @@ function Contribute() {
           <div>
             <h2 style={{ color: '#333', fontSize: '1.5rem', marginBottom: '1rem' }}>💳 Make a Donation</h2>
             <form onSubmit={handleDonationSubmit} style={{ 
-              background: '#fff', 
+              background: 'transparent', 
               padding: '2rem', 
               borderRadius: 12,
               boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
@@ -535,7 +536,7 @@ function Contribute() {
           <div style={{ display: 'grid', gap: '1.5rem' }}>
             {activePolls.map(poll => (
               <div key={poll.id} style={{ 
-                background: '#fff', 
+                background: 'transparent', 
                 padding: '2rem', 
                 borderRadius: 12,
                 boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
@@ -592,7 +593,7 @@ function Contribute() {
         <div style={{ maxWidth: 600, margin: '0 auto' }}>
           <h2 style={{ color: '#333', fontSize: '1.5rem', marginBottom: '1rem' }}>💬 Feedback & Suggestions</h2>
           <form onSubmit={handleFeedbackSubmit} style={{ 
-            background: '#fff', 
+            background: 'transparent', 
             padding: '2rem', 
             borderRadius: 12,
             boxShadow: '0 4px 12px rgba(0,0,0,0.1)'

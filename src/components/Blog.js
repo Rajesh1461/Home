@@ -144,15 +144,15 @@ function Blog() {
   };
 
   return (
-    <div style={{ padding: '2rem', maxWidth: 1200, margin: '0 auto' }}>
-      <h1 style={{ color: '#222', fontSize: '2rem', marginBottom: '1rem' }}>📜 Blog / Family Journal</h1>
-      <p style={{ color: '#555', marginBottom: '2rem' }}>
+    <div style={{ padding: '2rem', maxWidth: 1200, margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px' }}>
+      <h1 style={{ position: 'relative', zIndex: 10, color: '#222', fontSize: '2rem', marginBottom: '1rem', fontWeight: 'bold', textShadow: '0 2px 8px rgba(255,255,255,0.7), 0 1px 2px rgba(0,0,0,0.15)' }}>📜 Blog / Family Journal</h1>
+      <p style={{ color: '#222', marginBottom: '2rem', position: 'relative', zIndex: 10, fontWeight: 'bold', textShadow: '0 2px 8px rgba(255,255,255,0.7), 0 1px 2px rgba(0,0,0,0.15)' }}>
         Stories from elders, renovation diaries, cooking traditions, and local culture - preserving our family's heritage through words.
       </p>
 
       {/* Search and Filter */}
       <div style={{ 
-        background: '#f8f9fa', 
+        background: 'transparent', 
         padding: '1.5rem', 
         borderRadius: 12, 
         marginBottom: '2rem',
@@ -195,7 +195,7 @@ function Blog() {
         <div style={{ display: 'grid', gap: '2rem' }}>
           {filteredPosts.map(post => (
             <div key={post.id} style={{ 
-              background: '#fff', 
+              background: 'transparent', 
               borderRadius: 12, 
               overflow: 'hidden',
               boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
@@ -225,10 +225,10 @@ function Blog() {
                     </span>
                     <span style={{ color: '#666', fontSize: '0.9rem' }}>{post.readTime}</span>
                   </div>
-                  <h3 style={{ color: '#222', fontSize: '1.3rem', margin: '0 0 0.5rem 0' }}>{post.title}</h3>
-                  <p style={{ color: '#666', margin: '0 0 0.5rem 0' }}>By {post.author} • {formatDate(post.date)}</p>
-                  <p style={{ color: '#555', lineHeight: 1.5, margin: '0 0 1rem 0' }}>{post.excerpt}</p>
-                  <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1rem' }}>
+                  <h3 style={{ position: 'relative', zIndex: 2, color: '#222', fontSize: '1.3rem', margin: '0 0 0.5rem 0' }}>{post.title}</h3>
+                  <p style={{ position: 'relative', zIndex: 2, color: '#666', margin: '0 0 0.5rem 0' }}>By {post.author} • {formatDate(post.date)}</p>
+                  <p style={{ position: 'relative', zIndex: 2, color: '#555', lineHeight: 1.5, margin: '0 0 1rem 0' }}>{post.excerpt}</p>
+                  <div style={{ position: 'relative', zIndex: 2, display: 'flex', gap: '0.5rem', marginBottom: '1rem' }}>
                     {post.tags.map(tag => (
                       <span key={tag} style={{ 
                         background: '#f8f9fa', 
@@ -241,7 +241,7 @@ function Blog() {
                       </span>
                     ))}
                   </div>
-                  <div style={{ display: 'flex', gap: '1rem', color: '#666', fontSize: '0.9rem' }}>
+                  <div style={{ position: 'relative', zIndex: 2, display: 'flex', gap: '1rem', color: '#666', fontSize: '0.9rem' }}>
                     <span>❤️ {post.likes}</span>
                     <span>💬 {post.comments}</span>
                   </div>
@@ -254,7 +254,7 @@ function Blog() {
 
       {/* Single Post View */}
       {selectedPost && (
-        <div style={{ background: '#fff', borderRadius: 12, padding: '2rem', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
+        <div style={{ background: 'transparent', borderRadius: 12, padding: '2rem', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
           <button 
             onClick={() => setSelectedPost(null)}
             style={{
@@ -284,8 +284,8 @@ function Blog() {
             </span>
           </div>
           
-          <h1 style={{ color: '#222', fontSize: '2rem', margin: '0 0 0.5rem 0' }}>{selectedPost.title}</h1>
-          <p style={{ color: '#666', margin: '0 0 1rem 0' }}>
+          <h1 style={{ position: 'relative', zIndex: 2, color: '#222', fontSize: '2rem', margin: '0 0 0.5rem 0' }}>{selectedPost.title}</h1>
+          <p style={{ position: 'relative', zIndex: 2, color: '#666', margin: '0 0 1rem 0' }}>
             By {selectedPost.author} • {formatDate(selectedPost.date)} • {selectedPost.readTime}
           </p>
           
@@ -303,6 +303,7 @@ function Blog() {
           />
           
           <div style={{ 
+            position: 'relative', zIndex: 2,
             lineHeight: 1.8, 
             color: '#333', 
             fontSize: '1.1rem',
@@ -312,6 +313,7 @@ function Blog() {
           </div>
           
           <div style={{ 
+            position: 'relative', zIndex: 2,
             marginTop: '2rem', 
             paddingTop: '1rem', 
             borderTop: '1px solid #eee',
@@ -319,7 +321,7 @@ function Blog() {
             justifyContent: 'space-between',
             alignItems: 'center'
           }}>
-            <div style={{ display: 'flex', gap: '1rem' }}>
+            <div style={{ position: 'relative', zIndex: 2, display: 'flex', gap: '1rem' }}>
               <button style={{
                 background: '#f8f9fa',
                 border: '1px solid #ddd',
@@ -339,7 +341,7 @@ function Blog() {
                 💬 Comment ({selectedPost.comments})
               </button>
             </div>
-            <div style={{ display: 'flex', gap: '0.5rem' }}>
+            <div style={{ position: 'relative', zIndex: 2, display: 'flex', gap: '0.5rem' }}>
               {selectedPost.tags.map(tag => (
                 <span key={tag} style={{ 
                   background: '#f8f9fa', 
@@ -359,10 +361,11 @@ function Blog() {
       {/* No results message */}
       {filteredPosts.length === 0 && !selectedPost && (
         <div style={{ 
+          position: 'relative', zIndex: 2,
           textAlign: 'center', 
           padding: '3rem', 
           color: '#666',
-          background: '#fff',
+          background: 'transparent',
           borderRadius: 12,
           boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
         }}>

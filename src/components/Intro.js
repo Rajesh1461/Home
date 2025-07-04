@@ -1,0 +1,151 @@
+import React, { useRef } from 'react';
+
+const videoStyles = {
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  minWidth: '100vw',
+  minHeight: '100vh',
+  width: 'auto',
+  height: 'auto',
+  zIndex: 9999,
+  objectFit: 'cover',
+};
+
+const textStyles = {
+  position: 'fixed',
+  left: '50%',
+  top: '50%',
+  transform: 'translate(-50%, calc(-50% - 40px))',
+  color: 'pink',
+  WebkitTextStroke: '2px black',
+  textStroke: '2px black',
+  fontSize: '100px',
+  fontFamily: 'Segoe UI, Arial, sans-serif',
+  letterSpacing: '2px',
+  zIndex: 10000,
+  display: 'none',
+  textTransform: 'uppercase',
+  textDecoration: 'underline',
+  textDecorationColor: 'red',
+  textUnderlineOffset: '0.15em',
+  whiteSpace: 'nowrap',
+  cursor: 'pointer',
+  textShadow: `0 2px 8px rgba(0,0,0,0.7),
+    2px 0 0 #fff,
+    -2px 0 0 #fff,
+    0 2px 0 #fff,
+    0 -2px 0 #fff,
+    4px 4px 0 #b30000,
+    8px 8px 16px #000,
+    1px 1px 0 #800000,
+    2px 2px 2px #333`
+};
+
+const overlayStyles = {
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  width: '100vw',
+  height: '100vh',
+  background: 'rgba(0,0,0,0.45)',
+  color: '#fff',
+  zIndex: 20000,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  fontSize: '2rem',
+  fontFamily: 'Segoe UI, Arial, sans-serif',
+  cursor: 'pointer',
+  textAlign: 'center',
+};
+
+const zoomOutCenter = `@keyframes zoomOutCenter {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% - 40px)) scale(0.1);
+  }
+  60% {
+    opacity: 1;
+    transform: translate(-50%, calc(-50% - 40px)) scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, calc(-50% - 40px)) scale(1);
+  }
+}`;
+const floatText = `@keyframes floatText {
+  0% {
+    transform: translate(-50%, calc(-50% - 40px)) scale(1);
+  }
+  50% {
+    transform: translate(-50%, calc(-52% - 40px)) scale(1.04);
+  }
+  100% {
+    transform: translate(-50%, calc(-50% - 40px)) scale(1);
+  }
+}`;
+
+function Intro() {
+  const textRef = useRef(null);
+  const videoRef = useRef(null);
+
+  const handleVideoEnd = () => {
+    document.body.style.background = 'black';
+    if (videoRef.current) videoRef.current.style.display = 'none';
+    if (textRef.current) {
+      textRef.current.style.display = 'block';
+      textRef.current.classList.add('zoom-out-center');
+      const handler = () => {
+        textRef.current.classList.remove('zoom-out-center');
+        textRef.current.classList.add('float-center');
+        textRef.current.removeEventListener('animationend', handler);
+      };
+      textRef.current.addEventListener('animationend', handler);
+    }
+  };
+
+  const handleTextClick = () => {
+    window.location.href = '/home';
+  };
+
+  // Allow user to enable audio by clicking anywhere on the video area
+  const handleEnableAudio = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = false;
+      videoRef.current.play();
+    }
+  };
+
+  return (
+    <>
+      <style>{zoomOutCenter + floatText}
+      {`.zoom-out-center { animation: zoomOutCenter 1.2s cubic-bezier(0.23, 1.01, 0.32, 1) forwards; }`}
+      {`.float-center { animation: floatText 2.5s ease-in-out infinite; }`}
+      </style>
+      <video
+        id="bg-video"
+        ref={videoRef}
+        autoPlay
+        muted
+        playsInline
+        onEnded={handleVideoEnd}
+        style={videoStyles}
+        onClick={handleEnableAudio}
+      >
+        <source src="/main-wall.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <div
+        id="bottom-center-text"
+        ref={textRef}
+        style={textStyles}
+        onClick={handleTextClick}
+      >
+        The Moothedath
+      </div>
+    </>
+  );
+}
+
+export default Intro; 

@@ -70,19 +70,22 @@ const sampleMedia = [
   }
 ];
 
-const years = [...new Set(sampleMedia.map(item => item.year))].sort((a, b) => b - a);
-const events = [...new Set(sampleMedia.map(item => item.event))];
-const persons = [...new Set(sampleMedia.map(item => item.person))];
-const locations = [...new Set(sampleMedia.map(item => item.location))];
-
-function Gallery() {
+function Gallery({ media }) {
+  // Use sampleMedia as fallback if media is empty or not provided
+  const galleryMedia = (media && Array.isArray(media) && media.length > 0) ? media : sampleMedia;
   const [selectedYear, setSelectedYear] = useState('All');
   const [selectedEvent, setSelectedEvent] = useState('All');
   const [selectedPerson, setSelectedPerson] = useState('All');
   const [selectedLocation, setSelectedLocation] = useState('All');
   const [selectedMedia, setSelectedMedia] = useState(null);
 
-  const filteredMedia = sampleMedia.filter(item => {
+  // Build filter options from galleryMedia
+  const years = [...new Set(galleryMedia.map(item => item.year))].sort((a, b) => b - a);
+  const events = [...new Set(galleryMedia.map(item => item.event))];
+  const persons = [...new Set(galleryMedia.map(item => item.person))];
+  const locations = [...new Set(galleryMedia.map(item => item.location))];
+
+  const filteredMedia = galleryMedia.filter(item => {
     return (selectedYear === 'All' || item.year === selectedYear) &&
            (selectedEvent === 'All' || item.event === selectedEvent) &&
            (selectedPerson === 'All' || item.person === selectedPerson) &&
@@ -90,24 +93,24 @@ function Gallery() {
   });
 
   return (
-    <div style={{ padding: '2rem', maxWidth: 1200, margin: '0 auto' }}>
-      <h1 style={{ color: '#222', fontSize: '2rem', marginBottom: '1rem' }}>🗂️ Photo & Video Gallery</h1>
-      <p style={{ color: '#555', marginBottom: '2rem' }}>
+    <div style={{ padding: '2rem', maxWidth: 1200, margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px' }}>
+      <h1 style={{ position: 'relative', zIndex: 10, color: '#222', fontSize: '2.2rem', marginBottom: '1.5rem', fontWeight: 'bold', textShadow: '0 2px 8px rgba(255,255,255,0.7), 0 1px 2px rgba(0,0,0,0.15)' }}>Photo & Video Gallery</h1>
+      <p style={{ position: 'relative', zIndex: 10, color: '#222', fontSize: '1.15rem', marginBottom: '1.2rem', fontWeight: 'bold', textShadow: '0 2px 8px rgba(255,255,255,0.7), 0 1px 2px rgba(0,0,0,0.15)' }}>
         Explore memories from The Moothedath Ancestral House. Filter by year, event, person, or location.
       </p>
 
       {/* Filters */}
       <div style={{ 
-        background: '#f8f9fa', 
-        padding: '1.5rem', 
+        background: 'transparent', 
+        padding: '1.2rem', 
         borderRadius: 12, 
-        marginBottom: '2rem',
+        marginBottom: '1rem',
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
         gap: '1rem'
       }}>
         <div>
-          <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>Year:</label>
+          <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold', position: 'relative', zIndex: 2 }}>Year:</label>
           <select 
             value={selectedYear} 
             onChange={(e) => setSelectedYear(e.target.value)}
@@ -115,12 +118,12 @@ function Gallery() {
           >
             <option value="All">All Years</option>
             {years.map(year => (
-              <option key={year} value={year}>{year}</option>
+              <option key={year} value={year} style={{ position: 'relative', zIndex: 2 }}>{year}</option>
             ))}
           </select>
         </div>
         <div>
-          <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>Event:</label>
+          <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold', position: 'relative', zIndex: 2 }}>Event:</label>
           <select 
             value={selectedEvent} 
             onChange={(e) => setSelectedEvent(e.target.value)}
@@ -128,12 +131,12 @@ function Gallery() {
           >
             <option value="All">All Events</option>
             {events.map(event => (
-              <option key={event} value={event}>{event}</option>
+              <option key={event} value={event} style={{ position: 'relative', zIndex: 2 }}>{event}</option>
             ))}
           </select>
         </div>
         <div>
-          <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>Person:</label>
+          <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold', position: 'relative', zIndex: 2 }}>Person:</label>
           <select 
             value={selectedPerson} 
             onChange={(e) => setSelectedPerson(e.target.value)}
@@ -141,12 +144,12 @@ function Gallery() {
           >
             <option value="All">All People</option>
             {persons.map(person => (
-              <option key={person} value={person}>{person}</option>
+              <option key={person} value={person} style={{ position: 'relative', zIndex: 2 }}>{person}</option>
             ))}
           </select>
         </div>
         <div>
-          <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>Location:</label>
+          <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold', position: 'relative', zIndex: 2 }}>Location:</label>
           <select 
             value={selectedLocation} 
             onChange={(e) => setSelectedLocation(e.target.value)}
@@ -154,33 +157,37 @@ function Gallery() {
           >
             <option value="All">All Locations</option>
             {locations.map(location => (
-              <option key={location} value={location}>{location}</option>
+              <option key={location} value={location} style={{ position: 'relative', zIndex: 2 }}>{location}</option>
             ))}
           </select>
         </div>
       </div>
 
       {/* Results count */}
-      <div style={{ marginBottom: '1rem', color: '#666' }}>
-        Showing {filteredMedia.length} of {sampleMedia.length} items
+      <div style={{ marginBottom: '0.5rem', color: '#666', position: 'relative', zIndex: 2 }}>
+        Showing {filteredMedia.length} of {galleryMedia.length} items
       </div>
 
       {/* Gallery Grid */}
       <div style={{ 
         display: 'grid', 
-        gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', 
-        gap: '1.5rem' 
+        gridTemplateColumns: 'repeat(3, 1fr)', 
+        gap: '1.5rem',
+        position: 'relative',
+        zIndex: 20
       }}>
         {filteredMedia.map(item => (
           <div 
             key={item.id} 
             style={{ 
-              background: '#fff', 
+              background: 'transparent', 
               borderRadius: 12, 
               overflow: 'hidden', 
               boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
               cursor: 'pointer',
-              transition: 'transform 0.2s'
+              transition: 'transform 0.2s',
+              position: 'relative',
+              zIndex: 21
             }}
             onMouseEnter={(e) => e.target.style.transform = 'scale(1.02)'}
             onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
@@ -191,10 +198,10 @@ function Gallery() {
               alt={item.title}
               style={{ width: '100%', height: 200, objectFit: 'cover' }}
             />
-            <div style={{ padding: '1rem' }}>
-              <h3 style={{ margin: '0 0 0.5rem 0', color: '#222' }}>{item.title}</h3>
-              <p style={{ margin: '0 0 0.5rem 0', color: '#666', fontSize: '0.9rem' }}>{item.caption}</p>
-              <div style={{ display: 'flex', gap: '1rem', fontSize: '0.8rem', color: '#888' }}>
+            <div style={{ padding: '0.5rem' }}>
+              <h3 style={{ margin: '0 0 0.2rem 0', color: '#222', position: 'relative', zIndex: 2 }}>{item.title}</h3>
+              <p style={{ margin: '0 0 0.2rem 0', color: '#666', fontSize: '0.9rem', position: 'relative', zIndex: 2 }}>{item.caption}</p>
+              <div style={{ display: 'flex', gap: '0.5rem', fontSize: '0.8rem', color: '#888', position: 'relative', zIndex: 2 }}>
                 <span>📅 {item.year}</span>
                 <span>🎉 {item.event}</span>
                 <span>👥 {item.person}</span>

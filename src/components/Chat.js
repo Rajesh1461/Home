@@ -108,9 +108,9 @@ function Chat() {
   };
 
   return (
-    <div style={{ padding: '2rem', maxWidth: 1200, margin: '0 auto' }}>
-      <h1 style={{ color: '#222', fontSize: '2rem', marginBottom: '1rem' }}>💬 Live Chat & Guestbook</h1>
-      <p style={{ color: '#555', marginBottom: '2rem' }}>
+    <div style={{ padding: '2rem', maxWidth: 1200, margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px' }}>
+      <h1 style={{ position: 'relative', zIndex: 10, color: '#222', fontSize: '2rem', marginBottom: '1rem', fontWeight: 'bold', textShadow: '0 2px 8px rgba(255,255,255,0.7), 0 1px 2px rgba(0,0,0,0.15)' }}>💬 Live Chat & Guestbook</h1>
+      <p style={{ color: '#222', marginBottom: '2rem', position: 'relative', zIndex: 10, fontWeight: 'bold', textShadow: '0 2px 8px rgba(255,255,255,0.7), 0 1px 2px rgba(0,0,0,0.15)' }}>
         Connect with family members through live chat and leave your memories in our ancestral guestbook.
       </p>
 
@@ -122,8 +122,8 @@ function Chat() {
             padding: '0.75rem 1.5rem',
             border: 'none',
             borderRadius: 8,
-            background: activeTab === 'guestbook' ? '#007bff' : '#f8f9fa',
-            color: activeTab === 'guestbook' ? 'white' : '#333',
+            background: 'transparent',
+            color: activeTab === 'guestbook' ? '#007bff' : '#333',
             cursor: 'pointer',
             fontWeight: activeTab === 'guestbook' ? 'bold' : 'normal'
           }}
@@ -136,8 +136,8 @@ function Chat() {
             padding: '0.75rem 1.5rem',
             border: 'none',
             borderRadius: 8,
-            background: activeTab === 'chat' ? '#007bff' : '#f8f9fa',
-            color: activeTab === 'chat' ? 'white' : '#333',
+            background: 'transparent',
+            color: activeTab === 'chat' ? '#007bff' : '#333',
             cursor: 'pointer',
             fontWeight: activeTab === 'chat' ? 'bold' : 'normal'
           }}
@@ -150,8 +150,8 @@ function Chat() {
             padding: '0.75rem 1.5rem',
             border: 'none',
             borderRadius: 8,
-            background: activeTab === 'whatsapp' ? '#007bff' : '#f8f9fa',
-            color: activeTab === 'whatsapp' ? 'white' : '#333',
+            background: 'transparent',
+            color: activeTab === 'whatsapp' ? '#007bff' : '#333',
             cursor: 'pointer',
             fontWeight: activeTab === 'whatsapp' ? 'bold' : 'normal'
           }}
@@ -166,7 +166,7 @@ function Chat() {
           <div>
             <h2 style={{ color: '#333', fontSize: '1.5rem', marginBottom: '1rem' }}>📖 Ancestral Guestbook</h2>
             <div style={{ 
-              background: '#fff', 
+              background: 'transparent', 
               padding: '2rem', 
               borderRadius: 12,
               boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
@@ -205,7 +205,7 @@ function Chat() {
           <div>
             <h2 style={{ color: '#333', fontSize: '1.5rem', marginBottom: '1rem' }}>✍️ Leave a Message</h2>
             <form onSubmit={handleGuestbookSubmit} style={{ 
-              background: '#fff', 
+              background: 'transparent', 
               padding: '2rem', 
               borderRadius: 12,
               boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
@@ -263,7 +263,7 @@ function Chat() {
           <div>
             <h2 style={{ color: '#333', fontSize: '1.5rem', marginBottom: '1rem' }}>💭 Live Chat</h2>
             <div style={{ 
-              background: '#fff', 
+              background: 'transparent', 
               padding: '1rem', 
               borderRadius: 12,
               boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
@@ -277,7 +277,7 @@ function Chat() {
                 gap: '1rem', 
                 marginBottom: '1rem',
                 padding: '0.5rem',
-                background: '#f8f9fa',
+                background: 'transparent',
                 borderRadius: 8
               }}>
                 <button
@@ -313,7 +313,7 @@ function Chat() {
                 flex: 1, 
                 overflowY: 'auto', 
                 padding: '1rem',
-                background: '#f8f9fa',
+                background: 'transparent',
                 borderRadius: 8,
                 marginBottom: '1rem'
               }}>
@@ -372,7 +372,7 @@ function Chat() {
           <div>
             <h2 style={{ color: '#333', fontSize: '1.5rem', marginBottom: '1rem' }}>📱 Chat Features</h2>
             <div style={{ 
-              background: '#fff', 
+              background: 'transparent', 
               padding: '2rem', 
               borderRadius: 12,
               boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
@@ -404,7 +404,7 @@ function Chat() {
               </div>
 
               <div style={{ 
-                background: '#f8f9fa', 
+                background: 'transparent', 
                 padding: '1rem', 
                 borderRadius: 8,
                 textAlign: 'center'
@@ -433,7 +433,7 @@ function Chat() {
           <div>
             <h2 style={{ color: '#333', fontSize: '1.5rem', marginBottom: '1rem' }}>📱 WhatsApp Integration</h2>
             <div style={{ 
-              background: '#fff', 
+              background: 'transparent', 
               padding: '2rem', 
               borderRadius: 12,
               boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
@@ -522,7 +522,7 @@ function Chat() {
           <div>
             <h2 style={{ color: '#333', fontSize: '1.5rem', marginBottom: '1rem' }}>📞 Contact Information</h2>
             <div style={{ 
-              background: '#fff', 
+              background: 'transparent', 
               padding: '2rem', 
               borderRadius: 12,
               boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
@@ -544,21 +544,21 @@ function Chat() {
                 <h3 style={{ color: '#222', marginBottom: '0.5rem' }}>WhatsApp Groups</h3>
                 <div style={{ display: 'grid', gap: '0.5rem' }}>
                   <div style={{ 
-                    background: '#f8f9fa', 
+                    background: 'transparent', 
                     padding: '0.75rem', 
                     borderRadius: 6 
                   }}>
                     <strong>Family Group:</strong> Moothedath Family
                   </div>
                   <div style={{ 
-                    background: '#f8f9fa', 
+                    background: 'transparent', 
                     padding: '0.75rem', 
                     borderRadius: 6 
                   }}>
                     <strong>Events Group:</strong> Ancestral House Events
                   </div>
                   <div style={{ 
-                    background: '#f8f9fa', 
+                    background: 'transparent', 
                     padding: '0.75rem', 
                     borderRadius: 6 
                   }}>
@@ -568,7 +568,7 @@ function Chat() {
               </div>
 
               <div style={{ 
-                background: '#f8f9fa', 
+                background: 'transparent', 
                 padding: '1rem', 
                 borderRadius: 8,
                 textAlign: 'center'

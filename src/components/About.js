@@ -49,25 +49,13 @@ const familyTree = {
 // Sample timeline data
 const timeline = [
   {
-    year: '1920',
-    title: 'House Construction',
-    description: 'The ancestral house was built by our great grandfather using traditional Kerala architecture.',
-    image: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400'
-  },
-  {
-    year: '1950',
-    title: 'First Expansion',
-    description: 'Added the veranda and extended the kitchen area to accommodate the growing family.',
-    image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400'
-  },
-  {
     year: '1980',
     title: 'Temple Addition',
     description: 'Built the family temple in the courtyard, becoming the spiritual center of the house.',
     image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=400'
   },
   {
-    year: '2005',
+    year: '2015',
     title: 'Modern Renovation',
     description: 'Updated electrical systems and added modern amenities while preserving traditional architecture.',
     image: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400'
@@ -77,6 +65,12 @@ const timeline = [
     title: 'Heritage Restoration',
     description: 'Comprehensive restoration project to preserve the house for future generations.',
     image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400'
+  },
+  {
+    year: '2025',
+    title: 'Centenary Celebration',
+    description: 'Celebrating 100 years of the ancestral house with a grand family reunion and cultural events.',
+    image: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400'
   }
 ];
 
@@ -199,9 +193,9 @@ function About() {
   const [activeTab, setActiveTab] = useState('history');
 
   return (
-    <div style={{ padding: '2rem', maxWidth: 1200, margin: '0 auto' }}>
-      <h1 style={{ color: '#222', fontSize: '2rem', marginBottom: '1rem' }}>🧾 About The Moothedath Ancestral House</h1>
-      <p style={{ color: '#555', marginBottom: '2rem' }}>
+    <div style={{ padding: '2rem', maxWidth: 1200, margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px' }}>
+      <h1 style={{ position: 'relative', zIndex: 2, color: '#222', fontSize: '2.2rem', marginBottom: '1.5rem' }}>🧾 About The Moothedath Ancestral House</h1>
+      <p style={{ color: '#555', fontSize: '1.15rem', marginBottom: '2.5rem', position: 'relative', zIndex: 2 }}>
         Discover the rich history, architectural beauty, and family stories that make our ancestral house a living heritage.
       </p>
 
@@ -216,7 +210,8 @@ function About() {
             background: activeTab === 'history' ? '#007bff' : '#f8f9fa',
             color: activeTab === 'history' ? 'white' : '#333',
             cursor: 'pointer',
-            fontWeight: activeTab === 'history' ? 'bold' : 'normal'
+            fontWeight: activeTab === 'history' ? 'bold' : 'normal',
+            position: 'relative', zIndex: 2
           }}
         >
           History Timeline
@@ -269,11 +264,12 @@ function About() {
       {activeTab === 'history' && (
         <div>
           <h2 style={{ color: '#333', fontSize: '1.5rem', marginBottom: '1rem' }}>📜 History Timeline</h2>
-          <div style={{ position: 'relative' }}>
+          <div style={{ position: 'relative', display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '2rem' }}>
             {timeline.map((event, index) => (
               <div key={index} style={{ 
                 display: 'flex', 
-                marginBottom: '2rem',
+                flexDirection: 'row',
+                alignItems: 'flex-start',
                 position: 'relative'
               }}>
                 <div style={{ 
@@ -292,12 +288,16 @@ function About() {
                   </div>
                 </div>
                 <div style={{ 
-                  flex: 1, 
+                  flex: 'none',
+                  width: 300,
                   background: '#fff', 
                   padding: '1.5rem', 
                   borderRadius: 12,
                   boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-                  position: 'relative'
+                  position: 'relative',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center'
                 }}>
                   <div style={{ 
                     position: 'absolute', 
@@ -310,8 +310,8 @@ function About() {
                     borderBottom: '10px solid transparent',
                     borderRight: '10px solid #fff'
                   }}></div>
-                  <h3 style={{ color: '#222', margin: '0 0 0.5rem 0' }}>{event.title}</h3>
-                  <p style={{ color: '#555', margin: '0 0 1rem 0' }}>{event.description}</p>
+                  <h3 style={{ color: '#222', margin: '0 0 0.5rem 0', textAlign: 'center' }}>{event.title}</h3>
+                  <p style={{ color: '#555', margin: '0 0 1rem 0', textAlign: 'center' }}>{event.description}</p>
                   <img 
                     src={event.image} 
                     alt={event.title}
@@ -333,16 +333,8 @@ function About() {
       {/* Family Tree */}
       {activeTab === 'family' && (
         <div>
-          <h2 style={{ color: '#333', fontSize: '1.5rem', marginBottom: '1rem' }}>🌳 Interactive Family Tree</h2>
-          <div style={{ 
-            background: '#fff', 
-            padding: '2rem', 
-            borderRadius: 12,
-            boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-            maxHeight: 600,
-            overflowY: 'auto'
-          }}>
-            <FamilyTreeNode node={familyTree} />
+          <div style={{ textAlign: 'center' }}>
+            <img src="/Family%20Tree.jpg" alt="Family Tree" style={{ maxWidth: '100%', borderRadius: 16, boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }} />
           </div>
         </div>
       )}

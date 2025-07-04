@@ -96,19 +96,19 @@ function CountdownTimer({ targetDate }) {
 
   return (
     <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
-      <div style={{ textAlign: 'center', background: '#f8f9fa', padding: '0.5rem', borderRadius: 8, minWidth: 60 }}>
+      <div style={{ textAlign: 'center', background: 'transparent', padding: '0.5rem', borderRadius: 8, minWidth: 60 }}>
         <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#dc3545' }}>{timeLeft.days || 0}</div>
         <div style={{ fontSize: '0.8rem', color: '#666' }}>Days</div>
       </div>
-      <div style={{ textAlign: 'center', background: '#f8f9fa', padding: '0.5rem', borderRadius: 8, minWidth: 60 }}>
+      <div style={{ textAlign: 'center', background: 'transparent', padding: '0.5rem', borderRadius: 8, minWidth: 60 }}>
         <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#dc3545' }}>{timeLeft.hours || 0}</div>
         <div style={{ fontSize: '0.8rem', color: '#666' }}>Hours</div>
       </div>
-      <div style={{ textAlign: 'center', background: '#f8f9fa', padding: '0.5rem', borderRadius: 8, minWidth: 60 }}>
+      <div style={{ textAlign: 'center', background: 'transparent', padding: '0.5rem', borderRadius: 8, minWidth: 60 }}>
         <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#dc3545' }}>{timeLeft.minutes || 0}</div>
         <div style={{ fontSize: '0.8rem', color: '#666' }}>Minutes</div>
       </div>
-      <div style={{ textAlign: 'center', background: '#f8f9fa', padding: '0.5rem', borderRadius: 8, minWidth: 60 }}>
+      <div style={{ textAlign: 'center', background: 'transparent', padding: '0.5rem', borderRadius: 8, minWidth: 60 }}>
         <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#dc3545' }}>{timeLeft.seconds || 0}</div>
         <div style={{ fontSize: '0.8rem', color: '#666' }}>Seconds</div>
       </div>
@@ -137,9 +137,9 @@ function Events() {
   };
 
   return (
-    <div style={{ padding: '2rem', maxWidth: 1200, margin: '0 auto' }}>
-      <h1 style={{ color: '#222', fontSize: '2rem', marginBottom: '1rem' }}>🧭 Events Section</h1>
-      <p style={{ color: '#555', marginBottom: '2rem' }}>
+    <div style={{ padding: '2rem', maxWidth: 1200, margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px' }}>
+      <h1 style={{ position: 'relative', zIndex: 10, color: '#222', fontSize: '2.2rem', marginBottom: '1.5rem', fontWeight: 'bold', textShadow: '0 2px 8px rgba(255,255,255,0.7), 0 1px 2px rgba(0,0,0,0.15)' }}>🧭 Events Section</h1>
+      <p style={{ color: '#222', fontSize: '1.15rem', marginBottom: '2.5rem', position: 'relative', zIndex: 10, fontWeight: 'bold', textShadow: '0 2px 8px rgba(255,255,255,0.7), 0 1px 2px rgba(0,0,0,0.15)' }}>
         Stay connected with family events, celebrations, and important occasions at The Moothedath Ancestral House.
       </p>
 
@@ -151,8 +151,8 @@ function Events() {
             padding: '0.75rem 1.5rem',
             border: 'none',
             borderRadius: 8,
-            background: activeTab === 'current' ? '#007bff' : '#f8f9fa',
-            color: activeTab === 'current' ? 'white' : '#333',
+            background: 'transparent',
+            color: activeTab === 'current' ? '#007bff' : '#333',
             cursor: 'pointer',
             fontWeight: activeTab === 'current' ? 'bold' : 'normal'
           }}
@@ -165,8 +165,8 @@ function Events() {
             padding: '0.75rem 1.5rem',
             border: 'none',
             borderRadius: 8,
-            background: activeTab === 'upcoming' ? '#007bff' : '#f8f9fa',
-            color: activeTab === 'upcoming' ? 'white' : '#333',
+            background: 'transparent',
+            color: activeTab === 'upcoming' ? '#007bff' : '#333',
             cursor: 'pointer',
             fontWeight: activeTab === 'upcoming' ? 'bold' : 'normal'
           }}
@@ -179,8 +179,8 @@ function Events() {
             padding: '0.75rem 1.5rem',
             border: 'none',
             borderRadius: 8,
-            background: activeTab === 'past' ? '#007bff' : '#f8f9fa',
-            color: activeTab === 'past' ? 'white' : '#333',
+            background: 'transparent',
+            color: activeTab === 'past' ? '#007bff' : '#333',
             cursor: 'pointer',
             fontWeight: activeTab === 'past' ? 'bold' : 'normal'
           }}
@@ -192,10 +192,10 @@ function Events() {
       {/* Current Events */}
       {activeTab === 'current' && (
         <div>
-          <h2 style={{ color: '#333', fontSize: '1.5rem', marginBottom: '1rem' }}>🎉 Current Events</h2>
+          <h2 style={{ color: '#333', fontSize: '1.5rem', marginBottom: '1rem', position: 'relative', zIndex: 2 }}>🎉 Current Events</h2>
           {currentEvents.map(event => (
             <div key={event.id} style={{ 
-              background: '#fff', 
+              background: 'transparent', 
               borderRadius: 12, 
               padding: '2rem', 
               marginBottom: '1.5rem',
@@ -204,10 +204,10 @@ function Events() {
             }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
                 <div>
-                  <h3 style={{ color: '#222', fontSize: '1.4rem', margin: '0 0 0.5rem 0' }}>{event.title}</h3>
-                  <p style={{ color: '#666', margin: '0 0 0.5rem 0' }}>📅 {formatDate(event.date)} at {event.time}</p>
-                  <p style={{ color: '#666', margin: '0 0 0.5rem 0' }}>📍 {event.location}</p>
-                  <p style={{ color: '#555', margin: '0 0 1rem 0' }}>{event.description}</p>
+                  <h3 style={{ color: '#222', fontSize: '1.4rem', margin: '0 0 0.5rem 0', position: 'relative', zIndex: 2 }}>{event.title}</h3>
+                  <p style={{ color: '#666', margin: '0 0 0.5rem 0', position: 'relative', zIndex: 2 }}>📅 {formatDate(event.date)} at {event.time}</p>
+                  <p style={{ color: '#666', margin: '0 0 0.5rem 0', position: 'relative', zIndex: 2 }}>📍 {event.location}</p>
+                  <p style={{ color: '#555', margin: '0 0 1rem 0', position: 'relative', zIndex: 2 }}>{event.description}</p>
                 </div>
                 <div style={{ 
                   background: '#28a745', 
@@ -224,7 +224,7 @@ function Events() {
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
                 <div>
                   <h4 style={{ color: '#333', marginBottom: '0.5rem' }}>📊 Attendance</h4>
-                  <div style={{ background: '#f8f9fa', padding: '1rem', borderRadius: 8 }}>
+                  <div style={{ background: 'transparent', padding: '1rem', borderRadius: 8 }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
                       <span>Attendees: {event.attendees}/{event.maxAttendees}</span>
                       <span>{Math.round((event.attendees / event.maxAttendees) * 100)}%</span>
@@ -249,7 +249,7 @@ function Events() {
                   <div style={{ maxHeight: 200, overflowY: 'auto' }}>
                     {event.updates.map((update, index) => (
                       <div key={index} style={{ 
-                        background: '#f8f9fa', 
+                        background: 'transparent', 
                         padding: '0.75rem', 
                         borderRadius: 8, 
                         marginBottom: '0.5rem' 
@@ -273,7 +273,7 @@ function Events() {
           <div style={{ display: 'grid', gap: '1.5rem' }}>
             {upcomingEvents.map(event => (
               <div key={event.id} style={{ 
-                background: '#fff', 
+                background: 'transparent', 
                 borderRadius: 12, 
                 padding: '2rem', 
                 boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
@@ -309,8 +309,8 @@ function Events() {
                         padding: '0.5rem 1rem',
                         border: 'none',
                         borderRadius: 6,
-                        background: rsvpStatus[event.id] === 'yes' ? '#28a745' : '#f8f9fa',
-                        color: rsvpStatus[event.id] === 'yes' ? 'white' : '#333',
+                        background: 'transparent',
+                        color: rsvpStatus[event.id] === 'yes' ? '#28a745' : '#333',
                         cursor: 'pointer'
                       }}
                     >
@@ -322,15 +322,15 @@ function Events() {
                         padding: '0.5rem 1rem',
                         border: 'none',
                         borderRadius: 6,
-                        background: rsvpStatus[event.id] === 'no' ? '#dc3545' : '#f8f9fa',
-                        color: rsvpStatus[event.id] === 'no' ? 'white' : '#333',
+                        background: 'transparent',
+                        color: rsvpStatus[event.id] === 'no' ? '#dc3545' : '#333',
                         cursor: 'pointer'
                       }}
                     >
                       ❌ No, I can't attend
                     </button>
                   </div>
-                  <div style={{ background: '#f8f9fa', padding: '1rem', borderRadius: 8 }}>
+                  <div style={{ background: 'transparent', padding: '1rem', borderRadius: 8 }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
                       <span>Attendees: {event.attendees}/{event.maxAttendees}</span>
                       <span>{Math.round((event.attendees / event.maxAttendees) * 100)}%</span>
@@ -362,7 +362,7 @@ function Events() {
           <div style={{ display: 'grid', gap: '1.5rem' }}>
             {pastEvents.map(event => (
               <div key={event.id} style={{ 
-                background: '#fff', 
+                background: 'transparent', 
                 borderRadius: 12, 
                 padding: '2rem', 
                 boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
@@ -416,7 +416,7 @@ function Events() {
                     <div style={{ maxHeight: 200, overflowY: 'auto' }}>
                       {event.guestbook.map((entry, index) => (
                         <div key={index} style={{ 
-                          background: '#f8f9fa', 
+                          background: 'transparent', 
                           padding: '0.75rem', 
                           borderRadius: 8, 
                           marginBottom: '0.5rem' 
