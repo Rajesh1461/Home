@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const videoStyles = {
   position: 'fixed',
@@ -89,6 +90,7 @@ const floatText = `@keyframes floatText {
 function Intro() {
   const textRef = useRef(null);
   const videoRef = useRef(null);
+  const navigate = useNavigate();
 
   const handleVideoEnd = () => {
     document.body.style.background = 'black';
@@ -106,7 +108,7 @@ function Intro() {
   };
 
   const handleTextClick = () => {
-    window.location.href = '/home';
+    navigate('/home');
   };
 
   // Allow user to enable audio by clicking anywhere on the video area

@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import React, { useState, useRef, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
 import Home from './components/Home';
 import Gallery from './components/Gallery';
 import Events from './components/Events';
@@ -85,7 +85,7 @@ const initialMedia = [
 function AppContent({ media, setMedia }) {
   const location = useLocation();
   const isLogoTestPage = location.pathname === '/logo-test';
-  const isIntroPage = location.pathname === '/';
+  const isIntroPage = location.pathname === '/' || location.pathname === '/Intro' || location.pathname === '/Home/Intro';
   const [muted, setMuted] = useState(true);
   const videoRef = useRef(null);
 
@@ -99,7 +99,7 @@ function AppContent({ media, setMedia }) {
 
   return (
     <div style={{ fontFamily: 'Arial, sans-serif', background: 'transparent', minHeight: '100vh', margin: 0 }}>
-      {/* Only render video, mute button, and nav if not on /logo-test or / (Intro) */}
+      {/* Only render video, mute button, and nav if not on /logo-test or Intro pages */}
       {(!isLogoTestPage && !isIntroPage) && (
         <>
           <video
@@ -231,6 +231,8 @@ function AppContent({ media, setMedia }) {
       {!isLogoTestPage && <div style={{ height: '2.5rem' }} />}
       <Routes>
         <Route path="/" element={<Intro />} />
+                <Route path="/Intro" element={<Intro />} />
+        <Route path="/Home" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/gallery" element={<Gallery media={media} />} />
         <Route path="/events" element={<Events />} />
