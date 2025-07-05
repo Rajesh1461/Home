@@ -11,6 +11,7 @@ import Upload from './components/Upload';
 import UploadPortal from './components/UploadPortal';
 import LogoTest from './components/LogoTest';
 import Intro from './components/Intro';
+import RainbowTest from './components/RainbowTest';
 
 const initialMedia = [
   {
@@ -189,7 +190,17 @@ function AppContent({ media, setMedia }) {
                   e.target.style.animationPlayState = 'running';
                 }}
               />
-              <span style={{ color: '#61dafb', fontWeight: 'bold', fontSize: '2.1rem', lineHeight: 1.1, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', whiteSpace: 'normal' }}>
+              <span style={{ 
+                fontWeight: 'bold', 
+                fontSize: '2.1rem', 
+                lineHeight: 1.1, 
+                display: 'flex', 
+                flexDirection: 'column', 
+                alignItems: 'flex-start', 
+                whiteSpace: 'normal',
+                animation: 'rainbow 6s linear infinite',
+                textShadow: '2px 2px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000, 1px 1px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000'
+              }}>
                 The Moothedath<br />Ancestral House
               </span>
               <Link to="/home" style={{ color: '#fff', textDecoration: 'none', fontSize: '20px', marginLeft: '12px', marginRight: 0 }}>Home</Link>
@@ -227,6 +238,17 @@ function AppContent({ media, setMedia }) {
         .logo-animation {
           animation: logoFloat 3s ease-in-out infinite;
         }
+        
+        @keyframes rainbow {
+          0% { color: #ff0000; }
+          14% { color: #ff8000; }
+          28% { color: #ffff00; }
+          42% { color: #00ff00; }
+          56% { color: #0080ff; }
+          70% { color: #8000ff; }
+          84% { color: #ff0080; }
+          100% { color: #ff0000; }
+        }
       `}</style>
       {!isLogoTestPage && <div style={{ height: '2.5rem' }} />}
       <Routes>
@@ -243,6 +265,7 @@ function AppContent({ media, setMedia }) {
         <Route path="/chat" element={<Chat />} />
         <Route path="/contribute" element={<Contribute />} />
         <Route path="/logo-test" element={<LogoTest />} />
+        <Route path="/rainbow-test" element={<RainbowTest />} />
       </Routes>
     </div>
   );

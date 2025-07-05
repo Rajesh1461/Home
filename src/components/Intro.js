@@ -89,14 +89,14 @@ const floatText = `@keyframes floatText {
 }`;
 
 const colorChange = `@keyframes colorChange {
-  0% { color: #ff0000 !important; }    /* Red */
-  14% { color: #ff8000 !important; }   /* Orange */
-  28% { color: #ffff00 !important; }   /* Yellow */
-  42% { color: #00ff00 !important; }   /* Green */
-  56% { color: #0080ff !important; }   /* Blue */
-  70% { color: #8000ff !important; }   /* Indigo */
-  84% { color: #ff0080 !important; }   /* Violet */
-  100% { color: #ff0000 !important; }  /* Back to Red */
+  0% { color: #ff0000; }
+  14% { color: #ff8000; }
+  28% { color: #ffff00; }
+  42% { color: #00ff00; }
+  56% { color: #0080ff; }
+  70% { color: #8000ff; }
+  84% { color: #ff0080; }
+  100% { color: #ff0000; }
 }`;
 
 function Intro() {
@@ -141,10 +141,13 @@ function Intro() {
         animation: floatText 2.5s ease-in-out infinite, colorChange 8s ease-in-out infinite !important; 
       }`}
       {`#bottom-center-text.zoom-out-center,
-        #bottom-center-text.float-center {
+        #bottom-center-text.float-center,
+        .moothedath-text.zoom-out-center,
+        .moothedath-text.float-center {
         animation: zoomOutCenter 1.2s cubic-bezier(0.23, 1.01, 0.32, 1) forwards, colorChange 8s ease-in-out infinite !important;
       }`}
-      {`#bottom-center-text.float-center {
+      {`#bottom-center-text.float-center,
+        .moothedath-text.float-center {
         animation: floatText 2.5s ease-in-out infinite, colorChange 8s ease-in-out infinite !important;
       }`}
       </style>
@@ -163,6 +166,7 @@ function Intro() {
       </video>
       <div
         id="bottom-center-text"
+        className="moothedath-text"
         ref={textRef}
         style={textStyles}
         onClick={handleTextClick}

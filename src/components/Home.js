@@ -94,7 +94,7 @@ function Home() {
         padding: '0.5rem 0', 
         marginTop: '0.5rem'
       }}>
-        <div style={{
+        <div className="developer-tag" style={{
           display: 'inline-block',
           background: 'rgba(255,255,255,0.3)',
           padding: '0.5rem 1rem',
@@ -109,7 +109,7 @@ function Home() {
             margin: 0,
             fontWeight: '500',
             textShadow: '0 1px 2px rgba(255,255,255,0.6), 1px 1px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000',
-            animation: 'fadeIn 1s ease-in, colorChange 8s ease-in-out infinite'
+            animation: 'rainbow 4s linear infinite'
           }}>
             Developed by Rajesh Kumar Menon Moothedath
           </p>
@@ -129,15 +129,15 @@ function Home() {
             to { opacity: 1; transform: translateY(0); }
           }
           
-          @keyframes colorChange {
-            0% { color: #ff0000 !important; }    /* Red */
-            14% { color: #ff8000 !important; }   /* Orange */
-            28% { color: #ffff00 !important; }   /* Yellow */
-            42% { color: #00ff00 !important; }   /* Green */
-            56% { color: #0080ff !important; }   /* Blue */
-            70% { color: #8000ff !important; }   /* Indigo */
-            84% { color: #ff0080 !important; }   /* Violet */
-            100% { color: #ff0000 !important; }  /* Back to Red */
+          @keyframes rainbow {
+            0% { color: #ff0000; }
+            14% { color: #ff8000; }
+            28% { color: #ffff00; }
+            42% { color: #00ff00; }
+            56% { color: #0080ff; }
+            70% { color: #8000ff; }
+            84% { color: #ff0080; }
+            100% { color: #ff0000; }
           }
         `}
       </style>
