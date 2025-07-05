@@ -40,8 +40,7 @@ const textStyles = {
     4px 4px 0 #b30000,
     8px 8px 16px #000,
     1px 1px 0 #800000,
-    2px 2px 2px #333`,
-  animation: 'colorChange 8s ease-in-out infinite'
+    2px 2px 2px #333`
 };
 
 const overlayStyles = {
@@ -134,8 +133,8 @@ function Intro() {
   return (
     <>
       <style>{zoomOutCenter + floatText + colorChange}
-      {`.zoom-out-center { animation: zoomOutCenter 1.2s cubic-bezier(0.23, 1.01, 0.32, 1) forwards; }`}
-      {`.float-center { animation: floatText 2.5s ease-in-out infinite; }`}
+      {`.zoom-out-center { animation: zoomOutCenter 1.2s cubic-bezier(0.23, 1.01, 0.32, 1) forwards, colorChange 8s ease-in-out infinite; }`}
+      {`.float-center { animation: floatText 2.5s ease-in-out infinite, colorChange 8s ease-in-out infinite; }`}
       </style>
       <video
         id="bg-video"
