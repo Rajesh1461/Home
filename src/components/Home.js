@@ -130,14 +130,14 @@ function Home() {
           }
           
           @keyframes colorChange {
-            0% { color: #ff0000; }    /* Red */
-            14% { color: #ff8000; }   /* Orange */
-            28% { color: #ffff00; }   /* Yellow */
-            42% { color: #00ff00; }   /* Green */
-            56% { color: #0080ff; }   /* Blue */
-            70% { color: #8000ff; }   /* Indigo */
-            84% { color: #ff0080; }   /* Violet */
-            100% { color: #ff0000; }  /* Back to Red */
+            0% { color: #ff0000 !important; }    /* Red */
+            14% { color: #ff8000 !important; }   /* Orange */
+            28% { color: #ffff00 !important; }   /* Yellow */
+            42% { color: #00ff00 !important; }   /* Green */
+            56% { color: #0080ff !important; }   /* Blue */
+            70% { color: #8000ff !important; }   /* Indigo */
+            84% { color: #ff0080 !important; }   /* Violet */
+            100% { color: #ff0000 !important; }  /* Back to Red */
           }
         `}
       </style>
