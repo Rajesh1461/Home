@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import React, { useState, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+=======
+import React, { useState, useRef, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
+>>>>>>> 669dd8fa30e1774aae73f00c8ed362f7f2c3c84b
 import Home from './components/Home';
 import Gallery from './components/Gallery';
 import Events from './components/Events';
@@ -11,6 +16,10 @@ import Upload from './components/Upload';
 import UploadPortal from './components/UploadPortal';
 import LogoTest from './components/LogoTest';
 import Intro from './components/Intro';
+<<<<<<< HEAD
+=======
+import RainbowTest from './components/RainbowTest';
+>>>>>>> 669dd8fa30e1774aae73f00c8ed362f7f2c3c84b
 
 const initialMedia = [
   {
@@ -85,7 +94,11 @@ const initialMedia = [
 function AppContent({ media, setMedia }) {
   const location = useLocation();
   const isLogoTestPage = location.pathname === '/logo-test';
+<<<<<<< HEAD
   const isIntroPage = location.pathname === '/';
+=======
+  const isIntroPage = location.pathname === '/' || location.pathname === '/Intro' || location.pathname === '/Home/Intro';
+>>>>>>> 669dd8fa30e1774aae73f00c8ed362f7f2c3c84b
   const [muted, setMuted] = useState(true);
   const videoRef = useRef(null);
 
@@ -99,7 +112,11 @@ function AppContent({ media, setMedia }) {
 
   return (
     <div style={{ fontFamily: 'Arial, sans-serif', background: 'transparent', minHeight: '100vh', margin: 0 }}>
+<<<<<<< HEAD
       {/* Only render video, mute button, and nav if not on /logo-test or / (Intro) */}
+=======
+      {/* Only render video, mute button, and nav if not on /logo-test or Intro pages */}
+>>>>>>> 669dd8fa30e1774aae73f00c8ed362f7f2c3c84b
       {(!isLogoTestPage && !isIntroPage) && (
         <>
           <video
@@ -189,7 +206,21 @@ function AppContent({ media, setMedia }) {
                   e.target.style.animationPlayState = 'running';
                 }}
               />
+<<<<<<< HEAD
               <span style={{ color: '#61dafb', fontWeight: 'bold', fontSize: '2.1rem', lineHeight: 1.1, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', whiteSpace: 'normal' }}>
+=======
+              <span style={{ 
+                fontWeight: 'bold', 
+                fontSize: '2.1rem', 
+                lineHeight: 1.1, 
+                display: 'flex', 
+                flexDirection: 'column', 
+                alignItems: 'flex-start', 
+                whiteSpace: 'normal',
+                animation: 'rainbow 6s linear infinite',
+                textShadow: '2px 2px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000, 1px 1px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000'
+              }}>
+>>>>>>> 669dd8fa30e1774aae73f00c8ed362f7f2c3c84b
                 The Moothedath<br />Ancestral House
               </span>
               <Link to="/home" style={{ color: '#fff', textDecoration: 'none', fontSize: '20px', marginLeft: '12px', marginRight: 0 }}>Home</Link>
@@ -227,10 +258,29 @@ function AppContent({ media, setMedia }) {
         .logo-animation {
           animation: logoFloat 3s ease-in-out infinite;
         }
+<<<<<<< HEAD
+=======
+        
+        @keyframes rainbow {
+          0% { color: #ff0000; }
+          14% { color: #ff8000; }
+          28% { color: #ffff00; }
+          42% { color: #00ff00; }
+          56% { color: #0080ff; }
+          70% { color: #8000ff; }
+          84% { color: #ff0080; }
+          100% { color: #ff0000; }
+        }
+>>>>>>> 669dd8fa30e1774aae73f00c8ed362f7f2c3c84b
       `}</style>
       {!isLogoTestPage && <div style={{ height: '2.5rem' }} />}
       <Routes>
         <Route path="/" element={<Intro />} />
+<<<<<<< HEAD
+=======
+                <Route path="/Intro" element={<Intro />} />
+        <Route path="/Home" element={<Home />} />
+>>>>>>> 669dd8fa30e1774aae73f00c8ed362f7f2c3c84b
         <Route path="/home" element={<Home />} />
         <Route path="/gallery" element={<Gallery media={media} />} />
         <Route path="/events" element={<Events />} />
@@ -241,6 +291,10 @@ function AppContent({ media, setMedia }) {
         <Route path="/chat" element={<Chat />} />
         <Route path="/contribute" element={<Contribute />} />
         <Route path="/logo-test" element={<LogoTest />} />
+<<<<<<< HEAD
+=======
+        <Route path="/rainbow-test" element={<RainbowTest />} />
+>>>>>>> 669dd8fa30e1774aae73f00c8ed362f7f2c3c84b
       </Routes>
     </div>
   );

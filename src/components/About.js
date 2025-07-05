@@ -426,6 +426,35 @@ function About() {
           </div>
         </div>
       )}
+<<<<<<< HEAD
+=======
+      
+      {/* Copyright Footer */}
+      <div style={{ 
+        textAlign: 'center', 
+        padding: '2rem 0', 
+        marginTop: 'calc(2rem - 5px)'
+      }}>
+        <div style={{
+          display: 'inline-block',
+          background: 'rgba(255,255,255,0.5)',
+          padding: '1rem 2rem',
+          borderRadius: '8px',
+          boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+          border: '1px solid rgba(255,255,255,0.3)'
+        }}>
+          <p style={{ 
+            color: '#000', 
+            fontSize: '0.9rem', 
+            margin: 0,
+            fontWeight: '600',
+            textShadow: '0 1px 3px rgba(255,255,255,0.8)'
+          }}>
+            © 2025 The Moothedath Ancestral House. All rights reserved. | Preserving family heritage and memories for generations to come.
+          </p>
+        </div>
+      </div>
+>>>>>>> 669dd8fa30e1774aae73f00c8ed362f7f2c3c84b
     </div>
   );
 }
