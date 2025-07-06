@@ -145,89 +145,6 @@ function UploadPortal({ media, setMedia }) {
 
   if (!isLoggedIn) {
     return (
-<<<<<<< HEAD
-      <div style={{ padding: '2rem', maxWidth: 1200, margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px' }}>
-        <h1 style={{ position: 'relative', zIndex: 2, color: '#222', fontSize: '2rem', marginBottom: '1rem' }}>Photo & Video Upload Portal</h1>
-        <p style={{ position: 'relative', zIndex: 10, color: '#222', marginBottom: '2rem', fontWeight: 'bold', fontSize: '1.15rem', textShadow: '0 2px 8px rgba(255,255,255,0.7), 0 1px 2px rgba(0,0,0,0.15)' }}>
-          Secure family login to upload and manage photos and videos from our ancestral house.
-        </p>
-        <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem' }}>
-          <button
-            onClick={() => setActiveTab('login')}
-            className="upload-auth-btn"
-            style={{
-              padding: '0.75rem 1.5rem',
-              border: 'none',
-              borderRadius: 8,
-              background: activeTab === 'login' ? '#007bff' : 'transparent',
-              color: activeTab === 'login' ? 'white' : '#333',
-              cursor: 'pointer',
-              fontWeight: activeTab === 'login' ? 'bold' : 'normal'
-            }}
-          >
-            Login
-          </button>
-          <button
-            onClick={() => setActiveTab('register')}
-            className="upload-auth-btn"
-            style={{
-              padding: '0.75rem 1.5rem',
-              border: 'none',
-              borderRadius: 8,
-              background: activeTab === 'register' ? '#007bff' : 'transparent',
-              color: activeTab === 'register' ? 'white' : '#333',
-              cursor: 'pointer',
-              fontWeight: activeTab === 'register' ? 'bold' : 'normal'
-            }}
-          >
-            Register
-          </button>
-        </div>
-        {activeTab === 'login' && (
-          <div style={{ background: 'transparent', padding: '1rem', borderRadius: 12, boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
-            <h2 style={{ position: 'relative', zIndex: 2, color: '#333', fontSize: '1.5rem', marginBottom: '10px' }}>👨‍👩‍👧‍👦 Family Login</h2>
-            <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <div style={{ marginBottom: '10px' }}>
-                <label style={{ position: 'relative', zIndex: 2, display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>Family Email *</label>
-                <input
-                  type="email"
-                  required
-                  value={loginForm.email}
-                  onChange={e => setLoginForm(prev => ({ ...prev, email: e.target.value }))}
-                  placeholder="Enter your family email"
-                  style={{ position: 'relative', zIndex: 2, padding: '0.75rem', border: '1px solid #ddd', borderRadius: 6, width: '32rem', boxSizing: 'border-box' }}
-                />
-              </div>
-              <div style={{ marginBottom: '10px' }}>
-                <label style={{ position: 'relative', zIndex: 2, display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>Password *</label>
-                <input
-                  type="password"
-                  required
-                  value={loginForm.password}
-                  onChange={e => setLoginForm(prev => ({ ...prev, password: e.target.value }))}
-                  placeholder="Enter your password"
-                  style={{ position: 'relative', zIndex: 2, padding: '0.75rem', border: '1px solid #ddd', borderRadius: 6, width: '32rem', boxSizing: 'border-box' }}
-                />
-              </div>
-              <button type="submit" style={{
-                position: 'relative', zIndex: 2,
-                background: '#007bff',
-                color: 'white',
-                border: 'none',
-                padding: '0.75rem 1.5rem',
-                borderRadius: 6,
-                cursor: 'pointer',
-                fontSize: '1rem',
-                width: '32rem',
-                boxSizing: 'border-box',
-                marginBottom: '10px'
-              }}>
-                Login to Upload Portal
-              </button>
-            </form>
-          </div>
-        )}
-=======
       <div style={{ position: 'relative' }}>
         <div style={{ padding: '2rem', maxWidth: 1200, margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px' }}>
           <h1 style={{ position: 'relative', zIndex: 2, color: '#222', fontSize: '2rem', marginBottom: '1rem' }}>Photo & Video Upload Portal</h1>
@@ -337,7 +254,6 @@ function UploadPortal({ media, setMedia }) {
             </p>
           </div>
         </div>
->>>>>>> 669dd8fa30e1774aae73f00c8ed362f7f2c3c84b
       </div>
     );
   }
