@@ -46,21 +46,12 @@ const features = [
 function Home() {
   return (
     <div style={{ position: 'relative' }}>
-<<<<<<< HEAD
-      <div style={{ padding: '2rem', maxWidth: 1200, margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px' }}>
-      <h1 style={{ color: '#222', fontSize: '2.2rem', marginBottom: '1.5rem', position: 'relative', zIndex: 10, fontWeight: 'bold', textShadow: '0 2px 8px rgba(255,255,255,0.7), 0 1px 2px rgba(0,0,0,0.15)', textAlign: 'center' }}>Welcome to The Moothedath Ancestral House Website</h1>
-        <p style={{ color: '#222', fontSize: '1.15rem', marginBottom: '2.5rem', position: 'relative', zIndex: 10, fontWeight: 'bold', textShadow: '0 2px 8px rgba(255,255,255,0.7), 0 1px 2px rgba(0,0,0,0.15)', textAlign: 'center' }}>
-        A digital heritage platform dedicated to preserving and celebrating the charm, legacy, and stories of your ancestral home. This website serves as a virtual showcase and community hub, offering a rich visual and interactive experience for family members, guests, and well-wishers.
-      </p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem' }}>
-=======
       <div style={{ padding: '1.5rem', maxWidth: 1200, margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px' }}>
       <h1 style={{ color: '#222', fontSize: '2rem', marginBottom: '1rem', position: 'relative', zIndex: 10, fontWeight: 'bold', textShadow: '0 2px 8px rgba(255,255,255,0.7), 0 1px 2px rgba(0,0,0,0.15)', textAlign: 'center' }}>Welcome to The Moothedath Ancestral House Website</h1>
         <p style={{ color: '#222', fontSize: '1rem', marginBottom: '1.5rem', position: 'relative', zIndex: 10, fontWeight: 'bold', textShadow: '0 2px 8px rgba(255,255,255,0.7), 0 1px 2px rgba(0,0,0,0.15)', textAlign: 'center' }}>
         A digital heritage platform dedicated to preserving and celebrating the charm, legacy, and stories of your ancestral home. This website serves as a virtual showcase and community hub, offering a rich visual and interactive experience for family members, guests, and<br />well-wishers.
       </p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem' }}>
->>>>>>> 669dd8fa30e1774aae73f00c8ed362f7f2c3c84b
         {features.map((f, i) => (
           <div key={i} style={{ background: 'transparent', borderRadius: '40px 8px 40px 8px', padding: '1.2rem 1rem', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
             <div style={{ fontSize: '2.2rem', marginBottom: 8 }}>{f.icon}</div>
@@ -70,8 +61,6 @@ function Home() {
         ))}
         </div>
       </div>
-<<<<<<< HEAD
-=======
       
       {/* Copyright Footer */}
       <div style={{ 
@@ -152,7 +141,6 @@ function Home() {
           }
         `}
       </style>
->>>>>>> 669dd8fa30e1774aae73f00c8ed362f7f2c3c84b
     </div>
   );
 }
