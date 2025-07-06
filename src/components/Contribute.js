@@ -658,8 +658,6 @@ function Contribute() {
           </form>
         </div>
       )}
-<<<<<<< HEAD
-=======
       
       {/* Copyright Footer */}
       <div style={{ 
@@ -686,7 +684,6 @@ function Contribute() {
           </p>
         </div>
       </div>
->>>>>>> 669dd8fa30e1774aae73f00c8ed362f7f2c3c84b
     </div>
   );
 }

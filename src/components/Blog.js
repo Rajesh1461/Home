@@ -373,8 +373,6 @@ function Blog() {
           <p>Try adjusting your search terms or category filter.</p>
         </div>
       )}
-<<<<<<< HEAD
-=======
       
       {/* Copyright Footer */}
       <div style={{ 
@@ -401,7 +399,6 @@ function Blog() {
           </p>
         </div>
       </div>
->>>>>>> 669dd8fa30e1774aae73f00c8ed362f7f2c3c84b
     </div>
   );
 }
