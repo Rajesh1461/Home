@@ -260,66 +260,6 @@ function UploadPortal({ media, setMedia }) {
 
   // After login, show upload form and gallery
   return (
-<<<<<<< HEAD
-    <div style={{ padding: '2rem', maxWidth: 1200, margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px' }}>
-      <div style={{ background: 'transparent', padding: '2rem', borderRadius: 12, boxShadow: '0 4px 12px rgba(0,0,0,0.1)', marginTop: '2rem' }}>
-        <h2 style={{ position: 'relative', zIndex: 2, color: '#333', fontSize: '1.5rem', marginBottom: '1rem' }}>📤 Upload Photo or Video</h2>
-        <form onSubmit={handleUpload}>
-          <div style={{ marginBottom: '1rem' }}>
-            <label style={{ position: 'relative', zIndex: 2, display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>Select Type *</label>
-            <select
-              value={uploadForm.type}
-              onChange={e => setUploadForm(prev => ({ ...prev, type: e.target.value }))}
-              style={{ position: 'relative', zIndex: 2, width: '100%', padding: '0.75rem', border: '1px solid #ddd', borderRadius: 6 }}
-            >
-              <option value="image">Photo (JPEG, PNG, WebP, max 10MB)</option>
-              <option value="video">Video (MP4, MOV, max 100MB)</option>
-            </select>
-          </div>
-          <div style={{ marginBottom: '1rem' }}>
-            <label style={{ position: 'relative', zIndex: 2, display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>Event *</label>
-            <select
-              value={uploadForm.event}
-              onChange={e => setUploadForm(prev => ({ ...prev, event: e.target.value }))}
-              style={{ position: 'relative', zIndex: 2, width: '100%', padding: '0.75rem', border: '1px solid #ddd', borderRadius: 6 }}
-              required
-            >
-              <option value="">Select an event</option>
-              <option value="Family Gathering">Family Gathering</option>
-              <option value="Temple Festival">Temple Festival</option>
-              <option value="Wedding">Wedding</option>
-              <option value="Pongal">Pongal</option>
-              <option value="Onam">Onam</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
-          <div style={{ marginBottom: '1rem' }}>
-            <label style={{ position: 'relative', zIndex: 2, display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>File *</label>
-            <input
-              type="file"
-              required
-              accept={uploadForm.type === 'image' ? 'image/*' : 'video/*'}
-              onChange={e => {
-                const file = e.target.files[0];
-                if (!file) return;
-                if (uploadForm.type === 'image' && file.size > 10 * 1024 * 1024) {
-                  alert('Photo must be less than 10MB');
-                  return;
-                }
-                if (uploadForm.type === 'video' && file.size > 100 * 1024 * 1024) {
-                  alert('Video must be less than 100MB');
-                  return;
-                }
-                setUploadForm(prev => ({ ...prev, file }));
-              }}
-              style={{ position: 'relative', zIndex: 2, width: '100%', padding: '0.75rem', border: '1px solid #ddd', borderRadius: 6 }}
-            />
-          </div>
-          <button type="submit" style={{ position: 'relative', zIndex: 2, background: '#28a745', color: 'white', border: 'none', padding: '0.75rem 1.5rem', borderRadius: 6, cursor: 'pointer', fontSize: '1rem', width: '100%' }}>
-            Upload
-          </button>
-        </form>
-=======
     <div style={{ position: 'relative' }}>
       <div style={{ padding: '2rem', maxWidth: 1200, margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px' }}>
         <div style={{ background: 'transparent', padding: '2rem', borderRadius: 12, boxShadow: '0 4px 12px rgba(0,0,0,0.1)', marginTop: '2rem' }}>
@@ -381,7 +321,6 @@ function UploadPortal({ media, setMedia }) {
           </form>
         </div>
       </div>
-      
       {/* Copyright Footer - Same as Home page */}
       <div style={{ 
         textAlign: 'center', 
@@ -406,7 +345,6 @@ function UploadPortal({ media, setMedia }) {
             © 2025 The Moothedath Ancestral House. All rights reserved. | Preserving family heritage and memories for generations to come.
           </p>
         </div>
->>>>>>> 669dd8fa30e1774aae73f00c8ed362f7f2c3c84b
       </div>
     </div>
   );
