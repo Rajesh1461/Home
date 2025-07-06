@@ -3,11 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "main": "./index.js",
-<<<<<<< HEAD
-=======
   "homepage": "https://home.multitoolszone.fun/",
-
->>>>>>> 669dd8fa30e1774aae73f00c8ed362f7f2c3c84b
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -22,10 +18,7 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
-<<<<<<< HEAD
     "lodash": "^4.17.21",
-=======
->>>>>>> 669dd8fa30e1774aae73f00c8ed362f7f2c3c84b
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.6.3",
@@ -34,8 +27,6 @@
   },
   "devDependencies": {
     "gh-pages": "^6.3.0"
-<<<<<<< HEAD
-=======
   },
   "browserslist": {
     "production": [
@@ -48,6 +39,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
->>>>>>> 669dd8fa30e1774aae73f00c8ed362f7f2c3c84b
   }
 }
