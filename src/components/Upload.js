@@ -172,7 +172,7 @@ function Upload({ media, setMedia }) {
   if (!isLoggedIn) {
     return (
       <div style={{ position: 'relative' }}>
-        <div style={{ padding: '2rem', maxWidth: 1200, margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px', position: 'relative', zIndex: 100 }}>
+        <div style={{ padding: '2rem', maxWidth: '100vw', width: '100%', margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px', position: 'relative', zIndex: 100 }}>
           <h1 style={{ position: 'relative', zIndex: 101, color: '#222', fontSize: '2rem', marginBottom: '1rem' }}>Login / Registration</h1>
           <p style={{ position: 'relative', zIndex: 101, color: '#000', fontWeight: 'bold', marginBottom: '2rem' }}>
             Secure family login to upload and manage photos and videos from our ancestral house.
@@ -225,7 +225,7 @@ function Upload({ media, setMedia }) {
                     value={loginForm.email}
                     onChange={e => setLoginForm(prev => ({ ...prev, email: e.target.value }))}
                     placeholder="Enter your family email"
-                    style={{ position: 'relative', zIndex: 105, padding: '0.75rem', border: '1px solid #ddd', borderRadius: 6, width: '32rem', boxSizing: 'border-box', fontSize: '1rem' }}
+                    style={{ position: 'relative', zIndex: 105, padding: '0.75rem', border: '1px solid #ddd', borderRadius: 6, width: '100%' }}
                   />
                 </div>
                 <div style={{ marginBottom: '1rem', position: 'relative', zIndex: 103 }}>
@@ -236,7 +236,7 @@ function Upload({ media, setMedia }) {
                     value={loginForm.password}
                     onChange={e => setLoginForm(prev => ({ ...prev, password: e.target.value }))}
                     placeholder="Enter your password"
-                    style={{ position: 'relative', zIndex: 105, padding: '0.75rem', border: '1px solid #ddd', borderRadius: 6, width: '32rem', boxSizing: 'border-box', fontSize: '1rem' }}
+                    style={{ position: 'relative', zIndex: 105, padding: '0.75rem', border: '1px solid #ddd', borderRadius: 6, width: '100%' }}
                   />
                 </div>
                 <button type="submit" style={{
@@ -248,7 +248,7 @@ function Upload({ media, setMedia }) {
                   borderRadius: 6,
                   cursor: 'pointer',
                   fontSize: '1rem',
-                  width: '32rem',
+                  width: '100%',
                   boxSizing: 'border-box'
                 }}>
                   Login to Upload Portal
@@ -268,7 +268,7 @@ function Upload({ media, setMedia }) {
                     value={registerForm.fullName}
                     onChange={e => setRegisterForm(prev => ({ ...prev, fullName: e.target.value }))}
                     placeholder="Enter your full name"
-                    style={{ position: 'relative', zIndex: 105, padding: '0.75rem', border: '1px solid #ddd', borderRadius: 6, width: '32rem', boxSizing: 'border-box', fontSize: '1rem' }}
+                    style={{ position: 'relative', zIndex: 105, padding: '0.75rem', border: '1px solid #ddd', borderRadius: 6, width: '100%' }}
                   />
                 </div>
                 <div style={{ marginBottom: '10px', position: 'relative', zIndex: 103 }}>
@@ -279,7 +279,7 @@ function Upload({ media, setMedia }) {
                     value={registerForm.email}
                     onChange={e => setRegisterForm(prev => ({ ...prev, email: e.target.value }))}
                     placeholder="Enter your email"
-                    style={{ position: 'relative', zIndex: 105, padding: '0.75rem', border: '1px solid #ddd', borderRadius: 6, width: '32rem', boxSizing: 'border-box', fontSize: '1rem' }}
+                    style={{ position: 'relative', zIndex: 105, padding: '0.75rem', border: '1px solid #ddd', borderRadius: 6, width: '100%' }}
                   />
                 </div>
                 <div style={{ marginBottom: '10px', position: 'relative', zIndex: 103 }}>
@@ -290,7 +290,7 @@ function Upload({ media, setMedia }) {
                     value={registerForm.mobile}
                     onChange={e => setRegisterForm(prev => ({ ...prev, mobile: e.target.value }))}
                     placeholder="Enter your mobile number"
-                    style={{ position: 'relative', zIndex: 105, padding: '0.75rem', border: '1px solid #ddd', borderRadius: 6, width: '32rem', boxSizing: 'border-box', fontSize: '1rem' }}
+                    style={{ position: 'relative', zIndex: 105, padding: '0.75rem', border: '1px solid #ddd', borderRadius: 6, width: '100%' }}
                   />
                 </div>
                 <div style={{ marginBottom: '10px', position: 'relative', zIndex: 103 }}>
@@ -304,7 +304,7 @@ function Upload({ media, setMedia }) {
                         setRegisterForm(prev => ({ ...prev, profilePhoto: file }));
                       }
                     }}
-                    style={{ position: 'relative', zIndex: 105, padding: '0.75rem', border: '1px solid #ddd', borderRadius: 6, width: '32rem', boxSizing: 'border-box', fontSize: '1rem' }}
+                    style={{ position: 'relative', zIndex: 105, padding: '0.75rem', border: '1px solid #ddd', borderRadius: 6, width: '100%' }}
                   />
                 </div>
                 <div style={{ marginBottom: '10px', position: 'relative', zIndex: 103 }}>
@@ -315,7 +315,7 @@ function Upload({ media, setMedia }) {
                     value={registerForm.password}
                     onChange={e => setRegisterForm(prev => ({ ...prev, password: e.target.value }))}
                     placeholder="Enter your password"
-                    style={{ position: 'relative', zIndex: 105, padding: '0.75rem', border: '1px solid #ddd', borderRadius: 6, width: '32rem', boxSizing: 'border-box', fontSize: '1rem' }}
+                    style={{ position: 'relative', zIndex: 105, padding: '0.75rem', border: '1px solid #ddd', borderRadius: 6, width: '100%' }}
                   />
                 </div>
                 <div style={{ marginBottom: '10px', position: 'relative', zIndex: 103 }}>
@@ -326,10 +326,10 @@ function Upload({ media, setMedia }) {
                     value={registerForm.confirmPassword}
                     onChange={e => setRegisterForm(prev => ({ ...prev, confirmPassword: e.target.value }))}
                     placeholder="Enter your password again"
-                    style={{ position: 'relative', zIndex: 105, padding: '0.75rem', border: '1px solid #ddd', borderRadius: 6, width: '32rem', boxSizing: 'border-box', fontSize: '1rem' }}
+                    style={{ position: 'relative', zIndex: 105, padding: '0.75rem', border: '1px solid #ddd', borderRadius: 6, width: '100%' }}
                   />
                 </div>
-                <div style={{ marginBottom: '10px', width: '32rem', display: 'flex', alignItems: 'center', position: 'relative', zIndex: 103 }}>
+                <div style={{ marginBottom: '10px', width: '100%', display: 'flex', alignItems: 'center', position: 'relative', zIndex: 103 }}>
                   <label style={{ position: 'relative', zIndex: 104, marginRight: '0.5rem', fontWeight: 'bold' }}>Agree to Terms & Conditions *</label>
                   <input
                     type="checkbox"
@@ -348,7 +348,7 @@ function Upload({ media, setMedia }) {
                   borderRadius: 6,
                   cursor: 'pointer',
                   fontSize: '1rem',
-                  width: '32rem',
+                  width: '100%',
                   boxSizing: 'border-box',
                   marginBottom: '10px'
                 }}>
@@ -392,7 +392,7 @@ function Upload({ media, setMedia }) {
 
   return (
     <div style={{ position: 'relative' }}>
-      <div style={{ padding: '2rem', maxWidth: 1200, margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px', position: 'relative', zIndex: 100 }}>
+      <div style={{ padding: '2rem', maxWidth: '100vw', width: '100%', margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px', position: 'relative', zIndex: 100 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem', position: 'relative', zIndex: 101 }}>
           <div>
             <h1 style={{ position: 'relative', zIndex: 102, color: '#222', fontSize: '2rem', marginBottom: '0.5rem' }}>🖼️ Photo & Video Upload Portal</h1>
@@ -582,7 +582,7 @@ function Upload({ media, setMedia }) {
                 borderRadius: 6,
                 cursor: 'pointer',
                 fontSize: '1rem',
-                width: '32rem',
+                width: '100%',
                 boxSizing: 'border-box',
                 marginBottom: '10px'
               }}>

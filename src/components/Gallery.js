@@ -93,7 +93,7 @@ function Gallery({ media }) {
   });
 
   return (
-    <div style={{ padding: '2rem', maxWidth: 1200, margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px' }}>
+    <div style={{ padding: '2rem', maxWidth: 1200, width: '100%', margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px', height: 'auto' }}>
       <h1 style={{ position: 'relative', zIndex: 10, color: '#222', fontSize: '2.2rem', marginBottom: '1.5rem', fontWeight: 'bold', textShadow: '0 2px 8px rgba(255,255,255,0.7), 0 1px 2px rgba(0,0,0,0.15)' }}>Photo & Video Gallery</h1>
       <p style={{ position: 'relative', zIndex: 10, color: '#222', fontSize: '1.15rem', marginBottom: '1.2rem', fontWeight: 'bold', textShadow: '0 2px 8px rgba(255,255,255,0.7), 0 1px 2px rgba(0,0,0,0.15)' }}>
         Explore memories from The Moothedath Ancestral House. Filter by year, event, person, or location.

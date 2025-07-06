@@ -193,7 +193,7 @@ function About() {
   const [activeTab, setActiveTab] = useState('history');
 
   return (
-    <div style={{ padding: '2rem', maxWidth: 1200, margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px' }}>
+    <div style={{ padding: '2rem', maxWidth: 1200, width: '100%', margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px', height: 'auto' }}>
       <h1 style={{ position: 'relative', zIndex: 2, color: '#222', fontSize: '2.2rem', marginBottom: '1.5rem' }}>🧾 About The Moothedath Ancestral House</h1>
       <p style={{ color: '#555', fontSize: '1.15rem', marginBottom: '2.5rem', position: 'relative', zIndex: 2 }}>
         Discover the rich history, architectural beauty, and family stories that make our ancestral house a living heritage.

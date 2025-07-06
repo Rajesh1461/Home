@@ -137,327 +137,320 @@ function Events() {
   };
 
   return (
-    <div style={{ padding: '2rem', maxWidth: 1200, margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px' }}>
-      <h1 style={{ position: 'relative', zIndex: 10, color: '#222', fontSize: '2.2rem', marginBottom: '1.5rem', fontWeight: 'bold', textShadow: '0 2px 8px rgba(255,255,255,0.7), 0 1px 2px rgba(0,0,0,0.15)' }}>🧭 Events Section</h1>
-      <p style={{ color: '#222', fontSize: '1.15rem', marginBottom: '2.5rem', position: 'relative', zIndex: 10, fontWeight: 'bold', textShadow: '0 2px 8px rgba(255,255,255,0.7), 0 1px 2px rgba(0,0,0,0.15)' }}>
-        Stay connected with family events, celebrations, and important occasions at The Moothedath Ancestral House.
-      </p>
+    <div>
+      <div style={{ padding: '2rem', maxWidth: 1200, width: '100%', margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px', height: 'auto' }}>
+        <h1 style={{ position: 'relative', zIndex: 10, color: '#222', fontSize: '2.2rem', marginBottom: '1.5rem', fontWeight: 'bold', textShadow: '0 2px 8px rgba(255,255,255,0.7), 0 1px 2px rgba(0,0,0,0.15)' }}>🧭 Events Section</h1>
+        <p style={{ color: '#222', fontSize: '1.15rem', marginBottom: '2.5rem', position: 'relative', zIndex: 10, fontWeight: 'bold', textShadow: '0 2px 8px rgba(255,255,255,0.7), 0 1px 2px rgba(0,0,0,0.15)' }}>
+          Stay connected with family events, celebrations, and important occasions at The Moothedath Ancestral House.
+        </p>
 
-      {/* Tab Navigation */}
-      <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem' }}>
-        <button 
-          onClick={() => setActiveTab('current')}
-          style={{
-            padding: '0.75rem 1.5rem',
-            border: 'none',
-            borderRadius: 8,
-            background: 'transparent',
-            color: activeTab === 'current' ? '#007bff' : '#333',
-            cursor: 'pointer',
-            fontWeight: activeTab === 'current' ? 'bold' : 'normal'
-          }}
-        >
-          Current Events ({currentEvents.length})
-        </button>
-        <button 
-          onClick={() => setActiveTab('upcoming')}
-          style={{
-            padding: '0.75rem 1.5rem',
-            border: 'none',
-            borderRadius: 8,
-            background: 'transparent',
-            color: activeTab === 'upcoming' ? '#007bff' : '#333',
-            cursor: 'pointer',
-            fontWeight: activeTab === 'upcoming' ? 'bold' : 'normal'
-          }}
-        >
-          Upcoming Events ({upcomingEvents.length})
-        </button>
-        <button 
-          onClick={() => setActiveTab('past')}
-          style={{
-            padding: '0.75rem 1.5rem',
-            border: 'none',
-            borderRadius: 8,
-            background: 'transparent',
-            color: activeTab === 'past' ? '#007bff' : '#333',
-            cursor: 'pointer',
-            fontWeight: activeTab === 'past' ? 'bold' : 'normal'
-          }}
-        >
-          Past Events ({pastEvents.length})
-        </button>
-      </div>
+        {/* Tab Navigation */}
+        <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem' }}>
+          <button 
+            onClick={() => setActiveTab('current')}
+            style={{
+              padding: '0.75rem 1.5rem',
+              border: 'none',
+              borderRadius: 8,
+              background: 'transparent',
+              color: activeTab === 'current' ? '#007bff' : '#333',
+              cursor: 'pointer',
+              fontWeight: activeTab === 'current' ? 'bold' : 'normal'
+            }}
+          >
+            Current Events ({currentEvents.length})
+          </button>
+          <button 
+            onClick={() => setActiveTab('upcoming')}
+            style={{
+              padding: '0.75rem 1.5rem',
+              border: 'none',
+              borderRadius: 8,
+              background: 'transparent',
+              color: activeTab === 'upcoming' ? '#007bff' : '#333',
+              cursor: 'pointer',
+              fontWeight: activeTab === 'upcoming' ? 'bold' : 'normal'
+            }}
+          >
+            Upcoming Events ({upcomingEvents.length})
+          </button>
+          <button 
+            onClick={() => setActiveTab('past')}
+            style={{
+              padding: '0.75rem 1.5rem',
+              border: 'none',
+              borderRadius: 8,
+              background: 'transparent',
+              color: activeTab === 'past' ? '#007bff' : '#333',
+              cursor: 'pointer',
+              fontWeight: activeTab === 'past' ? 'bold' : 'normal'
+            }}
+          >
+            Past Events ({pastEvents.length})
+          </button>
+        </div>
 
-      {/* Current Events */}
-      {activeTab === 'current' && (
-        <div>
-          <h2 style={{ color: '#333', fontSize: '1.5rem', marginBottom: '1rem', position: 'relative', zIndex: 2 }}>🎉 Current Events</h2>
-          {currentEvents.map(event => (
-            <div key={event.id} style={{ 
-              background: 'transparent', 
-              borderRadius: 12, 
-              padding: '2rem', 
-              marginBottom: '1.5rem',
-              boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-              border: '2px solid #28a745'
-            }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
-                <div>
-                  <h3 style={{ color: '#222', fontSize: '1.4rem', margin: '0 0 0.5rem 0', position: 'relative', zIndex: 2 }}>{event.title}</h3>
-                  <p style={{ color: '#666', margin: '0 0 0.5rem 0', position: 'relative', zIndex: 2 }}>📅 {formatDate(event.date)} at {event.time}</p>
-                  <p style={{ color: '#666', margin: '0 0 0.5rem 0', position: 'relative', zIndex: 2 }}>📍 {event.location}</p>
-                  <p style={{ color: '#555', margin: '0 0 1rem 0', position: 'relative', zIndex: 2 }}>{event.description}</p>
-                </div>
-                <div style={{ 
-                  background: '#28a745', 
-                  color: 'white', 
-                  padding: '0.5rem 1rem', 
-                  borderRadius: 20,
-                  fontSize: '0.9rem',
-                  fontWeight: 'bold'
-                }}>
-                  LIVE NOW
-                </div>
-              </div>
-              
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
-                <div>
-                  <h4 style={{ color: '#333', marginBottom: '0.5rem' }}>📊 Attendance</h4>
-                  <div style={{ background: 'transparent', padding: '1rem', borderRadius: 8 }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
-                      <span>Attendees: {event.attendees}/{event.maxAttendees}</span>
-                      <span>{Math.round((event.attendees / event.maxAttendees) * 100)}%</span>
-                    </div>
-                    <div style={{ 
-                      background: '#e9ecef', 
-                      height: 8, 
-                      borderRadius: 4,
-                      overflow: 'hidden'
-                    }}>
-                      <div style={{ 
-                        background: '#28a745', 
-                        height: '100%', 
-                        width: `${(event.attendees / event.maxAttendees) * 100}%` 
-                      }}></div>
-                    </div>
+        {/* Current Events */}
+        {activeTab === 'current' && (
+          <div>
+            <h2 style={{ color: '#333', fontSize: '1.5rem', marginBottom: '1rem', position: 'relative', zIndex: 2 }}>🎉 Current Events</h2>
+            {currentEvents.map(event => (
+              <div key={event.id} style={{ 
+                background: 'transparent', 
+                borderRadius: 12, 
+                padding: '2rem', 
+                marginBottom: '1.5rem',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                border: '2px solid #28a745'
+              }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
+                  <div>
+                    <h3 style={{ color: '#222', fontSize: '1.4rem', margin: '0 0 0.5rem 0', position: 'relative', zIndex: 2 }}>{event.title}</h3>
+                    <p style={{ color: '#666', margin: '0 0 0.5rem 0', position: 'relative', zIndex: 2 }}>📅 {formatDate(event.date)} at {event.time}</p>
+                    <p style={{ color: '#666', margin: '0 0 0.5rem 0', position: 'relative', zIndex: 2 }}>📍 {event.location}</p>
+                    <p style={{ color: '#555', margin: '0 0 1rem 0', position: 'relative', zIndex: 2 }}>{event.description}</p>
+                  </div>
+                  <div style={{ 
+                    background: '#28a745', 
+                    color: 'white', 
+                    padding: '0.5rem 1rem', 
+                    borderRadius: 20,
+                    fontSize: '0.9rem',
+                    fontWeight: 'bold'
+                  }}>
+                    LIVE NOW
                   </div>
                 </div>
                 
-                <div>
-                  <h4 style={{ color: '#333', marginBottom: '0.5rem' }}>📸 Live Updates</h4>
-                  <div style={{ maxHeight: 200, overflowY: 'auto' }}>
-                    {event.updates.map((update, index) => (
-                      <div key={index} style={{ 
-                        background: 'transparent', 
-                        padding: '0.75rem', 
-                        borderRadius: 8, 
-                        marginBottom: '0.5rem' 
-                      }}>
-                        <div style={{ fontSize: '0.8rem', color: '#666', marginBottom: '0.25rem' }}>{update.time}</div>
-                        <div>{update.message}</div>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
+                  <div>
+                    <h4 style={{ color: '#333', marginBottom: '0.5rem' }}>📊 Attendance</h4>
+                    <div style={{ background: 'transparent', padding: '1rem', borderRadius: 8 }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+                        <span>Attendees: {event.attendees}/{event.maxAttendees}</span>
+                        <span>{Math.round((event.attendees / event.maxAttendees) * 100)}%</span>
                       </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {/* Upcoming Events */}
-      {activeTab === 'upcoming' && (
-        <div>
-          <h2 style={{ color: '#333', fontSize: '1.5rem', marginBottom: '1rem' }}>📅 Upcoming Events</h2>
-          <div style={{ display: 'grid', gap: '1.5rem' }}>
-            {upcomingEvents.map(event => (
-              <div key={event.id} style={{ 
-                background: 'transparent', 
-                borderRadius: 12, 
-                padding: '2rem', 
-                boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-                border: '2px solid #007bff'
-              }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
-                  <div>
-                    <h3 style={{ color: '#222', fontSize: '1.4rem', margin: '0 0 0.5rem 0' }}>{event.title}</h3>
-                    <p style={{ color: '#666', margin: '0 0 0.5rem 0' }}>📅 {formatDate(event.date)} at {event.time}</p>
-                    <p style={{ color: '#666', margin: '0 0 0.5rem 0' }}>📍 {event.location}</p>
-                    <p style={{ color: '#555', margin: '0 0 1rem 0' }}>{event.description}</p>
-                  </div>
-                  <div style={{ 
-                    background: '#007bff', 
-                    color: 'white', 
-                    padding: '0.5rem 1rem', 
-                    borderRadius: 20,
-                    fontSize: '0.9rem',
-                    fontWeight: 'bold'
-                  }}>
-                    UPCOMING
-                  </div>
-                </div>
-                
-                <CountdownTimer targetDate={event.countdown} />
-                
-                <div style={{ marginTop: '1.5rem' }}>
-                  <h4 style={{ color: '#333', marginBottom: '0.5rem' }}>RSVP</h4>
-                  <div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
-                    <button 
-                      onClick={() => handleRSVP(event.id, 'yes')}
-                      style={{
-                        padding: '0.5rem 1rem',
-                        border: 'none',
-                        borderRadius: 6,
-                        background: 'transparent',
-                        color: rsvpStatus[event.id] === 'yes' ? '#28a745' : '#333',
-                        cursor: 'pointer'
-                      }}
-                    >
-                      ✅ Yes, I'll attend
-                    </button>
-                    <button 
-                      onClick={() => handleRSVP(event.id, 'no')}
-                      style={{
-                        padding: '0.5rem 1rem',
-                        border: 'none',
-                        borderRadius: 6,
-                        background: 'transparent',
-                        color: rsvpStatus[event.id] === 'no' ? '#dc3545' : '#333',
-                        cursor: 'pointer'
-                      }}
-                    >
-                      ❌ No, I can't attend
-                    </button>
-                  </div>
-                  <div style={{ background: 'transparent', padding: '1rem', borderRadius: 8 }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
-                      <span>Attendees: {event.attendees}/{event.maxAttendees}</span>
-                      <span>{Math.round((event.attendees / event.maxAttendees) * 100)}%</span>
-                    </div>
-                    <div style={{ 
-                      background: '#e9ecef', 
-                      height: 8, 
-                      borderRadius: 4,
-                      overflow: 'hidden'
-                    }}>
                       <div style={{ 
-                        background: '#007bff', 
-                        height: '100%', 
-                        width: `${(event.attendees / event.maxAttendees) * 100}%` 
-                      }}></div>
+                        background: '#e9ecef', 
+                        height: 8, 
+                        borderRadius: 4,
+                        overflow: 'hidden'
+                      }}>
+                        <div style={{ 
+                          background: '#28a745', 
+                          height: '100%', 
+                          width: `${(event.attendees / event.maxAttendees) * 100}%` 
+                        }}></div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Past Events */}
-      {activeTab === 'past' && (
-        <div>
-          <h2 style={{ color: '#333', fontSize: '1.5rem', marginBottom: '1rem' }}>📚 Past Events Archive</h2>
-          <div style={{ display: 'grid', gap: '1.5rem' }}>
-            {pastEvents.map(event => (
-              <div key={event.id} style={{ 
-                background: 'transparent', 
-                borderRadius: 12, 
-                padding: '2rem', 
-                boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-                border: '2px solid #6c757d'
-              }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
+                  
                   <div>
-                    <h3 style={{ color: '#222', fontSize: '1.4rem', margin: '0 0 0.5rem 0' }}>{event.title}</h3>
-                    <p style={{ color: '#666', margin: '0 0 0.5rem 0' }}>📅 {formatDate(event.date)}</p>
-                    <p style={{ color: '#666', margin: '0 0 0.5rem 0' }}>📍 {event.location}</p>
-                    <p style={{ color: '#555', margin: '0 0 1rem 0' }}>{event.description}</p>
-                    <p style={{ color: '#666', margin: '0 0 1rem 0' }}>👥 Attendees: {event.attendees}</p>
-                  </div>
-                  <div style={{ 
-                    background: '#6c757d', 
-                    color: 'white', 
-                    padding: '0.5rem 1rem', 
-                    borderRadius: 20,
-                    fontSize: '0.9rem',
-                    fontWeight: 'bold'
-                  }}>
-                    COMPLETED
-                  </div>
-                </div>
-                
-                {event.photos && (
-                  <div style={{ marginBottom: '1rem' }}>
-                    <h4 style={{ color: '#333', marginBottom: '0.5rem' }}>📸 Event Photos</h4>
-                    <div style={{ display: 'flex', gap: '1rem', overflowX: 'auto' }}>
-                      {event.photos.map((photo, index) => (
-                        <img 
-                          key={index}
-                          src={photo} 
-                          alt={event.title}
-                          style={{ 
-                            width: 120, 
-                            height: 80, 
-                            objectFit: 'cover', 
-                            borderRadius: 8,
-                            cursor: 'pointer'
-                          }}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                )}
-                
-                {event.guestbook && (
-                  <div>
-                    <h4 style={{ color: '#333', marginBottom: '0.5rem' }}>💬 Guestbook Entries</h4>
+                    <h4 style={{ color: '#333', marginBottom: '0.5rem' }}>📸 Live Updates</h4>
                     <div style={{ maxHeight: 200, overflowY: 'auto' }}>
-                      {event.guestbook.map((entry, index) => (
+                      {event.updates.map((update, index) => (
                         <div key={index} style={{ 
                           background: 'transparent', 
                           padding: '0.75rem', 
                           borderRadius: 8, 
                           marginBottom: '0.5rem' 
                         }}>
-                          <div style={{ fontWeight: 'bold', marginBottom: '0.25rem' }}>{entry.name}</div>
-                          <div>{entry.message}</div>
+                          <div style={{ fontSize: '0.8rem', color: '#666', marginBottom: '0.25rem' }}>{update.time}</div>
+                          <div>{update.message}</div>
                         </div>
                       ))}
                     </div>
                   </div>
-                )}
+                </div>
               </div>
             ))}
           </div>
-        </div>
-      )}
-      
-      {/* Copyright Footer */}
-      <div style={{ 
-        textAlign: 'center', 
-        padding: '2rem 0', 
-        marginTop: 'calc(2rem - 5px)'
+        )}
+
+        {/* Upcoming Events */}
+        {activeTab === 'upcoming' && (
+          <div>
+            <h2 style={{ color: '#333', fontSize: '1.5rem', marginBottom: '1rem' }}>📅 Upcoming Events</h2>
+            <div style={{ display: 'grid', gap: '1.5rem' }}>
+              {upcomingEvents.map(event => (
+                <div key={event.id} style={{ 
+                  background: 'transparent', 
+                  borderRadius: 12, 
+                  padding: '2rem', 
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                  border: '2px solid #007bff'
+                }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
+                    <div>
+                      <h3 style={{ color: '#222', fontSize: '1.4rem', margin: '0 0 0.5rem 0' }}>{event.title}</h3>
+                      <p style={{ color: '#666', margin: '0 0 0.5rem 0' }}>📅 {formatDate(event.date)} at {event.time}</p>
+                      <p style={{ color: '#666', margin: '0 0 0.5rem 0' }}>📍 {event.location}</p>
+                      <p style={{ color: '#555', margin: '0 0 1rem 0' }}>{event.description}</p>
+                    </div>
+                    <div style={{ 
+                      background: '#007bff', 
+                      color: 'white', 
+                      padding: '0.5rem 1rem', 
+                      borderRadius: 20,
+                      fontSize: '0.9rem',
+                      fontWeight: 'bold'
+                    }}>
+                      UPCOMING
+                    </div>
+                  </div>
+                  
+                  <CountdownTimer targetDate={event.countdown} />
+                  
+                  <div style={{ marginTop: '1.5rem' }}>
+                    <h4 style={{ color: '#333', marginBottom: '0.5rem' }}>RSVP</h4>
+                    <div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
+                      <button 
+                        onClick={() => handleRSVP(event.id, 'yes')}
+                        style={{
+                          padding: '0.5rem 1rem',
+                          border: 'none',
+                          borderRadius: 6,
+                          background: 'transparent',
+                          color: rsvpStatus[event.id] === 'yes' ? '#28a745' : '#333',
+                          cursor: 'pointer'
+                        }}
+                      >
+                        ✅ Yes, I'll attend
+                      </button>
+                      <button 
+                        onClick={() => handleRSVP(event.id, 'no')}
+                        style={{
+                          padding: '0.5rem 1rem',
+                          border: 'none',
+                          borderRadius: 6,
+                          background: 'transparent',
+                          color: rsvpStatus[event.id] === 'no' ? '#dc3545' : '#333',
+                          cursor: 'pointer'
+                        }}
+                      >
+                        ❌ No, I can't attend
+                      </button>
+                    </div>
+                    <div style={{ background: 'transparent', padding: '1rem', borderRadius: 8 }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+                        <span>Attendees: {event.attendees}/{event.maxAttendees}</span>
+                        <span>{Math.round((event.attendees / event.maxAttendees) * 100)}%</span>
+                      </div>
+                      <div style={{ 
+                        background: '#e9ecef', 
+                        height: 8, 
+                        borderRadius: 4,
+                        overflow: 'hidden'
+                      }}>
+                        <div style={{ 
+                          background: '#007bff', 
+                          height: '100%', 
+                          width: `${(event.attendees / event.maxAttendees) * 100}%` 
+                        }}></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Past Events */}
+        {activeTab === 'past' && (
+          <div>
+            <h2 style={{ color: '#333', fontSize: '1.5rem', marginBottom: '1rem' }}>📚 Past Events Archive</h2>
+            <div style={{ display: 'grid', gap: '1.5rem' }}>
+              {pastEvents.map(event => (
+                <div key={event.id} style={{ 
+                  background: 'transparent', 
+                  borderRadius: 12, 
+                  padding: '2rem', 
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                  border: '2px solid #6c757d'
+                }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
+                    <div>
+                      <h3 style={{ color: '#222', fontSize: '1.4rem', margin: '0 0 0.5rem 0' }}>{event.title}</h3>
+                      <p style={{ color: '#666', margin: '0 0 0.5rem 0' }}>📅 {formatDate(event.date)}</p>
+                      <p style={{ color: '#666', margin: '0 0 0.5rem 0' }}>📍 {event.location}</p>
+                      <p style={{ color: '#555', margin: '0 0 1rem 0' }}>{event.description}</p>
+                      <p style={{ color: '#666', margin: '0 0 1rem 0' }}>👥 Attendees: {event.attendees}</p>
+                    </div>
+                    <div style={{ 
+                      background: '#6c757d', 
+                      color: 'white', 
+                      padding: '0.5rem 1rem', 
+                      borderRadius: 20,
+                      fontSize: '0.9rem',
+                      fontWeight: 'bold'
+                    }}>
+                      COMPLETED
+                    </div>
+                  </div>
+                  
+                  {event.photos && (
+                    <div style={{ marginBottom: '1rem' }}>
+                      <h4 style={{ color: '#333', marginBottom: '0.5rem' }}>📸 Event Photos</h4>
+                      <div style={{ display: 'flex', gap: '1rem', overflowX: 'auto' }}>
+                        {event.photos.map((photo, index) => (
+                          <img 
+                            key={index}
+                            src={photo} 
+                            alt={event.title}
+                            style={{ 
+                              width: 120, 
+                              height: 80, 
+                              objectFit: 'cover', 
+                              borderRadius: 8,
+                              cursor: 'pointer'
+                            }}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  
+                  {event.guestbook && (
+                    <div>
+                      <h4 style={{ color: '#333', marginBottom: '0.5rem' }}>💬 Guestbook Entries</h4>
+                      <div style={{ maxHeight: 200, overflowY: 'auto' }}>
+                        {event.guestbook.map((entry, index) => (
+                          <div key={index} style={{ 
+                            background: 'transparent', 
+                            padding: '0.75rem', 
+                            borderRadius: 8, 
+                            marginBottom: '0.5rem' 
+                          }}>
+                            <div style={{ fontWeight: 'bold', marginBottom: '0.25rem' }}>{entry.name}</div>
+                            <div>{entry.message}</div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+      <div style={{
+        position: 'fixed',
+        left: '50%',
+        bottom: 'calc(2rem - 15px)',
+        transform: 'translateX(-50%)',
+        zIndex: 9999,
+        background: 'rgba(255,255,255,0.85)',
+        borderRadius: '12px',
+        boxShadow: '0 2px 10px rgba(0,0,0,0.08)',
+        padding: '1rem 2rem',
+        display: 'inline-block',
+        border: '1px solid rgba(40,167,69,0.15)'
       }}>
-        <div style={{
-          display: 'inline-block',
-          background: 'rgba(255,255,255,0.5)',
-          padding: '1rem 2rem',
-          borderRadius: '8px',
-          boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-          border: '1px solid rgba(255,255,255,0.3)'
-        }}>
-          <p style={{ 
-            color: '#000', 
-            fontSize: '0.9rem', 
-            margin: 0,
-            fontWeight: '600',
-            textShadow: '0 1px 3px rgba(255,255,255,0.8)'
-          }}>
-            © 2025 The Moothedath Ancestral House. All rights reserved. | Preserving family heritage and memories for generations to come.
-          </p>
-        </div>
+        <footer style={{ color: '#000', fontSize: '0.95rem', margin: 0 }}>
+          © 2025 The Moothedath Ancestral House. All rights reserved. | Preserving family heritage and memories for generations to come.
+        </footer>
       </div>
     </div>
   );
