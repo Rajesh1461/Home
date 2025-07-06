@@ -172,7 +172,7 @@ function Upload({ media, setMedia }) {
   if (!isLoggedIn) {
     return (
       <div style={{ position: 'relative' }}>
-        <div style={{ padding: '2rem', maxWidth: '100vw', width: '100%', margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px', position: 'relative', zIndex: 100 }}>
+        <div style={{ padding: '2rem', maxWidth: '1200px', width: '1200px', margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px', position: 'relative', zIndex: 100 }}>
           <h1 style={{ position: 'relative', zIndex: 101, color: '#222', fontSize: '2rem', marginBottom: '1rem' }}>Login / Registration</h1>
           <p style={{ position: 'relative', zIndex: 101, color: '#000', fontWeight: 'bold', marginBottom: '2rem' }}>
             Secure family login to upload and manage photos and videos from our ancestral house.
