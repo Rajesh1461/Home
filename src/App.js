@@ -208,8 +208,8 @@ function AppContent({ media, setMedia }) {
               <Link to="/about" style={{ color: '#fff', textDecoration: 'none', fontSize: '20px', marginLeft: '12px', marginRight: 0 }}>About</Link>
               <Link to="/gallery" style={{ color: '#fff', textDecoration: 'none', fontSize: '20px', marginLeft: '12px', marginRight: 0 }}>Gallery</Link>
               <Link to="/events" style={{ color: '#fff', textDecoration: 'none', fontSize: '20px', marginLeft: '12px', marginRight: 0 }}>Events</Link>
-              <Link to="/upload" style={{ color: '#fff', textDecoration: 'none', fontSize: '20px', marginLeft: '12px', marginRight: 0 }}>Login / Registration</Link>
-              <Link to="/upload-portal" style={{ color: '#fff', textDecoration: 'none', fontSize: '20px', marginLeft: '12px', marginRight: 0 }}>Upload Portal</Link>
+              <Link to="/upload" style={{ color: '#fff', textDecoration: 'none', fontSize: '20px', marginLeft: '12px', marginRight: 0 }}>Upload Portal</Link>
+              <Link to="/upload-portal" style={{ color: '#fff', textDecoration: 'none', fontSize: '20px', marginLeft: '12px', marginRight: 0 }}>Login / Registration</Link>
               <Link to="/chat" style={{ color: '#fff', textDecoration: 'none', fontSize: '20px', marginLeft: '12px', marginRight: 0 }}>Chat</Link>
               <Link to="/blog" style={{ color: '#fff', textDecoration: 'none', fontSize: '20px', marginLeft: '12px', marginRight: 0 }}>Blog</Link>
               <Link to="/contribute" style={{ color: '#fff', textDecoration: 'none', fontSize: '20px', marginLeft: '12px', marginRight: 0 }}>Contribute</Link>

@@ -146,7 +146,7 @@ function UploadPortal({ media, setMedia }) {
   if (!isLoggedIn) {
     return (
       <div style={{ position: 'relative' }}>
-        <div style={{ padding: '2rem', maxWidth: 1200, margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px' }}>
+        <div style={{ padding: '2rem', maxWidth: '1200px', width: '100%', margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px', position: 'relative', zIndex: 100 }}>
           <h1 style={{ position: 'relative', zIndex: 2, color: '#222', fontSize: '2rem', marginBottom: '1rem' }}>Photo & Video Upload Portal</h1>
           <p style={{ position: 'relative', zIndex: 10, color: '#222', marginBottom: '2rem', fontWeight: 'bold', fontSize: '1.15rem', textShadow: '0 2px 8px rgba(255,255,255,0.7), 0 1px 2px rgba(0,0,0,0.15)' }}>
             Secure family login to upload and manage photos and videos from our ancestral house.
@@ -229,30 +229,23 @@ function UploadPortal({ media, setMedia }) {
           )}
         </div>
         
-        {/* Copyright Footer - Same as Home page */}
-        <div style={{ 
-          textAlign: 'center', 
-          padding: '2rem 0', 
-          marginTop: 'calc(2rem - 5px)'
+        {/* Copyright Footer - card style, bottom centered */}
+        <div style={{
+          background: 'rgba(255,255,255,0.85)',
+          borderRadius: '12px',
+          boxShadow: '0 2px 10px rgba(0,0,0,0.08)',
+          padding: '1rem 2rem',
+          display: 'block',
+          border: '1px solid rgba(40,167,69,0.15)',
+          pointerEvents: 'auto',
+          margin: '2rem auto 0',
+          width: 'fit-content',
+          maxWidth: '90vw',
+          textAlign: 'center'
         }}>
-          <div style={{
-            display: 'inline-block',
-            background: 'rgba(255,255,255,0.5)',
-            padding: '1rem 2rem',
-            borderRadius: '8px',
-            boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-            border: '1px solid rgba(255,255,255,0.3)'
-          }}>
-            <p style={{ 
-              color: '#000', 
-              fontSize: '0.9rem', 
-              margin: 0,
-              fontWeight: '600',
-              textShadow: '0 1px 3px rgba(255,255,255,0.8)'
-            }}>
-              © 2025 The Moothedath Ancestral House. All rights reserved. | Preserving family heritage and memories for generations to come.
-            </p>
-          </div>
+          <footer style={{ color: 'rgb(0,0,0)', fontSize: '0.9rem', margin: 0, fontWeight: 600, textShadow: '0 1px 3px rgba(255,255,255,0.8)' }}>
+            © 2025 The Moothedath Ancestral House. All rights reserved. | Preserving family heritage and memories for generations to come.
+          </footer>
         </div>
       </div>
     );
@@ -321,30 +314,23 @@ function UploadPortal({ media, setMedia }) {
           </form>
         </div>
       </div>
-      {/* Copyright Footer - Same as Home page */}
-      <div style={{ 
-        textAlign: 'center', 
-        padding: '2rem 0', 
-        marginTop: 'calc(2rem - 5px)'
+      {/* Copyright Footer - card style, bottom centered */}
+      <div style={{
+        background: 'rgba(255,255,255,0.85)',
+        borderRadius: '12px',
+        boxShadow: '0 2px 10px rgba(0,0,0,0.08)',
+        padding: '1rem 2rem',
+        display: 'block',
+        border: '1px solid rgba(40,167,69,0.15)',
+        pointerEvents: 'auto',
+        margin: '2rem auto 0',
+        width: 'fit-content',
+        maxWidth: '90vw',
+        textAlign: 'center'
       }}>
-        <div style={{
-          display: 'inline-block',
-          background: 'rgba(255,255,255,0.5)',
-          padding: '1rem 2rem',
-          borderRadius: '8px',
-          boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-          border: '1px solid rgba(255,255,255,0.3)'
-        }}>
-          <p style={{ 
-            color: '#000', 
-            fontSize: '0.9rem', 
-            margin: 0,
-            fontWeight: '600',
-            textShadow: '0 1px 3px rgba(255,255,255,0.8)'
-          }}>
-            © 2025 The Moothedath Ancestral House. All rights reserved. | Preserving family heritage and memories for generations to come.
-          </p>
-        </div>
+        <footer style={{ color: 'rgb(0,0,0)', fontSize: '0.9rem', margin: 0, fontWeight: 600, textShadow: '0 1px 3px rgba(255,255,255,0.8)' }}>
+          © 2025 The Moothedath Ancestral House. All rights reserved. | Preserving family heritage and memories for generations to come.
+        </footer>
       </div>
     </div>
   );

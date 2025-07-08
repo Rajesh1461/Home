@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { db } from '../firebase';
+import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 
 // Sample data for demonstration
 const sampleMedia = [
@@ -70,14 +72,30 @@ const sampleMedia = [
   }
 ];
 
-function Gallery({ media }) {
-  // Use sampleMedia as fallback if media is empty or not provided
-  const galleryMedia = (media && Array.isArray(media) && media.length > 0) ? media : sampleMedia;
+function Gallery() {
+  const [galleryMedia, setGalleryMedia] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [selectedYear, setSelectedYear] = useState('All');
   const [selectedEvent, setSelectedEvent] = useState('All');
   const [selectedPerson, setSelectedPerson] = useState('All');
   const [selectedLocation, setSelectedLocation] = useState('All');
   const [selectedMedia, setSelectedMedia] = useState(null);
+
+  useEffect(() => {
+    const fetchMedia = async () => {
+      try {
+        const q = query(collection(db, 'media'), orderBy('uploadDate', 'desc'));
+        const querySnapshot = await getDocs(q);
+        const media = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setGalleryMedia(media.length > 0 ? media : sampleMedia);
+      } catch (error) {
+        setGalleryMedia(sampleMedia);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchMedia();
+  }, []);
 
   // Build filter options from galleryMedia
   const years = [...new Set(galleryMedia.map(item => item.year))].sort((a, b) => b - a);
@@ -279,15 +297,9 @@ function Gallery({ media }) {
           boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
           border: '1px solid rgba(255,255,255,0.3)'
         }}>
-          <p style={{ 
-            color: '#000', 
-            fontSize: '0.9rem', 
-            margin: 0,
-            fontWeight: '600',
-            textShadow: '0 1px 3px rgba(255,255,255,0.8)'
-          }}>
+          <footer style={{ color: 'rgb(0,0,0)', fontSize: '0.9rem', margin: 0, fontWeight: 600, textShadow: '0 1px 3px rgba(255,255,255,0.8)' }}>
             © 2025 The Moothedath Ancestral House. All rights reserved. | Preserving family heritage and memories for generations to come.
-          </p>
+          </footer>
         </div>
       </div>
     </div>

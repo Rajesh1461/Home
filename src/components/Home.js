@@ -47,23 +47,23 @@ function Home() {
   return (
     <div style={{ position: 'relative' }}>
       <div style={{ padding: '2rem', maxWidth: 1200, width: '100%', margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px' }}>
-        <h1 style={{ color: '#222', fontSize: '2rem', marginBottom: '1rem', position: 'relative', zIndex: 10, fontWeight: 'bold', textShadow: '0 2px 8px rgba(255,255,255,0.7), 0 1px 2px rgba(0,0,0,0.15)', textAlign: 'center' }}>Welcome to The Moothedath Ancestral House Website</h1>
+      <h1 style={{ color: '#222', fontSize: '2rem', marginBottom: '1rem', position: 'relative', zIndex: 10, fontWeight: 'bold', textShadow: '0 2px 8px rgba(255,255,255,0.7), 0 1px 2px rgba(0,0,0,0.15)', textAlign: 'center' }}>Welcome to The Moothedath Ancestral House Website</h1>
         <p style={{ color: '#222', fontSize: '1rem', marginBottom: '1.5rem', position: 'relative', zIndex: 10, fontWeight: 'bold', textShadow: '0 2px 8px rgba(255,255,255,0.7), 0 1px 2px rgba(0,0,0,0.15)', textAlign: 'center' }}>
-          A digital heritage platform dedicated to preserving and celebrating the charm, legacy, and stories of your ancestral home. This website serves as a virtual showcase and community hub, offering a rich visual and interactive experience for family members, guests, and<br />well-wishers.
-        </p>
+        A digital heritage platform dedicated to preserving and celebrating the charm, legacy, and stories of your ancestral home. This website serves as a virtual showcase and community hub, offering a rich visual and interactive experience for family members, guests, and<br />well-wishers.
+      </p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem' }}>
-          {features.map((f, i) => (
-            <div key={i} style={{ background: 'transparent', borderRadius: '40px 8px 40px 8px', padding: '1.2rem 1rem', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
-              <div style={{ fontSize: '2.2rem', marginBottom: 8 }}>{f.icon}</div>
-              <div style={{ fontWeight: 'bold', fontSize: '1.1rem', marginBottom: 6 }}>{f.title}</div>
-              <div style={{ color: '#555', fontSize: '0.98rem' }}>{f.desc}</div>
-            </div>
-          ))}
+        {features.map((f, i) => (
+          <div key={i} style={{ background: 'transparent', borderRadius: '40px 8px 40px 8px', padding: '1.2rem 1rem', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
+            <div style={{ fontSize: '2.2rem', marginBottom: 8 }}>{f.icon}</div>
+            <div style={{ fontWeight: 'bold', fontSize: '1.1rem', marginBottom: 6 }}>{f.title}</div>
+            <div style={{ color: '#555', fontSize: '0.98rem' }}>{f.desc}</div>
+          </div>
+        ))}
         </div>
       </div>
       
       {/* Copyright Footer - bottom centered, fixed */}
-      <div style={{
+      <div style={{ 
         position: 'fixed',
         left: '50%',
         bottom: 'calc(2rem - 5px)',
@@ -75,9 +75,9 @@ function Home() {
         padding: '1rem 2rem',
         display: 'inline-block',
         border: '1px solid rgba(40,167,69,0.15)'
-      }}>
-        <footer style={{ color: '#000', fontSize: '0.95rem', margin: 0 }}>
-          © 2025 The Moothedath Ancestral House. All rights reserved. | Preserving family heritage and memories for generations to come.
+        }}>
+        <footer style={{ color: 'rgb(0,0,0)', fontSize: '0.9rem', margin: 0, fontWeight: 600, textShadow: '0 1px 3px rgba(255,255,255,0.8)' }}>
+            © 2025 The Moothedath Ancestral House. All rights reserved. | Preserving family heritage and memories for generations to come.
         </footer>
       </div>
       
