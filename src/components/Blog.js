@@ -144,237 +144,252 @@ function Blog() {
   };
 
   return (
-    <div style={{ padding: '2rem', maxWidth: 1200, width: '100%', margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px', height: 'auto' }}>
-      <h1 style={{ position: 'relative', zIndex: 10, color: '#222', fontSize: '2rem', marginBottom: '1rem', fontWeight: 'bold', textShadow: '0 2px 8px rgba(255,255,255,0.7), 0 1px 2px rgba(0,0,0,0.15)' }}>📜 Blog / Family Journal</h1>
-      <p style={{ color: '#222', marginBottom: '2rem', position: 'relative', zIndex: 10, fontWeight: 'bold', textShadow: '0 2px 8px rgba(255,255,255,0.7), 0 1px 2px rgba(0,0,0,0.15)' }}>
-        Stories from elders, renovation diaries, cooking traditions, and local culture - preserving our family's heritage through words.
-      </p>
+    <>
+      <div style={{ padding: '2rem', maxWidth: 1200, width: '100%', margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px', minHeight: '45vh' }}>
+        <h1 style={{ position: 'relative', zIndex: 10, color: '#222', fontSize: '2rem', marginBottom: '1rem', fontWeight: 'bold', textShadow: '0 2px 8px rgba(255,255,255,0.7), 0 1px 2px rgba(0,0,0,0.15)' }}>📜 Blog / Family Journal</h1>
+        <p style={{ color: '#222', marginBottom: '2rem', position: 'relative', zIndex: 10, fontWeight: 'bold', textShadow: '0 2px 8px rgba(255,255,255,0.7), 0 1px 2px rgba(0,0,0,0.15)' }}>
+          Stories from elders, renovation diaries, cooking traditions, and local culture - preserving our family's heritage through words.
+        </p>
 
-      {/* Search and Filter */}
-      <div style={{ 
-        background: 'transparent', 
-        padding: '1.5rem', 
-        borderRadius: 12, 
-        marginBottom: '2rem',
-        display: 'grid',
-        gridTemplateColumns: '1fr auto',
-        gap: '1rem',
-        alignItems: 'center'
-      }}>
-        <input
-          type="text"
-          placeholder="Search stories, recipes, traditions..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          style={{
-            padding: '0.75rem',
-            border: '1px solid #ddd',
-            borderRadius: 6,
-            fontSize: '1rem'
-          }}
-        />
-        <select
-          value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
-          style={{
-            padding: '0.75rem',
-            border: '1px solid #ddd',
-            borderRadius: 6,
-            fontSize: '1rem',
-            minWidth: 150
-          }}
-        >
-          {categories.map(category => (
-            <option key={category} value={category}>{category}</option>
-          ))}
-        </select>
-      </div>
-
-      {/* Blog Posts Grid */}
-      {!selectedPost && (
-        <div style={{ display: 'grid', gap: '2rem' }}>
-          {filteredPosts.map(post => (
-            <div key={post.id} style={{ 
-              background: 'transparent', 
-              borderRadius: 12, 
-              overflow: 'hidden',
-              boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-              cursor: 'pointer',
-              transition: 'transform 0.2s'
+        {/* Search and Filter */}
+        <div style={{ 
+          background: 'transparent', 
+          padding: '1.5rem', 
+          borderRadius: 12, 
+          marginBottom: '2rem',
+          display: 'grid',
+          gridTemplateColumns: '1fr auto',
+          gap: '1rem',
+          alignItems: 'center'
+        }}>
+          <input
+            type="text"
+            placeholder="Search stories, recipes, traditions..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            style={{
+              padding: '0.75rem',
+              border: '1px solid #ddd',
+              borderRadius: 6,
+              fontSize: '1rem'
             }}
-            onMouseEnter={(e) => e.target.style.transform = 'scale(1.02)'}
-            onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
-            onClick={() => setSelectedPost(post)}
-            >
-              <div style={{ display: 'flex' }}>
-                <img 
-                  src={post.image} 
-                  alt={post.title}
-                  style={{ width: 200, height: 200, objectFit: 'cover' }}
-                />
-                <div style={{ padding: '1.5rem', flex: 1 }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
-                    <span style={{ 
-                      background: '#007bff', 
-                      color: 'white', 
-                      padding: '0.25rem 0.75rem', 
-                      borderRadius: 20,
-                      fontSize: '0.8rem'
-                    }}>
-                      {post.category}
-                    </span>
-                    <span style={{ color: '#666', fontSize: '0.9rem' }}>{post.readTime}</span>
-                  </div>
-                  <h3 style={{ position: 'relative', zIndex: 2, color: '#222', fontSize: '1.3rem', margin: '0 0 0.5rem 0' }}>{post.title}</h3>
-                  <p style={{ position: 'relative', zIndex: 2, color: '#666', margin: '0 0 0.5rem 0' }}>By {post.author} • {formatDate(post.date)}</p>
-                  <p style={{ position: 'relative', zIndex: 2, color: '#555', lineHeight: 1.5, margin: '0 0 1rem 0' }}>{post.excerpt}</p>
-                  <div style={{ position: 'relative', zIndex: 2, display: 'flex', gap: '0.5rem', marginBottom: '1rem' }}>
-                    {post.tags.map(tag => (
-                      <span key={tag} style={{ 
-                        background: '#f8f9fa', 
-                        color: '#666', 
-                        padding: '0.25rem 0.5rem', 
-                        borderRadius: 4,
+          />
+          <select
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+            style={{
+              padding: '0.75rem',
+              border: '1px solid #ddd',
+              borderRadius: 6,
+              fontSize: '1rem',
+              minWidth: 150
+            }}
+          >
+            {categories.map(category => (
+              <option key={category} value={category}>{category}</option>
+            ))}
+          </select>
+        </div>
+
+        {/* Blog Posts Grid */}
+        {!selectedPost && (
+          <div style={{ display: 'grid', gap: '2rem' }}>
+            {filteredPosts.map(post => (
+              <div key={post.id} style={{ 
+                background: 'transparent', 
+                borderRadius: 12, 
+                overflow: 'hidden',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                cursor: 'pointer',
+                transition: 'transform 0.2s'
+              }}
+              onMouseEnter={(e) => e.target.style.transform = 'scale(1.02)'}
+              onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+              onClick={() => setSelectedPost(post)}
+              >
+                <div style={{ display: 'flex' }}>
+                  <img 
+                    src={post.image && post.image.trim() ? post.image : 'default.jpg'} 
+                    alt={post.title}
+                    style={{ width: 200, height: 200, objectFit: 'cover' }}
+                  />
+                  <div style={{ padding: '1.5rem', flex: 1 }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
+                      <span style={{ 
+                        background: '#007bff', 
+                        color: 'white', 
+                        padding: '0.25rem 0.75rem', 
+                        borderRadius: 20,
                         fontSize: '0.8rem'
                       }}>
-                        #{tag}
+                        {post.category}
                       </span>
-                    ))}
-                  </div>
-                  <div style={{ position: 'relative', zIndex: 2, display: 'flex', gap: '1rem', color: '#666', fontSize: '0.9rem' }}>
-                    <span>❤️ {post.likes}</span>
-                    <span>💬 {post.comments}</span>
+                      <span style={{ color: '#666', fontSize: '0.9rem' }}>{post.readTime}</span>
+                    </div>
+                    <h3 style={{ position: 'relative', zIndex: 2, color: '#222', fontSize: '1.3rem', margin: '0 0 0.5rem 0' }}>{post.title}</h3>
+                    <p style={{ 
+                      position: 'relative', 
+                      zIndex: 2, 
+                      color: '#28a745', 
+                      margin: '0 0 0.5rem 0',
+                      fontSize: '0.98rem',
+                      textShadow: '0.5px 0.5px 1px rgba(0,0,0,0.8), -0.5px -0.5px 1px rgba(0,0,0,0.8), 0.5px -0.5px 1px rgba(0,0,0,0.8), -0.5px 0.5px 1px rgba(0,0,0,0.8)'
+                    }}>By {post.author} • {formatDate(post.date)}</p>
+                    <p style={{ 
+                  position: 'relative', 
+                  zIndex: 2, 
+                  color: '#28a745', 
+                  lineHeight: 1.5, 
+                  margin: '0 0 1rem 0',
+                  fontSize: '0.98rem',
+                  textShadow: '0.5px 0.5px 1px rgba(0,0,0,0.8), -0.5px -0.5px 1px rgba(0,0,0,0.8), 0.5px -0.5px 1px rgba(0,0,0,0.8), -0.5px 0.5px 1px rgba(0,0,0,0.8)'
+                }}>{post.excerpt}</p>
+                    <div style={{ position: 'relative', zIndex: 2, display: 'flex', gap: '0.5rem', marginBottom: '1rem' }}>
+                      {post.tags.map(tag => (
+                        <span key={tag} style={{ 
+                          background: '#f8f9fa', 
+                          color: '#666', 
+                          padding: '0.25rem 0.5rem', 
+                          borderRadius: 4,
+                          fontSize: '0.8rem'
+                        }}>
+                          #{tag}
+                        </span>
+                      ))}
+                    </div>
+                    <div style={{ position: 'relative', zIndex: 2, display: 'flex', gap: '1rem', color: '#666', fontSize: '0.9rem' }}>
+                      <span>❤️ {post.likes}</span>
+                      <span>💬 {post.comments}</span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-      )}
+            ))}
+          </div>
+        )}
 
-      {/* Single Post View */}
-      {selectedPost && (
-        <div style={{ background: 'transparent', borderRadius: 12, padding: '2rem', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
-          <button 
-            onClick={() => setSelectedPost(null)}
-            style={{
-              background: 'none',
-              border: 'none',
-              color: '#007bff',
-              cursor: 'pointer',
-              fontSize: '1rem',
-              marginBottom: '1rem',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem'
-            }}
-          >
-            ← Back to all posts
-          </button>
-          
-          <div style={{ marginBottom: '1rem' }}>
-            <span style={{ 
-              background: '#007bff', 
-              color: 'white', 
-              padding: '0.5rem 1rem', 
-              borderRadius: 20,
-              fontSize: '0.9rem'
+        {/* Single Post View */}
+        {selectedPost && (
+          <div style={{ background: 'transparent', borderRadius: 12, padding: '2rem', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
+            <button 
+              onClick={() => setSelectedPost(null)}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: '#007bff',
+                cursor: 'pointer',
+                fontSize: '1rem',
+                marginBottom: '1rem',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem'
+              }}
+            >
+              ← Back to all posts
+            </button>
+            
+            <div style={{ marginBottom: '1rem' }}>
+              <span style={{ 
+                background: '#007bff', 
+                color: 'white', 
+                padding: '0.5rem 1rem', 
+                borderRadius: 20,
+                fontSize: '0.9rem'
+              }}>
+                {selectedPost.category}
+              </span>
+            </div>
+            
+            <h1 style={{ position: 'relative', zIndex: 2, color: '#222', fontSize: '2rem', margin: '0 0 0.5rem 0' }}>{selectedPost.title}</h1>
+            <p style={{ position: 'relative', zIndex: 2, color: '#666', margin: '0 0 1rem 0' }}>
+              By {selectedPost.author} • {formatDate(selectedPost.date)} • {selectedPost.readTime}
+            </p>
+            
+            <img 
+              src={selectedPost?.image && selectedPost?.image.trim() ? selectedPost.image : 'default.jpg'} 
+              alt={selectedPost.title}
+              style={{ 
+                width: '100%', 
+                maxWidth: 600, 
+                height: 300, 
+                objectFit: 'cover', 
+                borderRadius: 8,
+                marginBottom: '1.5rem'
+              }}
+            />
+            
+            <div style={{ 
+              position: 'relative', zIndex: 2,
+              lineHeight: 1.8, 
+              color: '#333', 
+              fontSize: '1.1rem',
+              whiteSpace: 'pre-line'
             }}>
-              {selectedPost.category}
-            </span>
-          </div>
-          
-          <h1 style={{ position: 'relative', zIndex: 2, color: '#222', fontSize: '2rem', margin: '0 0 0.5rem 0' }}>{selectedPost.title}</h1>
-          <p style={{ position: 'relative', zIndex: 2, color: '#666', margin: '0 0 1rem 0' }}>
-            By {selectedPost.author} • {formatDate(selectedPost.date)} • {selectedPost.readTime}
-          </p>
-          
-          <img 
-            src={selectedPost.image} 
-            alt={selectedPost.title}
-            style={{ 
-              width: '100%', 
-              maxWidth: 600, 
-              height: 300, 
-              objectFit: 'cover', 
-              borderRadius: 8,
-              marginBottom: '1.5rem'
-            }}
-          />
-          
-          <div style={{ 
-            position: 'relative', zIndex: 2,
-            lineHeight: 1.8, 
-            color: '#333', 
-            fontSize: '1.1rem',
-            whiteSpace: 'pre-line'
-          }}>
-            {selectedPost.content}
-          </div>
-          
-          <div style={{ 
-            position: 'relative', zIndex: 2,
-            marginTop: '2rem', 
-            paddingTop: '1rem', 
-            borderTop: '1px solid #eee',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center'
-          }}>
-            <div style={{ position: 'relative', zIndex: 2, display: 'flex', gap: '1rem' }}>
-              <button style={{
-                background: '#f8f9fa',
-                border: '1px solid #ddd',
-                padding: '0.5rem 1rem',
-                borderRadius: 6,
-                cursor: 'pointer'
-              }}>
-                ❤️ Like ({selectedPost.likes})
-              </button>
-              <button style={{
-                background: '#f8f9fa',
-                border: '1px solid #ddd',
-                padding: '0.5rem 1rem',
-                borderRadius: 6,
-                cursor: 'pointer'
-              }}>
-                💬 Comment ({selectedPost.comments})
-              </button>
+              {selectedPost.content}
             </div>
-            <div style={{ position: 'relative', zIndex: 2, display: 'flex', gap: '0.5rem' }}>
-              {selectedPost.tags.map(tag => (
-                <span key={tag} style={{ 
-                  background: '#f8f9fa', 
-                  color: '#666', 
-                  padding: '0.25rem 0.5rem', 
-                  borderRadius: 4,
-                  fontSize: '0.8rem'
+            
+            <div style={{ 
+              position: 'relative', zIndex: 2,
+              marginTop: '2rem', 
+              paddingTop: '1rem', 
+              borderTop: '1px solid #eee',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center'
+            }}>
+              <div style={{ position: 'relative', zIndex: 2, display: 'flex', gap: '1rem' }}>
+                <button style={{
+                  background: '#f8f9fa',
+                  border: '1px solid #ddd',
+                  padding: '0.5rem 1rem',
+                  borderRadius: 6,
+                  cursor: 'pointer'
                 }}>
-                  #{tag}
-                </span>
-              ))}
+                  ❤️ Like ({selectedPost.likes})
+                </button>
+                <button style={{
+                  background: '#f8f9fa',
+                  border: '1px solid #ddd',
+                  padding: '0.5rem 1rem',
+                  borderRadius: 6,
+                  cursor: 'pointer'
+                }}>
+                  💬 Comment ({selectedPost.comments})
+                </button>
+              </div>
+              <div style={{ position: 'relative', zIndex: 2, display: 'flex', gap: '0.5rem' }}>
+                {selectedPost.tags.map(tag => (
+                  <span key={tag} style={{ 
+                    background: '#f8f9fa', 
+                    color: '#666', 
+                    padding: '0.25rem 0.5rem', 
+                    borderRadius: 4,
+                    fontSize: '0.8rem'
+                  }}>
+                    #{tag}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* No results message */}
-      {filteredPosts.length === 0 && !selectedPost && (
-        <div style={{ 
-          position: 'relative', zIndex: 2,
-          textAlign: 'center', 
-          padding: '3rem', 
-          color: '#666',
-          background: 'transparent',
-          borderRadius: 12,
-          boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
-        }}>
-          <h3>No stories found</h3>
-          <p>Try adjusting your search terms or category filter.</p>
-        </div>
-      )}
-      
-      {/* Copyright Footer */}
+        {/* No results message */}
+        {filteredPosts.length === 0 && !selectedPost && (
+          <div style={{ 
+            position: 'relative', zIndex: 2,
+            textAlign: 'center', 
+            padding: '3rem', 
+            color: '#666',
+            background: 'transparent',
+            borderRadius: 12,
+            boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+          }}>
+            <h3>No stories found</h3>
+            <p>Try adjusting your search terms or category filter.</p>
+          </div>
+        )}
+      </div>
       <div style={{ 
         textAlign: 'center', 
         padding: '2rem 0', 
@@ -393,7 +408,7 @@ function Blog() {
           </footer>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

@@ -289,7 +289,7 @@ function AppContent({ media, setMedia }) {
         <Route path="/upload" element={<Upload media={media} setMedia={setMedia} />} />
         <Route path="/upload-portal" element={<UploadPortal media={media} setMedia={setMedia} />} />
         <Route path="/chat" element={<Chat />} />
-        <Route path="/contribute" element={<Contribute />} />
+        <Route path="/contribute" element={<Contribute isLoggedIn={isLoggedIn} currentUser={currentUser} />} />
         <Route path="/logo-test" element={<LogoTest />} />
 <<<<<<< HEAD
 =======
@@ -302,6 +302,8 @@ function AppContent({ media, setMedia }) {
 
 function App() {
   const [media, setMedia] = useState(initialMedia);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
   return (
     <Router>
       <AppContent media={media} setMedia={setMedia} />

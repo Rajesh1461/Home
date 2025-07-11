@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 
 // Copy the same sample data and logic as Upload.js
 const familyMembers = [
-  { id: 1, name: 'Father', email: 'father@family.com', role: 'Admin' },
-  { id: 2, name: 'Mother', email: 'mother@family.com', role: 'Admin' },
-  { id: 3, name: 'Grandfather', email: 'grandfather@family.com', role: 'Member' },
-  { id: 4, name: 'Grandmother', email: 'grandmother@family.com', role: 'Member' },
-  { id: 5, name: 'Uncle', email: 'uncle@family.com', role: 'Member' },
-  { id: 6, name: 'Aunt', email: 'aunt@family.com', role: 'Member' }
+  { id: 1, name: 'Father', email: 'family.moothedathhouse@gmail.com', role: 'Admin' },
+  { id: 2, name: 'Mother', email: 'family.moothedathhouse@gmail.com', role: 'Admin' },
+  { id: 3, name: 'Grandfather', email: 'family.moothedathhouse@gmail.com', role: 'Member' },
+  { id: 4, name: 'Grandmother', email: 'family.moothedathhouse@gmail.com', role: 'Member' },
+  { id: 5, name: 'Uncle', email: 'family.moothedathhouse@gmail.com', role: 'Member' },
+  { id: 6, name: 'Aunt', email: 'family.moothedathhouse@gmail.com', role: 'Member' }
 ];
 
 const uploadedMedia = [
@@ -167,21 +167,7 @@ function UploadPortal({ media, setMedia }) {
           >
             Login
           </button>
-          <button
-            onClick={() => setActiveTab('register')}
-            className="upload-auth-btn"
-            style={{
-              padding: '0.75rem 1.5rem',
-              border: 'none',
-              borderRadius: 8,
-              background: activeTab === 'register' ? '#007bff' : 'transparent',
-              color: activeTab === 'register' ? 'white' : '#333',
-              cursor: 'pointer',
-              fontWeight: activeTab === 'register' ? 'bold' : 'normal'
-            }}
-          >
-            Register
-          </button>
+
         </div>
         {activeTab === 'login' && (
           <div style={{ background: 'transparent', padding: '1rem', borderRadius: 12, boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
@@ -250,21 +236,7 @@ function UploadPortal({ media, setMedia }) {
             >
               Login
             </button>
-            <button
-              onClick={() => setActiveTab('register')}
-              className="upload-auth-btn"
-              style={{
-                padding: '0.75rem 1.5rem',
-                border: 'none',
-                borderRadius: 8,
-                background: activeTab === 'register' ? '#007bff' : 'transparent',
-                color: activeTab === 'register' ? 'white' : '#333',
-                cursor: 'pointer',
-                fontWeight: activeTab === 'register' ? 'bold' : 'normal'
-              }}
-            >
-              Register
-            </button>
+
           </div>
           {activeTab === 'login' && (
             <div style={{ background: 'transparent', padding: '1rem', borderRadius: 12, boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>

@@ -395,7 +395,7 @@ function Events() {
                       {event.photos.map((photo, index) => (
                         <img 
                           key={index}
-                          src={photo} 
+                          src={photo && photo.trim() ? photo : 'default.jpg'} 
                           alt={event.title}
                           style={{ 
                             width: 120, 
@@ -433,8 +433,6 @@ function Events() {
           </div>
         </div>
       )}
-<<<<<<< HEAD
-=======
       
       {/* Copyright Footer */}
       <div style={{ 
@@ -461,7 +459,6 @@ function Events() {
           </p>
         </div>
       </div>
->>>>>>> 669dd8fa30e1774aae73f00c8ed362f7f2c3c84b
     </div>
   );
 }

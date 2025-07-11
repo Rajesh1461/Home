@@ -111,7 +111,8 @@ function Gallery() {
   });
 
   return (
-    <div style={{ padding: '2rem', maxWidth: 1200, width: '100%', margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px', height: 'auto' }}>
+    <>
+      <div style={{ padding: '2rem', maxWidth: 1200, width: '100%', margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px', minHeight: '45vh' }}>
       <h1 style={{ position: 'relative', zIndex: 10, color: '#222', fontSize: '2.2rem', marginBottom: '1.5rem', fontWeight: 'bold', textShadow: '0 2px 8px rgba(255,255,255,0.7), 0 1px 2px rgba(0,0,0,0.15)' }}>Photo & Video Gallery</h1>
       <p style={{ position: 'relative', zIndex: 10, color: '#222', fontSize: '1.15rem', marginBottom: '1.2rem', fontWeight: 'bold', textShadow: '0 2px 8px rgba(255,255,255,0.7), 0 1px 2px rgba(0,0,0,0.15)' }}>
         Explore memories from The Moothedath Ancestral House. Filter by year, event, person, or location.
@@ -134,9 +135,9 @@ function Gallery() {
             onChange={(e) => setSelectedYear(e.target.value)}
             style={{ width: '100%', padding: '0.5rem', borderRadius: 6, border: '1px solid #ddd' }}
           >
-            <option value="All">All Years</option>
-            {years.map(year => (
-              <option key={year} value={year} style={{ position: 'relative', zIndex: 2 }}>{year}</option>
+            <option key="all-years" value="All">All Years</option>
+            {years.map((year, idx) => (
+              <option key={`year-${year}-${idx}`} value={year} style={{ position: 'relative', zIndex: 2 }}>{year}</option>
             ))}
           </select>
         </div>
@@ -147,9 +148,9 @@ function Gallery() {
             onChange={(e) => setSelectedEvent(e.target.value)}
             style={{ width: '100%', padding: '0.5rem', borderRadius: 6, border: '1px solid #ddd' }}
           >
-            <option value="All">All Events</option>
-            {events.map(event => (
-              <option key={event} value={event} style={{ position: 'relative', zIndex: 2 }}>{event}</option>
+            <option key="all-events" value="All">All Events</option>
+            {events.map((event, idx) => (
+              <option key={`event-${event}-${idx}`} value={event} style={{ position: 'relative', zIndex: 2 }}>{event}</option>
             ))}
           </select>
         </div>
@@ -160,9 +161,9 @@ function Gallery() {
             onChange={(e) => setSelectedPerson(e.target.value)}
             style={{ width: '100%', padding: '0.5rem', borderRadius: 6, border: '1px solid #ddd' }}
           >
-            <option value="All">All People</option>
-            {persons.map(person => (
-              <option key={person} value={person} style={{ position: 'relative', zIndex: 2 }}>{person}</option>
+            <option key="all-people" value="All">All People</option>
+            {persons.map((person, idx) => (
+              <option key={`person-${person}-${idx}`} value={person} style={{ position: 'relative', zIndex: 2 }}>{person}</option>
             ))}
           </select>
         </div>
@@ -173,16 +174,23 @@ function Gallery() {
             onChange={(e) => setSelectedLocation(e.target.value)}
             style={{ width: '100%', padding: '0.5rem', borderRadius: 6, border: '1px solid #ddd' }}
           >
-            <option value="All">All Locations</option>
-            {locations.map(location => (
-              <option key={location} value={location} style={{ position: 'relative', zIndex: 2 }}>{location}</option>
+            <option key="all-locations" value="All">All Locations</option>
+            {locations.map((location, idx) => (
+              <option key={`location-${location}-${idx}`} value={location} style={{ position: 'relative', zIndex: 2 }}>{location}</option>
             ))}
           </select>
         </div>
       </div>
 
       {/* Results count */}
-      <div style={{ marginBottom: '0.5rem', color: '#666', position: 'relative', zIndex: 2 }}>
+      <div style={{ 
+        marginBottom: '0.5rem', 
+        color: '#28a745', 
+        position: 'relative', 
+        zIndex: 2,
+        fontSize: '0.98rem',
+        textShadow: '0.5px 0.5px 1px rgba(0,0,0,0.8), -0.5px -0.5px 1px rgba(0,0,0,0.8), 0.5px -0.5px 1px rgba(0,0,0,0.8), -0.5px 0.5px 1px rgba(0,0,0,0.8)'
+      }}>
         Showing {filteredMedia.length} of {galleryMedia.length} items
       </div>
 
@@ -197,28 +205,26 @@ function Gallery() {
         {filteredMedia.map(item => (
           <div 
             key={item.id} 
-            style={{ 
-              background: 'transparent', 
-              borderRadius: 12, 
-              overflow: 'hidden', 
-              boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-              cursor: 'pointer',
-              transition: 'transform 0.2s',
-              position: 'relative',
-              zIndex: 21
-            }}
-            onMouseEnter={(e) => e.target.style.transform = 'scale(1.02)'}
-            onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+              style={{}}
+              onMouseEnter={undefined}
+              onMouseLeave={undefined}
             onClick={() => setSelectedMedia(item)}
           >
             <img 
-              src={item.url} 
+              src={item.url && item.url.trim() ? item.url : process.env.PUBLIC_URL + '/default.jpg'} 
               alt={item.title}
               style={{ width: '100%', height: 200, objectFit: 'cover' }}
             />
             <div style={{ padding: '0.5rem' }}>
               <h3 style={{ margin: '0 0 0.2rem 0', color: '#222', position: 'relative', zIndex: 2 }}>{item.title}</h3>
-              <p style={{ margin: '0 0 0.2rem 0', color: '#666', fontSize: '0.9rem', position: 'relative', zIndex: 2 }}>{item.caption}</p>
+              <p style={{ 
+                margin: '0 0 0.2rem 0', 
+                color: '#28a745', 
+                fontSize: '0.9rem', 
+                position: 'relative', 
+                zIndex: 2,
+                textShadow: '0.5px 0.5px 1px rgba(0,0,0,0.8), -0.5px -0.5px 1px rgba(0,0,0,0.8), 0.5px -0.5px 1px rgba(0,0,0,0.8), -0.5px 0.5px 1px rgba(0,0,0,0.8)'
+              }}>{item.caption}</p>
               <div style={{ display: 'flex', gap: '0.5rem', fontSize: '0.8rem', color: '#888', position: 'relative', zIndex: 2 }}>
                 <span>📅 {item.year}</span>
                 <span>🎉 {item.event}</span>
@@ -264,7 +270,7 @@ function Gallery() {
               ×
             </button>
             <img 
-              src={selectedMedia.url} 
+              src={selectedMedia?.url && selectedMedia?.url.trim() ? selectedMedia.url : process.env.PUBLIC_URL + '/default.jpg'} 
               alt={selectedMedia.title}
               style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
             />
@@ -282,8 +288,7 @@ function Gallery() {
           </div>
         </div>
       )}
-      
-      {/* Copyright Footer */}
+      </div>
       <div style={{ 
         textAlign: 'center', 
         padding: '2rem 0', 
@@ -302,7 +307,7 @@ function Gallery() {
           </footer>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

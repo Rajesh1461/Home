@@ -56,36 +56,22 @@ function Home() {
           <div key={i} style={{ background: 'transparent', borderRadius: '40px 8px 40px 8px', padding: '1.2rem 1rem', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
             <div style={{ fontSize: '2.2rem', marginBottom: 8 }}>{f.icon}</div>
             <div style={{ fontWeight: 'bold', fontSize: '1.1rem', marginBottom: 6 }}>{f.title}</div>
-            <div style={{ color: '#555', fontSize: '0.98rem' }}>{f.desc}</div>
+            <div style={{ 
+              color: '#28a745', 
+              fontSize: '0.98rem',
+              textShadow: '0.5px 0.5px 1px rgba(0,0,0,0.8), -0.5px -0.5px 1px rgba(0,0,0,0.8), 0.5px -0.5px 1px rgba(0,0,0,0.8), -0.5px 0.5px 1px rgba(0,0,0,0.8)'
+            }}>{f.desc}</div>
           </div>
         ))}
         </div>
-      </div>
+      </div> {/* End of main content container */}
       
-      {/* Copyright Footer - bottom centered, fixed */}
-      <div style={{ 
-        position: 'fixed',
-        left: '50%',
-        bottom: 'calc(2rem - 5px)',
-        transform: 'translateX(-50%)',
-        zIndex: 9999,
-        background: 'rgba(255,255,255,0.85)',
-        borderRadius: '12px',
-        boxShadow: '0 2px 10px rgba(0,0,0,0.08)',
-        padding: '1rem 2rem',
-        display: 'inline-block',
-        border: '1px solid rgba(40,167,69,0.15)'
-        }}>
-        <footer style={{ color: 'rgb(0,0,0)', fontSize: '0.9rem', margin: 0, fontWeight: 600, textShadow: '0 1px 3px rgba(255,255,255,0.8)' }}>
-            © 2025 The Moothedath Ancestral House. All rights reserved. | Preserving family heritage and memories for generations to come.
-        </footer>
-      </div>
-      
-      {/* Developer Tag - moved outside the main content container */}
+      {/* Developer Tag - now between main content and footer */}
       <div style={{ 
         textAlign: 'center', 
         padding: '0.5rem 0', 
-        marginTop: '0.5rem'
+        marginTop: '0.5rem',
+        marginBottom: '40px'
       }}>
         <div className="developer-tag" style={{
           display: 'inline-block',
@@ -107,6 +93,25 @@ function Home() {
             Developed by Rajesh Kumar Menon Moothedath
           </p>
         </div>
+      </div>
+
+      {/* Copyright Footer - bottom centered, fixed */}
+      <div style={{ 
+        position: 'fixed',
+        left: '50%',
+        bottom: 'calc(2rem - 5px)',
+        transform: 'translateX(-50%)',
+        zIndex: 9999,
+        background: 'rgba(255,255,255,0.85)',
+        borderRadius: '12px',
+        boxShadow: '0 2px 10px rgba(0,0,0,0.08)',
+        padding: '1rem 2rem',
+        display: 'inline-block',
+        border: '1px solid rgba(40,167,69,0.15)'
+        }}>
+        <footer style={{ color: 'rgb(0,0,0)', fontSize: '0.9rem', margin: 0, fontWeight: 600, textShadow: '0 1px 3px rgba(255,255,255,0.8)' }}>
+            © 2025 The Moothedath Ancestral House. All rights reserved. | Preserving family heritage and memories for generations to come.
+        </footer>
       </div>
       
       <style>

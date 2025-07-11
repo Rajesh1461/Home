@@ -193,241 +193,241 @@ function About() {
   const [activeTab, setActiveTab] = useState('history');
 
   return (
-    <div style={{ padding: '2rem', maxWidth: 1200, margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px' }}>
-      <h1 style={{ position: 'relative', zIndex: 2, color: '#222', fontSize: '2.2rem', marginBottom: '1.5rem' }}>🧾 About The Moothedath Ancestral House</h1>
-      <p style={{ color: '#555', fontSize: '1.15rem', marginBottom: '2.5rem', position: 'relative', zIndex: 2 }}>
-        Discover the rich history, architectural beauty, and family stories that make our ancestral house a living heritage.
-      </p>
+    <>
+      <div style={{ padding: '2rem', maxWidth: 1200, margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px' }}>
+        <h1 style={{ position: 'relative', zIndex: 2, color: '#222', fontSize: '2.2rem', marginBottom: '1.5rem' }}>🧾 About The Moothedath Ancestral House</h1>
+        <p style={{ color: '#555', fontSize: '1.15rem', marginBottom: '2.5rem', position: 'relative', zIndex: 2 }}>
+          Discover the rich history, architectural beauty, and family stories that make our ancestral house a living heritage.
+        </p>
 
-      {/* Tab Navigation */}
-      <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem' }}>
-        <button 
-          onClick={() => setActiveTab('history')}
-          style={{
-            padding: '0.75rem 1.5rem',
-            border: 'none',
-            borderRadius: 8,
-            background: activeTab === 'history' ? '#007bff' : '#f8f9fa',
-            color: activeTab === 'history' ? 'white' : '#333',
-            cursor: 'pointer',
-            fontWeight: activeTab === 'history' ? 'bold' : 'normal',
-            position: 'relative', zIndex: 2
-          }}
-        >
-          History Timeline
-        </button>
-        <button 
-          onClick={() => setActiveTab('family')}
-          style={{
-            padding: '0.75rem 1.5rem',
-            border: 'none',
-            borderRadius: 8,
-            background: activeTab === 'family' ? '#007bff' : '#f8f9fa',
-            color: activeTab === 'family' ? 'white' : '#333',
-            cursor: 'pointer',
-            fontWeight: activeTab === 'family' ? 'bold' : 'normal'
-          }}
-        >
-          Family Tree
-        </button>
-        <button 
-          onClick={() => setActiveTab('architecture')}
-          style={{
-            padding: '0.75rem 1.5rem',
-            border: 'none',
-            borderRadius: 8,
-            background: activeTab === 'architecture' ? '#007bff' : '#f8f9fa',
-            color: activeTab === 'architecture' ? 'white' : '#333',
-            cursor: 'pointer',
-            fontWeight: activeTab === 'architecture' ? 'bold' : 'normal'
-          }}
-        >
-          Architecture
-        </button>
-        <button 
-          onClick={() => setActiveTab('renovations')}
-          style={{
-            padding: '0.75rem 1.5rem',
-            border: 'none',
-            borderRadius: 8,
-            background: activeTab === 'renovations' ? '#007bff' : '#f8f9fa',
-            color: activeTab === 'renovations' ? 'white' : '#333',
-            cursor: 'pointer',
-            fontWeight: activeTab === 'renovations' ? 'bold' : 'normal'
-          }}
-        >
-          Renovation Stories
-        </button>
-      </div>
+        {/* Tab Navigation */}
+        <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem' }}>
+          <button 
+            onClick={() => setActiveTab('history')}
+            style={{
+              padding: '0.75rem 1.5rem',
+              border: 'none',
+              borderRadius: 8,
+              background: activeTab === 'history' ? '#007bff' : '#f8f9fa',
+              color: activeTab === 'history' ? 'white' : '#333',
+              cursor: 'pointer',
+              fontWeight: activeTab === 'history' ? 'bold' : 'normal',
+              position: 'relative', zIndex: 2
+            }}
+          >
+            History Timeline
+          </button>
+          <button 
+            onClick={() => setActiveTab('family')}
+            style={{
+              padding: '0.75rem 1.5rem',
+              border: 'none',
+              borderRadius: 8,
+              background: activeTab === 'family' ? '#007bff' : '#f8f9fa',
+              color: activeTab === 'family' ? 'white' : '#333',
+              cursor: 'pointer',
+              fontWeight: activeTab === 'family' ? 'bold' : 'normal'
+            }}
+          >
+            Family Tree
+          </button>
+          <button 
+            onClick={() => setActiveTab('architecture')}
+            style={{
+              padding: '0.75rem 1.5rem',
+              border: 'none',
+              borderRadius: 8,
+              background: activeTab === 'architecture' ? '#007bff' : '#f8f9fa',
+              color: activeTab === 'architecture' ? 'white' : '#333',
+              cursor: 'pointer',
+              fontWeight: activeTab === 'architecture' ? 'bold' : 'normal'
+            }}
+          >
+            Architecture
+          </button>
+          <button 
+            onClick={() => setActiveTab('renovations')}
+            style={{
+              padding: '0.75rem 1.5rem',
+              border: 'none',
+              borderRadius: 8,
+              background: activeTab === 'renovations' ? '#007bff' : '#f8f9fa',
+              color: activeTab === 'renovations' ? 'white' : '#333',
+              cursor: 'pointer',
+              fontWeight: activeTab === 'renovations' ? 'bold' : 'normal'
+            }}
+          >
+            Renovation Stories
+          </button>
+        </div>
 
-      {/* History Timeline */}
-      {activeTab === 'history' && (
-        <div>
-          <h2 style={{ color: '#333', fontSize: '1.5rem', marginBottom: '1rem' }}>📜 History Timeline</h2>
-          <div style={{ position: 'relative', display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '2rem' }}>
-            {timeline.map((event, index) => (
-              <div key={index} style={{ 
-                display: 'flex', 
-                flexDirection: 'row',
-                alignItems: 'flex-start',
-                position: 'relative'
-              }}>
-                <div style={{ 
-                  width: 100, 
-                  textAlign: 'center',
-                  marginRight: '2rem'
+        {/* History Timeline */}
+        {activeTab === 'history' && (
+          <div>
+            <h2 style={{ color: '#333', fontSize: '1.5rem', marginBottom: '1rem' }}>📜 History Timeline</h2>
+            <div style={{ position: 'relative', display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '2rem' }}>
+              {timeline.map((event, index) => (
+                <div key={index} style={{ 
+                  display: 'flex', 
+                  flexDirection: 'row',
+                  alignItems: 'flex-start',
+                  position: 'relative'
                 }}>
                   <div style={{ 
-                    background: '#007bff', 
-                    color: 'white', 
-                    padding: '0.5rem', 
-                    borderRadius: 8,
-                    fontWeight: 'bold'
+                    width: 100, 
+                    textAlign: 'center',
+                    marginRight: '2rem'
                   }}>
-                    {event.year}
-                  </div>
-                </div>
-                <div style={{ 
-                  flex: 'none',
-                  width: 300,
-                  background: '#fff', 
-                  padding: '1.5rem', 
-                  borderRadius: 12,
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-                  position: 'relative',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center'
-                }}>
-                  <div style={{ 
-                    position: 'absolute', 
-                    left: -10, 
-                    top: '50%', 
-                    transform: 'translateY(-50%)',
-                    width: 0, 
-                    height: 0, 
-                    borderTop: '10px solid transparent',
-                    borderBottom: '10px solid transparent',
-                    borderRight: '10px solid #fff'
-                  }}></div>
-                  <h3 style={{ color: '#222', margin: '0 0 0.5rem 0', textAlign: 'center' }}>{event.title}</h3>
-                  <p style={{ color: '#555', margin: '0 0 1rem 0', textAlign: 'center' }}>{event.description}</p>
-                  <img 
-                    src={event.image} 
-                    alt={event.title}
-                    style={{ 
-                      width: '100%', 
-                      maxWidth: 300, 
-                      height: 200, 
-                      objectFit: 'cover', 
-                      borderRadius: 8 
-                    }}
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Family Tree */}
-      {activeTab === 'family' && (
-        <div>
-          <div style={{ textAlign: 'center' }}>
-            <img src="/Family%20Tree.jpg" alt="Family Tree" style={{ maxWidth: '100%', borderRadius: 16, boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }} />
-          </div>
-        </div>
-      )}
-
-      {/* Architecture */}
-      {activeTab === 'architecture' && (
-        <div>
-          <h2 style={{ color: '#333', fontSize: '1.5rem', marginBottom: '1rem' }}>🏛️ Architectural Highlights</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '1.5rem' }}>
-            {architecturalSections.map((section, index) => (
-              <div key={index} style={{ 
-                background: '#fff', 
-                borderRadius: 12, 
-                overflow: 'hidden',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
-              }}>
-                <img 
-                  src={section.image} 
-                  alt={section.name}
-                  style={{ width: '100%', height: 200, objectFit: 'cover' }}
-                />
-                <div style={{ padding: '1.5rem' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                    <h3 style={{ color: '#222', margin: 0 }}>{section.name}</h3>
-                    <span style={{ 
+                    <div style={{ 
                       background: '#007bff', 
                       color: 'white', 
-                      padding: '0.25rem 0.5rem', 
-                      borderRadius: 4,
-                      fontSize: '0.8rem'
+                      padding: '0.5rem', 
+                      borderRadius: 8,
+                      fontWeight: 'bold'
                     }}>
-                      {section.yearBuilt}
-                    </span>
+                      {event.year}
+                    </div>
                   </div>
-                  <p style={{ color: '#555', margin: '0 0 1rem 0' }}>{section.description}</p>
-                  <h4 style={{ color: '#333', marginBottom: '0.5rem' }}>Key Features:</h4>
-                  <ul style={{ margin: 0, paddingLeft: '1.5rem' }}>
-                    {section.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} style={{ color: '#666', marginBottom: '0.25rem' }}>{feature}</li>
-                    ))}
-                  </ul>
+                  <div style={{ 
+                    flex: 'none',
+                    width: 300,
+                    background: '#fff', 
+                    padding: '1.5rem', 
+                    borderRadius: 12,
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                    position: 'relative',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center'
+                  }}>
+                    <div style={{ 
+                      position: 'absolute', 
+                      left: -10, 
+                      top: '50%', 
+                      transform: 'translateY(-50%)',
+                      width: 0, 
+                      height: 0, 
+                      borderTop: '10px solid transparent',
+                      borderBottom: '10px solid transparent',
+                      borderRight: '10px solid #fff'
+                    }}></div>
+                    <h3 style={{ color: '#222', margin: '0 0 0.5rem 0', textAlign: 'center' }}>{event.title}</h3>
+                    <p style={{ color: '#555', margin: '0 0 1rem 0', textAlign: 'center' }}>{event.description}</p>
+                    <img 
+                      src={event.image && event.image.trim() ? event.image : 'default.jpg'} 
+                      alt={event.title}
+                      style={{ 
+                        width: '100%', 
+                        maxWidth: 300, 
+                        height: 200, 
+                        objectFit: 'cover', 
+                        borderRadius: 8 
+                      }}
+                    />
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Renovation Stories */}
-      {activeTab === 'renovations' && (
-        <div>
-          <h2 style={{ color: '#333', fontSize: '1.5rem', marginBottom: '1rem' }}>🔨 Renovation Stories</h2>
-          <div style={{ display: 'grid', gap: '2rem' }}>
-            {renovationStories.map((story, index) => (
-              <div key={index} style={{ 
-                background: '#fff', 
-                borderRadius: 12, 
-                padding: '2rem',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
-              }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
-                  <h3 style={{ color: '#222', margin: 0 }}>{story.title}</h3>
-                  <div style={{ textAlign: 'right' }}>
-                    <div style={{ color: '#666', fontSize: '0.9rem' }}>By {story.author}</div>
-                    <div style={{ color: '#007bff', fontWeight: 'bold' }}>{story.date}</div>
+        {/* Family Tree */}
+        {activeTab === 'family' && (
+          <div>
+            <div style={{ textAlign: 'center' }}>
+              <img src="/Family%20Tree.jpg" alt="Family Tree" style={{ maxWidth: '100%', borderRadius: 16, boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }} />
+            </div>
+          </div>
+        )}
+
+        {/* Architecture */}
+        {activeTab === 'architecture' && (
+          <div>
+            <h2 style={{ color: '#333', fontSize: '1.5rem', marginBottom: '1rem' }}>🏛️ Architectural Highlights</h2>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '1.5rem' }}>
+              {architecturalSections.map((section, index) => (
+                <div key={index} style={{ 
+                  background: '#fff', 
+                  borderRadius: 12, 
+                  overflow: 'hidden',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+                }}>
+                  <img 
+                    src={section.image && section.image.trim() ? section.image : 'default.jpg'} 
+                    alt={section.name}
+                    style={{ width: '100%', height: 200, objectFit: 'cover' }}
+                  />
+                  <div style={{ padding: '1.5rem' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                      <h3 style={{ color: '#222', margin: 0 }}>{section.name}</h3>
+                      <span style={{ 
+                        background: '#007bff', 
+                        color: 'white', 
+                        padding: '0.25rem 0.5rem', 
+                        borderRadius: 4,
+                        fontSize: '0.8rem'
+                      }}>
+                        {section.yearBuilt}
+                      </span>
+                    </div>
+                    <p style={{ color: '#555', margin: '0 0 1rem 0' }}>{section.description}</p>
+                    <h4 style={{ color: '#333', marginBottom: '0.5rem' }}>Key Features:</h4>
+                    <ul style={{ margin: 0, paddingLeft: '1.5rem' }}>
+                      {section.features.map((feature, featureIndex) => (
+                        <li key={featureIndex} style={{ color: '#666', marginBottom: '0.25rem' }}>{feature}</li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
-                <p style={{ color: '#555', lineHeight: 1.6, marginBottom: '1rem' }}>{story.story}</p>
-                {story.images && (
-                  <div style={{ display: 'flex', gap: '1rem', overflowX: 'auto' }}>
-                    {story.images.map((image, imageIndex) => (
-                      <img 
-                        key={imageIndex}
-                        src={image} 
-                        alt={story.title}
-                        style={{ 
-                          width: 200, 
-                          height: 150, 
-                          objectFit: 'cover', 
-                          borderRadius: 8,
-                          cursor: 'pointer'
-                        }}
-                      />
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      )}
-<<<<<<< HEAD
-=======
+        )}
+
+        {/* Renovation Stories */}
+        {activeTab === 'renovations' && (
+          <div>
+            <h2 style={{ color: '#333', fontSize: '1.5rem', marginBottom: '1rem' }}>🔨 Renovation Stories</h2>
+            <div style={{ display: 'grid', gap: '2rem' }}>
+              {renovationStories.map((story, index) => (
+                <div key={index} style={{ 
+                  background: '#fff', 
+                  borderRadius: 12, 
+                  padding: '2rem',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+                }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
+                    <h3 style={{ color: '#222', margin: 0 }}>{story.title}</h3>
+                    <div style={{ textAlign: 'right' }}>
+                      <div style={{ color: '#666', fontSize: '0.9rem' }}>By {story.author}</div>
+                      <div style={{ color: '#007bff', fontWeight: 'bold' }}>{story.date}</div>
+                    </div>
+                  </div>
+                  <p style={{ color: '#555', lineHeight: 1.6, marginBottom: '1rem' }}>{story.story}</p>
+                  {story.images && (
+                    <div style={{ display: 'flex', gap: '1rem', overflowX: 'auto' }}>
+                      {story.images.map((image, imageIndex) => (
+                        <img 
+                          key={imageIndex}
+                          src={image && image.trim() ? image : 'default.jpg'} 
+                          alt={story.title}
+                          style={{ 
+                            width: 200, 
+                            height: 150, 
+                            objectFit: 'cover', 
+                            borderRadius: 8,
+                            cursor: 'pointer'
+                          }}
+                        />
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
       
       {/* Copyright Footer */}
       <div style={{ 
@@ -454,8 +454,7 @@ function About() {
           </p>
         </div>
       </div>
->>>>>>> 669dd8fa30e1774aae73f00c8ed362f7f2c3c84b
-    </div>
+    </>
   );
 }
 

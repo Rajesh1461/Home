@@ -174,7 +174,11 @@ function FamilyTreeNode({ node, level = 0 }) {
             </div>
           )}
           {node.description && (
-            <div style={{ fontSize: '0.8rem', color: '#555' }}>{node.description}</div>
+            <div style={{ 
+            fontSize: '0.8rem', 
+            color: '#28a745',
+            textShadow: '0.5px 0.5px 1px rgba(0,0,0,0.8), -0.5px -0.5px 1px rgba(0,0,0,0.8), 0.5px -0.5px 1px rgba(0,0,0,0.8), -0.5px 0.5px 1px rgba(0,0,0,0.8)'
+          }}>{node.description}</div>
           )}
         </div>
       </div>
@@ -193,9 +197,17 @@ function About() {
   const [activeTab, setActiveTab] = useState('history');
 
   return (
-    <div style={{ padding: '2rem', maxWidth: 1200, width: '100%', margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px', height: 'auto' }}>
+    <>
+      <div style={{ padding: '2rem', maxWidth: 1200, width: '100%', margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px', minHeight: 'calc(100vh - 120px)', height: 'auto' }}>
       <h1 style={{ position: 'relative', zIndex: 2, color: '#222', fontSize: '2.2rem', marginBottom: '1.5rem' }}>🧾 About The Moothedath Ancestral House</h1>
-      <p style={{ color: '#555', fontSize: '1.15rem', marginBottom: '2.5rem', position: 'relative', zIndex: 2 }}>
+      <p style={{ 
+        color: '#28a745', 
+        fontSize: '1.15rem', 
+        marginBottom: '2.5rem', 
+        position: 'relative', 
+        zIndex: 2,
+        textShadow: '0.5px 0.5px 1px rgba(0,0,0,0.8), -0.5px -0.5px 1px rgba(0,0,0,0.8), 0.5px -0.5px 1px rgba(0,0,0,0.8), -0.5px 0.5px 1px rgba(0,0,0,0.8)'
+      }}>
         Discover the rich history, architectural beauty, and family stories that make our ancestral house a living heritage.
       </p>
 
@@ -263,7 +275,7 @@ function About() {
       {/* History Timeline */}
       {activeTab === 'history' && (
         <div>
-          <h2 style={{ color: '#333', fontSize: '1.5rem', marginBottom: '1rem' }}>📜 History Timeline</h2>
+          <h2 style={{ color: '#333', fontSize: '2.1rem', marginBottom: '1rem' }}>📜 History Timeline</h2>
           <div style={{ position: 'relative', display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '2rem' }}>
             {timeline.map((event, index) => (
               <div key={index} style={{ 
@@ -311,9 +323,15 @@ function About() {
                     borderRight: '10px solid #fff'
                   }}></div>
                   <h3 style={{ color: '#222', margin: '0 0 0.5rem 0', textAlign: 'center' }}>{event.title}</h3>
-                  <p style={{ color: '#555', margin: '0 0 1rem 0', textAlign: 'center' }}>{event.description}</p>
+                  <p style={{ 
+                    color: '#28a745', 
+                    margin: '0 0 1rem 0', 
+                    textAlign: 'center',
+                    fontSize: '0.98rem',
+                    textShadow: '0.5px 0.5px 1px rgba(0,0,0,0.8), -0.5px -0.5px 1px rgba(0,0,0,0.8), 0.5px -0.5px 1px rgba(0,0,0,0.8), -0.5px 0.5px 1px rgba(0,0,0,0.8)'
+                  }}>{event.description}</p>
                   <img 
-                    src={event.image} 
+                      src={event.image && event.image.trim() ? event.image : process.env.PUBLIC_URL + '/default.jpg'} 
                     alt={event.title}
                     style={{ 
                       width: '100%', 
@@ -333,6 +351,7 @@ function About() {
       {/* Family Tree */}
       {activeTab === 'family' && (
         <div>
+          <h2 style={{ color: '#333', fontSize: '2.1rem', marginBottom: '1rem', textAlign: 'center' }}>🌳 Family Tree</h2>
           <div style={{ textAlign: 'center' }}>
             <img src="/Family%20Tree.jpg" alt="Family Tree" style={{ maxWidth: '100%', borderRadius: 16, boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }} />
           </div>
@@ -342,7 +361,7 @@ function About() {
       {/* Architecture */}
       {activeTab === 'architecture' && (
         <div>
-          <h2 style={{ color: '#333', fontSize: '1.5rem', marginBottom: '1rem' }}>🏛️ Architectural Highlights</h2>
+          <h2 style={{ color: '#333', fontSize: '2.1rem', marginBottom: '1rem' }}>🏛️ Architectural Highlights</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '1.5rem' }}>
             {architecturalSections.map((section, index) => (
               <div key={index} style={{ 
@@ -352,7 +371,7 @@ function About() {
                 boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
               }}>
                 <img 
-                  src={section.image} 
+                    src={section.image && section.image.trim() ? section.image : process.env.PUBLIC_URL + '/default.jpg'} 
                   alt={section.name}
                   style={{ width: '100%', height: 200, objectFit: 'cover' }}
                 />
@@ -369,7 +388,12 @@ function About() {
                       {section.yearBuilt}
                     </span>
                   </div>
-                  <p style={{ color: '#555', margin: '0 0 1rem 0' }}>{section.description}</p>
+                  <p style={{ 
+                    color: '#28a745', 
+                    margin: '0 0 1rem 0',
+                    fontSize: '0.98rem',
+                    textShadow: '0.5px 0.5px 1px rgba(0,0,0,0.8), -0.5px -0.5px 1px rgba(0,0,0,0.8), 0.5px -0.5px 1px rgba(0,0,0,0.8), -0.5px 0.5px 1px rgba(0,0,0,0.8)'
+                  }}>{section.description}</p>
                   <h4 style={{ color: '#333', marginBottom: '0.5rem' }}>Key Features:</h4>
                   <ul style={{ margin: 0, paddingLeft: '1.5rem' }}>
                     {section.features.map((feature, featureIndex) => (
@@ -386,7 +410,7 @@ function About() {
       {/* Renovation Stories */}
       {activeTab === 'renovations' && (
         <div>
-          <h2 style={{ color: '#333', fontSize: '1.5rem', marginBottom: '1rem' }}>🔨 Renovation Stories</h2>
+          <h2 style={{ color: '#333', fontSize: '2.1rem', marginBottom: '1rem' }}>🔨 Renovation Stories</h2>
           <div style={{ display: 'grid', gap: '2rem' }}>
             {renovationStories.map((story, index) => (
               <div key={index} style={{ 
@@ -402,13 +426,19 @@ function About() {
                     <div style={{ color: '#007bff', fontWeight: 'bold' }}>{story.date}</div>
                   </div>
                 </div>
-                <p style={{ color: '#555', lineHeight: 1.6, marginBottom: '1rem' }}>{story.story}</p>
+                <p style={{ 
+                  color: '#28a745', 
+                  lineHeight: 1.6, 
+                  marginBottom: '1rem',
+                  fontSize: '0.98rem',
+                  textShadow: '0.5px 0.5px 1px rgba(0,0,0,0.8), -0.5px -0.5px 1px rgba(0,0,0,0.8), 0.5px -0.5px 1px rgba(0,0,0,0.8), -0.5px 0.5px 1px rgba(0,0,0,0.8)'
+                }}>{story.story}</p>
                 {story.images && (
                   <div style={{ display: 'flex', gap: '1rem', overflowX: 'auto' }}>
                     {story.images.map((image, imageIndex) => (
                       <img 
                         key={imageIndex}
-                        src={image} 
+                          src={image && image.trim() ? image : process.env.PUBLIC_URL + '/default.jpg'} 
                         alt={story.title}
                         style={{ 
                           width: 200, 
@@ -426,8 +456,7 @@ function About() {
           </div>
         </div>
       )}
-      
-      {/* Copyright Footer */}
+      </div>
       <div style={{ 
         textAlign: 'center', 
         padding: '2rem 0', 
@@ -446,7 +475,7 @@ function About() {
           </footer>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

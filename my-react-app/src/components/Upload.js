@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 
 // Sample family members for login
 const familyMembers = [
-  { id: 1, name: 'Father', email: 'father@family.com', role: 'Admin' },
-  { id: 2, name: 'Mother', email: 'mother@family.com', role: 'Admin' },
-  { id: 3, name: 'Grandfather', email: 'grandfather@family.com', role: 'Member' },
-  { id: 4, name: 'Grandmother', email: 'grandmother@family.com', role: 'Member' },
-  { id: 5, name: 'Uncle', email: 'uncle@family.com', role: 'Member' },
-  { id: 6, name: 'Aunt', email: 'aunt@family.com', role: 'Member' }
+  { id: 1, name: 'Father', email: 'family.moothedathhouse@gmail.com', role: 'Admin' },
+  { id: 2, name: 'Mother', email: 'family.moothedathhouse@gmail.com', role: 'Admin' },
+  { id: 3, name: 'Grandfather', email: 'family.moothedathhouse@gmail.com', role: 'Member' },
+  { id: 4, name: 'Grandmother', email: 'family.moothedathhouse@gmail.com', role: 'Member' },
+  { id: 5, name: 'Uncle', email: 'family.moothedathhouse@gmail.com', role: 'Member' },
+  { id: 6, name: 'Aunt', email: 'family.moothedathhouse@gmail.com', role: 'Member' }
 ];
 
 function Upload({ media, setMedia }) {

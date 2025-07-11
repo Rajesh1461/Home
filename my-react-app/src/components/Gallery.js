@@ -194,7 +194,7 @@ function Gallery({ media }) {
             onClick={() => setSelectedMedia(item)}
           >
             <img 
-              src={item.url} 
+              src={item.url && item.url.trim() ? item.url : 'default.jpg'} 
               alt={item.title}
               style={{ width: '100%', height: 200, objectFit: 'cover' }}
             />
@@ -246,7 +246,7 @@ function Gallery({ media }) {
               ×
             </button>
             <img 
-              src={selectedMedia.url} 
+              src={selectedMedia && selectedMedia.url && selectedMedia.url.trim() ? selectedMedia.url : 'default.jpg'} 
               alt={selectedMedia.title}
               style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
             />
@@ -264,8 +264,6 @@ function Gallery({ media }) {
           </div>
         </div>
       )}
-<<<<<<< HEAD
-=======
       
       {/* Copyright Footer */}
       <div style={{ 
@@ -292,7 +290,6 @@ function Gallery({ media }) {
           </p>
         </div>
       </div>
->>>>>>> 669dd8fa30e1774aae73f00c8ed362f7f2c3c84b
     </div>
   );
 }

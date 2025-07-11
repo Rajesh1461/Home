@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const videoStyles = {
@@ -104,6 +104,17 @@ function Intro() {
   const videoRef = useRef(null);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    // Ensure video plays when component mounts
+    if (videoRef.current) {
+      videoRef.current.play().catch(error => {
+        console.log('Autoplay prevented:', error);
+        // Show text immediately if video fails to autoplay
+        handleVideoEnd();
+      });
+    }
+  }, []);
+
   const handleVideoEnd = () => {
     document.body.style.background = 'black';
     if (videoRef.current) videoRef.current.style.display = 'none';
@@ -127,8 +138,15 @@ function Intro() {
   const handleEnableAudio = () => {
     if (videoRef.current) {
       videoRef.current.muted = false;
-      videoRef.current.play();
+      videoRef.current.play().catch(error => {
+        console.log('Audio enable failed:', error);
+      });
     }
+  };
+
+  const handleVideoError = () => {
+    console.log('Video failed to load, showing text immediately');
+    handleVideoEnd();
   };
 
   return (
@@ -157,11 +175,16 @@ function Intro() {
         autoPlay
         muted
         playsInline
+        preload="auto"
         onEnded={handleVideoEnd}
+        onError={handleVideoError}
+        onLoadStart={() => console.log('Video loading started')}
+        onCanPlay={() => console.log('Video can play')}
         style={videoStyles}
         onClick={handleEnableAudio}
       >
         <source src="/main-wall.mp4" type="video/mp4" />
+        <source src="/Wallpaper-1.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       <div

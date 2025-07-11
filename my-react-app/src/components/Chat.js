@@ -186,7 +186,7 @@ function Chat() {
                   <p style={{ color: '#555', margin: '0 0 0.5rem 0', lineHeight: 1.5 }}>{entry.message}</p>
                   {entry.photo && (
                     <img 
-                      src={entry.photo} 
+                      src={entry.photo && entry.photo.trim() ? entry.photo : 'default.jpg'} 
                       alt={entry.name}
                       style={{ 
                         width: 100, 
@@ -454,7 +454,7 @@ function Chat() {
 
               <div style={{ display: 'grid', gap: '1rem' }}>
                 <a 
-                  href="https://wa.me/919876543210?text=Hello%20from%20Moothedath%20Ancestral%20House%20website!"
+                  href="https://wa.me/917904926096?text=Hello%20from%20Moothedath%20Ancestral%20House%20website!"
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{
@@ -475,7 +475,7 @@ function Chat() {
                 </a>
 
                 <a 
-                  href="https://wa.me/919876543210?text=I%20would%20like%20to%20volunteer%20for%20the%20ancestral%20house%20events"
+                  href="https://wa.me/917904926096?text=I%20would%20like%20to%20volunteer%20for%20the%20ancestral%20house%20events"
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{
@@ -496,7 +496,7 @@ function Chat() {
                 </a>
 
                 <a 
-                  href="https://wa.me/919876543210?text=I%20would%20like%20to%20make%20a%20donation%20to%20the%20ancestral%20house"
+                  href="https://wa.me/917904926096?text=I%20would%20like%20to%20make%20a%20donation%20to%20the%20ancestral%20house"
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{
@@ -530,10 +530,10 @@ function Chat() {
               <div style={{ marginBottom: '1.5rem' }}>
                 <h3 style={{ color: '#222', marginBottom: '0.5rem' }}>Family Contact</h3>
                 <p style={{ color: '#555', marginBottom: '0.5rem' }}>
-                  <strong>Phone:</strong> +91 98765 43210
+                  <strong>Phone:</strong> +91 97896 55564
                 </p>
                 <p style={{ color: '#555', marginBottom: '0.5rem' }}>
-                  <strong>Email:</strong> family@moothedathhouse.com
+                  <strong>Email:</strong> family.moothedathhouse@gmail.com
                 </p>
                 <p style={{ color: '#555', marginBottom: '0.5rem' }}>
                   <strong>Address:</strong> Moothedath Ancestral House, Kerala, India
@@ -581,8 +581,6 @@ function Chat() {
           </div>
         </div>
       )}
-<<<<<<< HEAD
-=======
       
       {/* Copyright Footer */}
       <div style={{ 
@@ -609,7 +607,6 @@ function Chat() {
           </p>
         </div>
       </div>
->>>>>>> 669dd8fa30e1774aae73f00c8ed362f7f2c3c84b
     </div>
   );
 }

@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { auth } from '../firebase';
+import { onAuthStateChanged, signOut, updateProfile } from "firebase/auth";
+import { useNavigate } from 'react-router-dom';
+import { storage, db } from '../firebase';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
 // Copy the same sample data and logic as Upload.js
 const familyMembers = [
-  { id: 1, name: 'Father', email: 'father@family.com', role: 'Admin' },
-  { id: 2, name: 'Mother', email: 'mother@family.com', role: 'Admin' },
-  { id: 3, name: 'Grandfather', email: 'grandfather@family.com', role: 'Member' },
-  { id: 4, name: 'Grandmother', email: 'grandmother@family.com', role: 'Member' },
-  { id: 5, name: 'Uncle', email: 'uncle@family.com', role: 'Member' },
-  { id: 6, name: 'Aunt', email: 'aunt@family.com', role: 'Member' }
+  { id: 1, name: 'Father', email: 'family.moothedathhouse@gmail.com', role: 'Admin' },
+  { id: 2, name: 'Mother', email: 'family.moothedathhouse@gmail.com', role: 'Admin' },
+  { id: 3, name: 'Grandfather', email: 'family.moothedathhouse@gmail.com', role: 'Member' },
+  { id: 4, name: 'Grandmother', email: 'family.moothedathhouse@gmail.com', role: 'Member' },
+  { id: 5, name: 'Uncle', email: 'family.moothedathhouse@gmail.com', role: 'Member' },
+  { id: 6, name: 'Aunt', email: 'family.moothedathhouse@gmail.com', role: 'Member' }
 ];
 
 const uploadedMedia = [
@@ -44,7 +50,20 @@ const people = ['All Family', 'Father', 'Mother', 'Grandfather', 'Grandmother', 
 function UploadPortal({ media, setMedia }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
-  const [loginForm, setLoginForm] = useState({ email: '', password: '' });
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user && user.emailVerified) {
+        setIsLoggedIn(true);
+        setCurrentUser(user);
+      } else {
+        setIsLoggedIn(false);
+        setCurrentUser(null);
+      }
+    });
+    return () => unsubscribe();
+  }, []);
+
   const [uploadForm, setUploadForm] = useState({
     title: '',
     type: 'image',
@@ -53,29 +72,20 @@ function UploadPortal({ media, setMedia }) {
     location: '',
     people: [],
     caption: '',
-    tags: []
+    tags: [],
+    setAsProfilePhoto: false
   });
-  const [activeTab, setActiveTab] = useState('login');
   const [searchTerm, setSearchTerm] = useState('');
   const [filterEvent, setFilterEvent] = useState('All');
   const [filterLocation, setFilterLocation] = useState('All');
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    const user = familyMembers.find(member => member.email === loginForm.email);
-    if (user) {
-      setCurrentUser(user);
-      setIsLoggedIn(true);
-      alert(`Welcome back, ${user.name}!`);
-    } else {
-      alert('Invalid email. Please use a registered family email.');
-    }
-  };
+  // Remove local auth state, rely on props from App.js
 
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    setCurrentUser(null);
-    setLoginForm({ email: '', password: '' });
+  const handleLogout = async () => {
+    await signOut(auth);
+    if (setAppIsLoggedIn) setAppIsLoggedIn(false);
+    if (setAppCurrentUser) setAppCurrentUser({});
   };
 
   const handleFileChange = (e) => {
@@ -85,7 +95,7 @@ function UploadPortal({ media, setMedia }) {
     }
   };
 
-  const handleUpload = (e) => {
+  const handleUpload = async (e) => {
     e.preventDefault();
     if (!uploadForm.file) {
       alert('Please select a file.');
@@ -99,29 +109,47 @@ function UploadPortal({ media, setMedia }) {
       alert('Video must be less than 100MB');
       return;
     }
-    const newMedia = {
-      id: Date.now(),
-      title: uploadForm.file.name,
-      type: uploadForm.type,
-      url: URL.createObjectURL(uploadForm.file),
-      uploadedBy: currentUser ? currentUser.name : 'You',
-      uploadDate: new Date().toISOString().split('T')[0],
-      event: uploadForm.event,
-      location: uploadForm.location,
-      caption: uploadForm.caption
-    };
-    setMedia([newMedia, ...media]);
-    setUploadForm({
-      title: '',
-      type: 'image',
-      file: null,
-      event: '',
-      location: '',
-      people: [],
-      caption: '',
-      tags: []
-    });
-    alert('Media uploaded successfully!');
+    try {
+      // 1. Upload file to Firebase Storage
+      const storageRef = ref(storage, `uploads/${Date.now()}_${uploadForm.file.name}`);
+      await uploadBytes(storageRef, uploadForm.file);
+      const downloadURL = await getDownloadURL(storageRef);
+
+      // 2. Save metadata to Firestore
+      await addDoc(collection(db, 'media'), {
+        title: uploadForm.title || uploadForm.file.name,
+        type: uploadForm.type,
+        url: downloadURL,
+        uploadedBy: currentUser ? currentUser.email : 'Anonymous',
+        uploadDate: serverTimestamp(),
+        event: uploadForm.event,
+        location: uploadForm.location,
+        caption: uploadForm.caption,
+        tags: uploadForm.tags || []
+      });
+
+      // 3. If set as profile photo, update Firebase Auth profile and app state
+      if (uploadForm.type === 'image' && uploadForm.setAsProfilePhoto && auth.currentUser) {
+        await updateProfile(auth.currentUser, { photoURL: downloadURL });
+        if (setAppCurrentUser) setAppCurrentUser(prev => ({ ...prev, photoURL: downloadURL }));
+        alert('Profile photo updated!');
+      } else {
+        alert('Media uploaded successfully!');
+      }
+      setUploadForm({
+        title: '',
+        type: 'image',
+        file: null,
+        event: '',
+        location: '',
+        people: [],
+        caption: '',
+        tags: [],
+        setAsProfilePhoto: false
+      });
+    } catch (error) {
+      alert('Upload failed: ' + error.message);
+    }
   };
 
   const addTag = (tag) => {
@@ -145,103 +173,71 @@ function UploadPortal({ media, setMedia }) {
 
   if (!isLoggedIn) {
     return (
-      <div style={{ position: 'relative' }}>
-        <div style={{ padding: '2rem', maxWidth: '1200px', width: '100%', margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px', position: 'relative', zIndex: 100 }}>
-          <h1 style={{ position: 'relative', zIndex: 2, color: '#222', fontSize: '2rem', marginBottom: '1rem' }}>Photo & Video Upload Portal</h1>
-          <p style={{ position: 'relative', zIndex: 10, color: '#222', marginBottom: '2rem', fontWeight: 'bold', fontSize: '1.15rem', textShadow: '0 2px 8px rgba(255,255,255,0.7), 0 1px 2px rgba(0,0,0,0.15)' }}>
+      <div>
+        <div style={{ padding: '2rem', maxWidth: '1200px', width: '100%', margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px' }}>
+          <h1 style={{ color: '#222', fontSize: '2rem', marginBottom: '1rem' }}>Photo & Video Upload Portal</h1>
+          <p style={{ color: '#222', marginBottom: '2rem', fontWeight: 'bold', fontSize: '1.15rem', textShadow: '0 2px 8px rgba(255,255,255,0.7), 0 1px 2px rgba(0,0,0,0.15)' }}>
             Secure family login to upload and manage photos and videos from our ancestral house.
           </p>
-          <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem' }}>
+          <div style={{ background: 'transparent', padding: '2rem', borderRadius: 12, boxShadow: '0 4px 12px rgba(0,0,0,0.1)', textAlign: 'center' }}>
+            <h2 style={{ color: '#333', fontSize: '1.5rem', marginBottom: '1rem' }}>🔐 Authentication Required</h2>
+            <p style={{ marginBottom: '2rem', fontSize: '1.1rem', fontWeight: 'bold', textShadow: '0 1px 2px rgba(0,0,0,0.3)', animation: 'pulse 2s ease-in-out infinite, rainbow 4s linear infinite' }}>
+              You need to be logged in to access the Upload Portal. Please log in or register first.
+            </p>
+            <style>{`
+              @keyframes pulse {
+                0% { opacity: 0.7; transform: scale(1); }
+                50% { opacity: 1; transform: scale(1.02); }
+                100% { opacity: 0.7; transform: scale(1); }
+              }
+              @keyframes rainbow {
+                0% { color: #ff0000; }
+                14% { color: #ff8000; }
+                28% { color: #ffff00; }
+                42% { color: #00ff00; }
+                56% { color: #0080ff; }
+                70% { color: #8000ff; }
+                84% { color: #ff0080; }
+                100% { color: #ff0000; }
+              }
+            `}</style>
             <button
-              onClick={() => setActiveTab('login')}
-              className="upload-auth-btn"
+              onClick={() => navigate('/upload')}
               style={{
-                padding: '0.75rem 1.5rem',
+                background: '#007bff',
+                color: 'white',
                 border: 'none',
-                borderRadius: 8,
-                background: activeTab === 'login' ? '#007bff' : 'transparent',
-                color: activeTab === 'login' ? 'white' : '#333',
+                padding: '0.75rem 1.5rem',
+                borderRadius: 6,
                 cursor: 'pointer',
-                fontWeight: activeTab === 'login' ? 'bold' : 'normal'
+                fontSize: '1rem',
+                fontWeight: 'bold',
+                marginRight: '1rem'
               }}
             >
-              Login
+              🔑 Go to Login / Register
             </button>
             <button
-              onClick={() => setActiveTab('register')}
-              className="upload-auth-btn"
+              onClick={() => navigate('/home')}
               style={{
-                padding: '0.75rem 1.5rem',
+                background: '#6c757d',
+                color: 'white',
                 border: 'none',
-                borderRadius: 8,
-                background: activeTab === 'register' ? '#007bff' : 'transparent',
-                color: activeTab === 'register' ? 'white' : '#333',
+                padding: '0.75rem 1.5rem',
+                borderRadius: 6,
                 cursor: 'pointer',
-                fontWeight: activeTab === 'register' ? 'bold' : 'normal'
+                fontSize: '1rem',
+                fontWeight: 'bold'
               }}
             >
-              Register
+              🏠 Back to Home
             </button>
           </div>
-          {activeTab === 'login' && (
-            <div style={{ background: 'transparent', padding: '1rem', borderRadius: 12, boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
-              <h2 style={{ position: 'relative', zIndex: 2, color: '#333', fontSize: '1.5rem', marginBottom: '10px' }}>👨‍👩‍👧‍👦 Family Login</h2>
-              <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <div style={{ marginBottom: '10px' }}>
-                  <label style={{ position: 'relative', zIndex: 2, display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>Family Email *</label>
-                  <input
-                    type="email"
-                    required
-                    value={loginForm.email}
-                    onChange={e => setLoginForm(prev => ({ ...prev, email: e.target.value }))}
-                    placeholder="Enter your family email"
-                    style={{ position: 'relative', zIndex: 2, padding: '0.75rem', border: '1px solid #ddd', borderRadius: 6, width: '32rem', boxSizing: 'border-box' }}
-                  />
-                </div>
-                <div style={{ marginBottom: '10px' }}>
-                  <label style={{ position: 'relative', zIndex: 2, display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>Password *</label>
-                  <input
-                    type="password"
-                    required
-                    value={loginForm.password}
-                    onChange={e => setLoginForm(prev => ({ ...prev, password: e.target.value }))}
-                    placeholder="Enter your password"
-                    style={{ position: 'relative', zIndex: 2, padding: '0.75rem', border: '1px solid #ddd', borderRadius: 6, width: '32rem', boxSizing: 'border-box' }}
-                  />
-                </div>
-                <button type="submit" style={{
-                  position: 'relative', zIndex: 2,
-                  background: '#007bff',
-                  color: 'white',
-                  border: 'none',
-                  padding: '0.75rem 1.5rem',
-                  borderRadius: 6,
-                  cursor: 'pointer',
-                  fontSize: '1rem',
-                  width: '32rem',
-                  boxSizing: 'border-box',
-                  marginBottom: '10px'
-                }}>
-                  Login to Upload Portal
-                </button>
-              </form>
-            </div>
-          )}
         </div>
-        
-        {/* Copyright Footer - card style, bottom centered */}
+        {/* Copyright Footer - bottom centered, not fixed */}
         <div style={{
-          background: 'rgba(255,255,255,0.85)',
-          borderRadius: '12px',
-          boxShadow: '0 2px 10px rgba(0,0,0,0.08)',
-          padding: '1rem 2rem',
-          display: 'block',
-          border: '1px solid rgba(40,167,69,0.15)',
-          pointerEvents: 'auto',
-          margin: '2rem auto 0',
-          width: 'fit-content',
-          maxWidth: '90vw',
-          textAlign: 'center'
+          textAlign: 'center',
+          marginTop: '2rem',
         }}>
           <footer style={{ color: 'rgb(0,0,0)', fontSize: '0.9rem', margin: 0, fontWeight: 600, textShadow: '0 1px 3px rgba(255,255,255,0.8)' }}>
             © 2025 The Moothedath Ancestral House. All rights reserved. | Preserving family heritage and memories for generations to come.
@@ -253,11 +249,23 @@ function UploadPortal({ media, setMedia }) {
 
   // After login, show upload form and gallery
   return (
+    <>
     <div style={{ position: 'relative' }}>
       <div style={{ padding: '2rem', maxWidth: 1200, margin: '0 auto', background: 'rgba(255,255,255,0.5)', borderRadius: '40px 8px 40px 8px' }}>
-        <div style={{ background: 'transparent', padding: '2rem', borderRadius: 12, boxShadow: '0 4px 12px rgba(0,0,0,0.1)', marginTop: '2rem' }}>
+          <div style={{ background: 'transparent', padding: '2rem', borderRadius: 12, boxShadow: '0 4px 12px rgba(0,0,0,0.1)', marginTop: '2rem', width: '50%', marginLeft: 'auto', marginRight: 'auto' }}>
           <h2 style={{ position: 'relative', zIndex: 2, color: '#333', fontSize: '1.5rem', marginBottom: '1rem' }}>📤 Upload Photo or Video</h2>
           <form onSubmit={handleUpload}>
+              <div style={{ marginBottom: '1rem' }}>
+                <label style={{ position: 'relative', zIndex: 2, display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>Title *</label>
+                <input
+                  type="text"
+                  value={uploadForm.title}
+                  onChange={e => setUploadForm(prev => ({ ...prev, title: e.target.value }))}
+                  required
+                  style={{ position: 'relative', zIndex: 2, width: '100%', padding: '0.75rem', border: '1px solid #ddd', borderRadius: 6 }}
+                  placeholder="Enter a title for your photo or video"
+                />
+              </div>
             <div style={{ marginBottom: '1rem' }}>
               <label style={{ position: 'relative', zIndex: 2, display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>Select Type *</label>
               <select
@@ -286,6 +294,78 @@ function UploadPortal({ media, setMedia }) {
                 <option value="Other">Other</option>
               </select>
             </div>
+              <div style={{ marginBottom: '1rem' }}>
+                <label style={{ position: 'relative', zIndex: 2, display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>Location</label>
+                <select
+                  value={uploadForm.location}
+                  onChange={e => setUploadForm(prev => ({ ...prev, location: e.target.value }))}
+                  style={{ position: 'relative', zIndex: 2, width: '100%', padding: '0.75rem', border: '1px solid #ddd', borderRadius: 6 }}
+                >
+                  <option value="">Select a location</option>
+                  <option value="Thinnai">Thinnai</option>
+                  <option value="Veranda">Veranda</option>
+                  <option value="Kitchen">Kitchen</option>
+                  <option value="Prayer Room">Prayer Room</option>
+                  <option value="Temple">Temple</option>
+                  <option value="Granary">Granary</option>
+                  <option value="Courtyard">Courtyard</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div style={{ marginBottom: '1rem' }}>
+                <label style={{ position: 'relative', zIndex: 2, display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>People</label>
+                <select
+                  multiple
+                  value={uploadForm.people}
+                  onChange={e => {
+                    const options = Array.from(e.target.selectedOptions, option => option.value);
+                    setUploadForm(prev => ({ ...prev, people: options }));
+                  }}
+                  style={{ position: 'relative', zIndex: 2, width: '100%', padding: '0.75rem', border: '1px solid #ddd', borderRadius: 6, minHeight: '60px' }}
+                >
+                  {people.map(person => (
+                    <option key={person} value={person}>{person}</option>
+                  ))}
+                </select>
+                <div style={{ marginTop: '0.5rem', color: '#666', fontSize: '0.95em' }}>
+                  Hold Ctrl (Windows) or Cmd (Mac) to select multiple people.
+                </div>
+              </div>
+              <div style={{ marginBottom: '1rem' }}>
+                <label style={{ position: 'relative', zIndex: 2, display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>Caption</label>
+                <textarea
+                  value={uploadForm.caption}
+                  onChange={e => setUploadForm(prev => ({ ...prev, caption: e.target.value }))}
+                  style={{ position: 'relative', zIndex: 2, width: '100%', padding: '0.75rem', border: '1px solid #ddd', borderRadius: 6, minHeight: '60px' }}
+                  placeholder="Add a caption or description (optional)"
+                />
+              </div>
+              <div style={{ marginBottom: '1rem' }}>
+                <label style={{ position: 'relative', zIndex: 2, display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>Tags</label>
+                <input
+                  type="text"
+                  value={uploadForm.tagsInput || ''}
+                  onChange={e => setUploadForm(prev => ({ ...prev, tagsInput: e.target.value }))}
+                  onKeyDown={e => {
+                    if (e.key === 'Enter' && uploadForm.tagsInput) {
+                      e.preventDefault();
+                      if (!uploadForm.tags.includes(uploadForm.tagsInput.trim())) {
+                        setUploadForm(prev => ({ ...prev, tags: [...prev.tags, prev.tagsInput.trim()], tagsInput: '' }));
+                      }
+                    }
+                  }}
+                  style={{ position: 'relative', zIndex: 2, width: '100%', padding: '0.75rem', border: '1px solid #ddd', borderRadius: 6 }}
+                  placeholder="Type a tag and press Enter"
+                />
+                <div style={{ marginTop: '0.5rem', display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                  {uploadForm.tags && uploadForm.tags.map((tag, idx) => (
+                    <span key={idx} style={{ background: '#007bff', color: 'white', borderRadius: 12, padding: '0.3em 1em', fontSize: '0.95em', display: 'inline-flex', alignItems: 'center' }}>
+                      {tag}
+                      <button type="button" onClick={() => setUploadForm(prev => ({ ...prev, tags: prev.tags.filter(t => t !== tag) }))} style={{ marginLeft: 6, background: 'none', border: 'none', color: 'white', cursor: 'pointer', fontWeight: 'bold' }}>×</button>
+                    </span>
+                  ))}
+                </div>
+              </div>
             <div style={{ marginBottom: '1rem' }}>
               <label style={{ position: 'relative', zIndex: 2, display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>File *</label>
               <input
@@ -308,31 +388,44 @@ function UploadPortal({ media, setMedia }) {
                 style={{ position: 'relative', zIndex: 2, width: '100%', padding: '0.75rem', border: '1px solid #ddd', borderRadius: 6 }}
               />
             </div>
+            <div style={{ marginBottom: '1rem' }}>
+              <label style={{ fontWeight: 'bold' }}>
+                <input
+                  type="checkbox"
+                  checked={uploadForm.setAsProfilePhoto}
+                  onChange={e => setUploadForm(prev => ({ ...prev, setAsProfilePhoto: e.target.checked }))}
+                  style={{ marginRight: 8 }}
+                />
+                Set as profile photo
+              </label>
+            </div>
             <button type="submit" style={{ position: 'relative', zIndex: 2, background: '#28a745', color: 'white', border: 'none', padding: '0.75rem 1.5rem', borderRadius: 6, cursor: 'pointer', fontSize: '1rem', width: '100%' }}>
               Upload
             </button>
           </form>
         </div>
       </div>
-      {/* Copyright Footer - card style, bottom centered */}
+      </div>
+      {/* Copyright Footer - centered below main content, About page style */}
       <div style={{
-        background: 'rgba(255,255,255,0.85)',
-        borderRadius: '12px',
-        boxShadow: '0 2px 10px rgba(0,0,0,0.08)',
-        padding: '1rem 2rem',
-        display: 'block',
-        border: '1px solid rgba(40,167,69,0.15)',
-        pointerEvents: 'auto',
-        margin: '2rem auto 0',
-        width: 'fit-content',
-        maxWidth: '90vw',
-        textAlign: 'center'
+        textAlign: 'center', 
+        padding: '2rem 0', 
+        marginTop: 'calc(2rem - 5px)'
+      }}>
+        <div style={{
+          display: 'inline-block',
+          background: 'rgba(255,255,255,0.5)',
+          padding: '1rem 2rem',
+          borderRadius: '8px',
+          boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+          border: '1px solid rgba(255,255,255,0.3)'
       }}>
         <footer style={{ color: 'rgb(0,0,0)', fontSize: '0.9rem', margin: 0, fontWeight: 600, textShadow: '0 1px 3px rgba(255,255,255,0.8)' }}>
           © 2025 The Moothedath Ancestral House. All rights reserved. | Preserving family heritage and memories for generations to come.
         </footer>
       </div>
     </div>
+    </>
   );
 }
 

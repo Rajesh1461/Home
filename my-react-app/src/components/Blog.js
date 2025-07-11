@@ -208,7 +208,7 @@ function Blog() {
             >
               <div style={{ display: 'flex' }}>
                 <img 
-                  src={post.image} 
+                  src={post.image && post.image.trim() ? post.image : 'default.jpg'} 
                   alt={post.title}
                   style={{ width: 200, height: 200, objectFit: 'cover' }}
                 />
@@ -290,7 +290,7 @@ function Blog() {
           </p>
           
           <img 
-            src={selectedPost.image} 
+            src={selectedPost && selectedPost.image && selectedPost.image.trim() ? selectedPost.image : 'default.jpg'} 
             alt={selectedPost.title}
             style={{ 
               width: '100%', 
@@ -373,8 +373,6 @@ function Blog() {
           <p>Try adjusting your search terms or category filter.</p>
         </div>
       )}
-<<<<<<< HEAD
-=======
       
       {/* Copyright Footer */}
       <div style={{ 
@@ -401,7 +399,6 @@ function Blog() {
           </p>
         </div>
       </div>
->>>>>>> 669dd8fa30e1774aae73f00c8ed362f7f2c3c84b
     </div>
   );
 }

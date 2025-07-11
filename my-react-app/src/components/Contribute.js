@@ -74,8 +74,8 @@ const donationProjects = [
     id: 1,
     title: 'Temple Renovation Fund',
     description: 'Help restore and modernize our family temple while preserving its traditional architecture',
-    target: 50000,
-    raised: 32000,
+    target: 0,
+    raised: 0,
     image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=400',
     status: 'Active'
   },
@@ -83,8 +83,8 @@ const donationProjects = [
     id: 2,
     title: 'Kitchen Modernization',
     description: 'Update kitchen facilities while maintaining traditional cooking methods',
-    target: 25000,
-    raised: 18000,
+    target: 0,
+    raised: 0,
     image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400',
     status: 'Active'
   },
@@ -94,12 +94,21 @@ const donationProjects = [
     description: 'Digitize family photos, documents, and preserve family history',
     target: 10000,
     raised: 7500,
-    image: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400',
+    image: 'volunteer.jpg',
+    status: 'Active'
+  },
+  {
+    id: 4,
+    title: 'Others',
+    description: 'Any other specific donation request for the family',
+    target: 0,
+    raised: 0,
+    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400', // Placeholder image
     status: 'Active'
   }
 ];
 
-function Contribute() {
+function Contribute({ currentUser = {}, isLoggedIn = false }) {
   const [activeTab, setActiveTab] = useState('volunteer');
   const [volunteerForm, setVolunteerForm] = useState({
     name: '',
@@ -125,6 +134,19 @@ function Contribute() {
     message: ''
   });
   const [votedPolls, setVotedPolls] = useState({});
+  // Add state for request modal and form
+  const [showRequestModal, setShowRequestModal] = useState(false);
+  const [requestForm, setRequestForm] = useState({
+    name: currentUser?.name || '',
+    email: currentUser?.email || '',
+    photo: '',
+    mobile: '',
+    amount: '',
+    purpose: '',
+    closingDate: '',
+    remarks: ''
+  });
+  const [requestSuccess, setRequestSuccess] = useState(false);
 
   const handleVolunteerSubmit = (e) => {
     e.preventDefault();
@@ -395,7 +417,7 @@ function Contribute() {
                   boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
                 }}>
                   <img 
-                    src={project.image} 
+                    src={project.image && project.image.trim() ? project.image : 'default.jpg'} 
                     alt={project.title}
                     style={{ width: '100%', height: 150, objectFit: 'cover' }}
                   />
@@ -416,25 +438,34 @@ function Contribute() {
                     <div style={{ marginBottom: '0.5rem' }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.25rem' }}>
                         <span>₹{project.raised.toLocaleString()} raised</span>
-                        <span>{calculatePercentage(project.raised, project.target)}%</span>
+                        {project.target > 0 && (
+                          <span>{calculatePercentage(project.raised, project.target)}%</span>
+                        )}
                       </div>
-                      <div style={{ 
-                        background: '#e9ecef', 
-                        height: 8, 
-                        borderRadius: 4,
-                        overflow: 'hidden'
-                      }}>
+                      {project.target > 0 && (
                         <div style={{ 
-                          background: '#28a745', 
-                          height: '100%', 
-                          width: `${calculatePercentage(project.raised, project.target)}%` 
-                        }}></div>
-                      </div>
+                          background: '#e9ecef', 
+                          height: 8, 
+                          borderRadius: 4,
+                          overflow: 'hidden'
+                        }}>
+                          <div style={{ 
+                            background: '#28a745', 
+                            height: '100%', 
+                            width: `${calculatePercentage(project.raised, project.target)}%` 
+                          }}></div>
+                        </div>
+                      )}
                     </div>
-                    <p style={{ color: '#666', fontSize: '0.9rem', margin: 0 }}>
-                      Goal: ₹{project.target.toLocaleString()}
-                    </p>
+                    {project.target > 0 && (
+                      <p style={{ color: '#666', fontSize: '0.9rem', margin: 0 }}>
+                        Goal: ₹{project.target.toLocaleString()}
+                      </p>
+                    )}
                   </div>
+                  {project.title === 'Others' && (
+                    <button onClick={() => setShowRequestModal(true)} style={{marginTop: '1rem', background: '#007bff', color: 'white', border: 'none', borderRadius: 6, padding: '0.5rem 1rem', cursor: 'pointer'}}>Request Donation</button>
+                  )}
                 </div>
               ))}
             </div>
@@ -658,9 +689,39 @@ function Contribute() {
           </form>
         </div>
       )}
-<<<<<<< HEAD
-=======
       
+      {/* Request Donation Modal */}
+      {showRequestModal && (
+        <div style={{position: 'fixed', top:0, left:0, width:'100vw', height:'100vh', background:'rgba(0,0,0,0.4)', display:'flex', alignItems:'center', justifyContent:'center', zIndex:1000}}>
+          <form onSubmit={e => {e.preventDefault(); setRequestSuccess(true); setShowRequestModal(false);}} style={{background:'white', padding:32, borderRadius:12, minWidth:350, boxShadow:'0 4px 24px rgba(0,0,0,0.2)'}}>
+            <h2>Request a Donation</h2>
+            <label>Name</label>
+            <input type='text' value={requestForm.name} onChange={e=>setRequestForm(f=>({...f, name:e.target.value}))} required style={{width:'100%',marginBottom:8}}/>
+            <label>Email</label>
+            <input type='email' value={requestForm.email} onChange={e=>setRequestForm(f=>({...f, email:e.target.value}))} required style={{width:'100%',marginBottom:8}}/>
+            <label>Photo (URL, optional)</label>
+            <input type='text' value={requestForm.photo} onChange={e=>setRequestForm(f=>({...f, photo:e.target.value}))} style={{width:'100%',marginBottom:8}}/>
+            <label>Mobile Number</label>
+            <input type='text' value={requestForm.mobile} onChange={e=>setRequestForm(f=>({...f, mobile:e.target.value}))} required style={{width:'100%',marginBottom:8}}/>
+            <label>Required Amount (₹)</label>
+            <input type='number' value={requestForm.amount} onChange={e=>setRequestForm(f=>({...f, amount:e.target.value}))} required style={{width:'100%',marginBottom:8}}/>
+            <label>Purpose of the Amount</label>
+            <textarea value={requestForm.purpose} onChange={e=>setRequestForm(f=>({...f, purpose:e.target.value}))} required style={{width:'100%',marginBottom:8}}/>
+            <label>Donation Closing Date</label>
+            <input type='date' value={requestForm.closingDate} onChange={e=>setRequestForm(f=>({...f, closingDate:e.target.value}))} required style={{width:'100%',marginBottom:8}}/>
+            <label>Remarks (optional)</label>
+            <textarea value={requestForm.remarks} onChange={e=>setRequestForm(f=>({...f, remarks:e.target.value}))} style={{width:'100%',marginBottom:8}}/>
+            <div style={{display:'flex',justifyContent:'flex-end',gap:8}}>
+              <button type='button' onClick={()=>setShowRequestModal(false)} style={{background:'#ccc',border:'none',borderRadius:6,padding:'0.5rem 1rem'}}>Cancel</button>
+              <button type='submit' style={{background:'#28a745',color:'white',border:'none',borderRadius:6,padding:'0.5rem 1rem'}}>Submit</button>
+            </div>
+          </form>
+        </div>
+      )}
+      {requestSuccess && (
+        <div style={{position:'fixed',top:20,right:20,background:'#28a745',color:'white',padding:'1rem 2rem',borderRadius:8,zIndex:2000}}>Request submitted successfully!</div>
+      )}
+
       {/* Copyright Footer */}
       <div style={{ 
         textAlign: 'center', 
@@ -686,7 +747,6 @@ function Contribute() {
           </p>
         </div>
       </div>
->>>>>>> 669dd8fa30e1774aae73f00c8ed362f7f2c3c84b
     </div>
   );
 }
